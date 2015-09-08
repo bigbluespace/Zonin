@@ -10,31 +10,31 @@
 	<string>Zonin</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>E06E4F59E4C5A7984121CAD706EBEBF7B8561819</key>
-		<string>https://bitbucket.org/arifuzzaman/zonin-app.git</string>
+		<key>C8A525A64300968A196BC70E829D5181A9E09C34</key>
+		<string>https://github.com/majorarif/Zonin.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Zonin/Zonin.xcodeproj</string>
+	<string>Zonin.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>E06E4F59E4C5A7984121CAD706EBEBF7B8561819</key>
-		<string>../../..</string>
+		<key>C8A525A64300968A196BC70E829D5181A9E09C34</key>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://bitbucket.org/arifuzzaman/zonin-app.git</string>
+	<string>https://github.com/majorarif/Zonin.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>E06E4F59E4C5A7984121CAD706EBEBF7B8561819</string>
+	<string>C8A525A64300968A196BC70E829D5181A9E09C34</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>E06E4F59E4C5A7984121CAD706EBEBF7B8561819</string>
+			<string>C8A525A64300968A196BC70E829D5181A9E09C34</string>
 			<key>IDESourceControlWCCName</key>
-			<string>zonin%20app</string>
+			<string>Zonin</string>
 		</dict>
 	</array>
 </dict>
