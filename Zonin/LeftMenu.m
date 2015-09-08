@@ -26,6 +26,7 @@
   //  SaveSearchList *saveSearchList;
     UILabel *countLabel;
    // NSString *dataType;
+///arif
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIImageView *companyLogo;
