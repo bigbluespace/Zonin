@@ -39,34 +39,50 @@
     _topicTitle.text = [_forumData valueForKey:@"topic_title"];
     _topicDescription.text = [_forumData valueForKey:@"topic_description"];
     _topicdate.text = [_forumData valueForKey:@"topic_date"];
-    
+    commentArray = [NSMutableArray array];
     _commentOverlayView.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5];
     _addAdviceView.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5];
     
+    UIColor *color = [UIColor whiteColor];
+    _commentTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Comment Here" attributes:@{NSForegroundColorAttributeName: color}];
     
     appDelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     
     PORTRAIT_KEYBOARD_HEIGHT = 270;
-    origin = _addAdviceView.frame.origin.y;
+    origin = self.view.frame.origin.y;
     KEYBOARD_ANIMATION_DURATION = 0.3;
+    
+    [[UITextField appearance] setTintColor:[UIColor whiteColor]];
+    _commentTextField.keyboardAppearance = UIKeyboardAppearanceDark;
+    
+    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
+    _commentTextField.leftView = paddingView;
+    _commentTextField.leftViewMode = UITextFieldViewModeAlways;
     
     AdViewObject *add = [AdViewObject sharedManager];
     [adView addSubview:add.adView];
+    
+    
 }
 
--(void)loadSelectedForumComment{
-    NSLog(@"Topic ID %@", [_forumData valueForKey:@"topic_id"]);
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //[self loadSelectedForumComment:_forumData];
+}
+
+-(void)loadSelectedForumComment:(NSDictionary*)forumData{
+    NSLog(@"Topic ID %@", [forumData valueForKey:@"topic_id"]);
     NSDictionary *dict = @{
-                           @"topic_id":[_forumData valueForKey:@"topic_id"],
+                           @"topic_id":[forumData valueForKey:@"topic_id"],
                            @"MACHINE_CODE":@"emran4axiz"
                            };
-    NSString *url = [NSString stringWithFormat:@"http://zoninapp.com/admin/backend/api_zonin/gettopic_comment/emran4axiz/%@",[_forumData valueForKey:@"topic_id"]];
+    NSString *url = [NSString stringWithFormat:@"http://zoninapp.com/admin/backend/api_zonin/gettopic_comment/emran4axiz/%@",[forumData valueForKey:@"topic_id"]];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [Zonin commonPost:url parameters:dict block:^(NSDictionary *JSON, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSLog(@"List Detail %@",JSON);
         if ([[JSON valueForKey:@"message"]isEqualToString:@"success"]) {
-            commentArray = [[NSMutableArray alloc] initWithArray:[JSON valueForKey:@"topic_comments_info"]];
+            commentArray =[JSON valueForKeyPath:@"status.topic_comment.topic_comments_info"];
             
         }
         [_commentTableView reloadData];
@@ -84,7 +100,7 @@
 
 - (IBAction)viewCommentBtn:(id)sender {
     _commentOverlayView.hidden = NO;
-    [self loadSelectedForumComment];
+    [self loadSelectedForumComment:_forumData];
 }
 
 - (IBAction)showAdviceOverlay:(id)sender {
@@ -92,18 +108,23 @@
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
-//    CGRect textFieldRect = [self.view convertRect:_addAdviceView.bounds fromView:_addAdviceView];
-//    [self animateView_Up:&textFieldRect];
+    CGRect textFieldRect = [self.view.window convertRect:textField.bounds fromView:textField];
+    [self animateView_Up:&textFieldRect];
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField{
-//    [self animateView_Down];
-}
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
 }
+// Catpure the picker view selection
+
+
+
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    [self animateView_Down];
+}
+
 #pragma mark - Comment Overlay View & TableView
 - (IBAction)closeBtn:(id)sender {
     _commentOverlayView.hidden = YES;
@@ -142,15 +163,12 @@
     }];
 }
 
-#pragma mark -animation functions
+#pragma mark - animation functions
 - (void)animateView_Up: (CGRect*)rect{
     CGFloat fieldBottom =rect->origin.y+rect->size.height;
     CGFloat screenHeight = [[UIScreen mainScreen] bounds].size.height;
     
     CGRect viewFrame = self.view.frame;
-    
-    // NSLog(@"%f",viewFrame.origin.y);
-    // NSLog(@"%f",origin);
     
     if (fieldBottom<(screenHeight-PORTRAIT_KEYBOARD_HEIGHT) && viewFrame.origin.y == origin) {
         animatedDistance = 0;

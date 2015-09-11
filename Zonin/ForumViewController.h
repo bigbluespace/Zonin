@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ForumViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface ForumViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, UITextFieldDelegate>
 
 @end
