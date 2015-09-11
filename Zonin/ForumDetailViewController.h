@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 
-@interface ForumDetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface ForumDetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 @property NSDictionary *forumData;
 @end

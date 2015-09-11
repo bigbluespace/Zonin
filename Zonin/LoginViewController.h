@@ -11,7 +11,7 @@
 #import "App-Utilities.h"
 #import "AppDelegate.h"
 
-@interface LoginViewController : UIViewController
+@interface LoginViewController : UIViewController<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIView *ContainerView;
 @property (weak, nonatomic) IBOutlet UIView *registerView;
 
@@ -24,5 +24,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtPhone;
 @property (weak, nonatomic) IBOutlet UITextField *txtEmailreg;
 @property (weak, nonatomic) IBOutlet UITextField *txtPasswordreg;
+@property (weak, nonatomic) IBOutlet UITextField *userName;
+@property (weak, nonatomic) IBOutlet UITextField *genderTxt;
+
 
 @end

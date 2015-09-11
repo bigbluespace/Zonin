@@ -23,6 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[UITextField appearance] setTintColor:[UIColor redColor]];
     SpinnerView=[[UIView alloc]initWithFrame:self.ContainerView.bounds];
     self.registerView.hidden=true;
     myAppDelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
@@ -31,8 +32,18 @@
     
     AdViewObject *add = [AdViewObject sharedManager];
     [adView addSubview:add.adView];
-    // Do any additional setup after loading the view.
+    
+    UIView *paddingTxtfieldView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 42)];
+    _txtEmail.leftView = paddingTxtfieldView;
+    _txtEmail.leftViewMode = UITextFieldViewModeAlways;
+    
+    UIView *paddingTxtfieldView2 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 42)];
+    _txtPassword.leftView = paddingTxtfieldView2;
+    _txtPassword.leftViewMode = UITextFieldViewModeAlways;
+    
 }
+
+
 //---------------------------------
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -59,6 +70,12 @@
     self.txtPhone.text=@"";
     self.registerView.hidden=false;
 }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
 -(void)isNotlogincontrolShow:(BOOL)action
 {
     for (UIView*a in [self.ContainerView subviews])
@@ -168,11 +185,18 @@
     {
         //NSDictionary*datadic=(NSDictionary*)responseObject;
         NSLog(@"json:%@",responseObject);
-        if ([[responseObject objectForKey:JSON_KEY_MESSAGE] isEqual:SERVER_MESSAGE_SUCCESS])
+        if ([[responseObject valueForKey:@"message"] isEqualToString:@"success"])
         {
             alertmgs=[responseObject objectForKey:JSON_KEY_STATUS];
             myAppDelegate.logedUser.userID=[[responseObject objectForKey:key_user_id]integerValue];
-            NSLog(@"user id %d",myAppDelegate.logedUser.userID);
+            
+            NSString *user_id = [responseObject valueForKey:@"usre_id"];
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setValue:user_id forKey:@"user_id"];
+            [defaults synchronize];
+            
+            NSLog(@"user id %@",[[NSUserDefaults standardUserDefaults]
+                                 stringForKey:@"user_id"]);
             [self TostAlertMsg:alertmgs];
             [self.navigationController popViewControllerAnimated:YES];
         }

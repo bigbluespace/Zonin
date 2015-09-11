@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Country.h"
+#import "AppDelegate.h"
 
-@interface SelectSettings : UIViewController
-
+@interface SelectSettings : UIViewController<UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
+@property Country*currentCountry;
+@property Country*currentState;
+@property Country*currentParish;
+@property NSString *currentLanguage;
 @end
