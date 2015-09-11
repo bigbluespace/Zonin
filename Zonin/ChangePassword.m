@@ -73,7 +73,8 @@
     if (recentPass.length > 5 && newPass.length > 5 && confirmPass.length > 5) {
         if ([newPass isEqualToString:confirmPass]) {
             [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-            [self saveDataToServer];
+                [self saveDataToServer];
+            
         }else{
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"New Password & Confirm Password does not match" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
             [alert show];

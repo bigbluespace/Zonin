@@ -1978,6 +1978,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="cancelBtn:" destination="gFB-nF-ECZ" eventType="touchUpInside" id="TUA-hb-CMU"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vjH-zL-53H">
                                 <rect key="frame" x="0.0" y="636" width="414" height="100"/>
@@ -2047,7 +2050,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rzM-wh-d9e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3154" y="2908"/>
+            <point key="canvasLocation" x="3193" y="2874"/>
         </scene>
         <!--About-->
         <scene sceneID="F4t-Kq-Tsw">
@@ -4770,7 +4773,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dZI-Oc-Nmh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2181" y="3932"/>
+            <point key="canvasLocation" x="2210" y="4012"/>
         </scene>
         <!--Settings-->
         <scene sceneID="OJc-ua-g5F">
@@ -4845,7 +4848,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="gFB-nF-ECZ" kind="show" id="paX-2a-zvy"/>
+                                            <action selector="selectSettings:" destination="Ls0-2y-9hO" eventType="touchUpInside" id="M5j-G5-1fm"/>
                                         </connections>
                                     </button>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4d1-iv-oS0" userLabel="LogoutView">
@@ -5011,11 +5014,12 @@
                         <outlet property="logoutView" destination="4d1-iv-oS0" id="Lz1-lM-7qi"/>
                         <outlet property="videoState" destination="kiM-iJ-TSd" id="8gn-sN-rYw"/>
                         <segue destination="4hK-cY-VMg" kind="show" identifier="changePasswordSegue" id="a7m-9X-du5"/>
+                        <segue destination="gFB-nF-ECZ" kind="show" identifier="selectSettingsSegue" id="Yfb-bD-cDW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hb0-TU-zsR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2181" y="2908"/>
+            <point key="canvasLocation" x="2198" y="2882"/>
         </scene>
         <!--Officer Login View-->
         <scene sceneID="JTG-7v-eTQ">
@@ -5120,7 +5124,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nck-af-mP2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2702" y="3465"/>
+            <point key="canvasLocation" x="2726" y="3497"/>
         </scene>
     </scenes>
     <resources>

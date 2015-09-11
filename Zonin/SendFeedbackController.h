@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SendFeedbackController : UIViewController<UITextFieldDelegate, UIAlertViewDelegate>
+@interface SendFeedbackController : UIViewController<UITextFieldDelegate, UIAlertViewDelegate, UITextViewDelegate>
 
 @end

@@ -17,15 +17,15 @@
 @interface SelectSettings (){
     NSArray *textFieldArray;
     NSMutableArray *languageList, *countryList, *stateList,*parishList, *pickerList, *pickerListTitle, *currentArray;
+    
     CGFloat PORTRAIT_KEYBOARD_HEIGHT, animatedDistance, KEYBOARD_ANIMATION_DURATION;
     float origin;
-    
     UIToolbar *toolBar;
-    UIPickerView* myPickerView;
     UILabel* toolbarTitle;
     NSInteger currentIndex, tempIndex, currentRank;
     UIView *tintView;
     
+    UIPickerView* myPickerView;
     UITextField *currentField;
     NSString *user_id;
     AppDelegate *appDelegate;
@@ -437,6 +437,11 @@
         NSLog(@"JSON %@", JSON);
     }];
 }
+
+- (IBAction)cancelBtn:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 /*
 #pragma mark - Navigation

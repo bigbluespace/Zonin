@@ -53,8 +53,18 @@
         video = YES;
     }
 }
+//selectSettingsSegue
+- (IBAction)selectSettings:(id)sender {
+    if (user_id != nil && [user_id integerValue] !=0) {
+        [self performSegueWithIdentifier:@"selectSettingsSegue" sender:self];
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Please login before proceed" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+    }
+}
+
 - (IBAction)changePasswordBtn:(id)sender {
-    if ([user_id integerValue] !=0) {
+    if (user_id != nil && [user_id integerValue] !=0) {
         [self performSegueWithIdentifier:@"changePasswordSegue" sender:self];
     }else{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Please login before proceed" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -62,8 +72,10 @@
     }
 }
 
+
+
 - (IBAction)LogoutBtn:(id)sender {
-    if ([user_id integerValue] != 0 ) {
+    if ([user_id integerValue] != 0 && user_id != nil) {
         _logoutView.hidden = NO;
     }else{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"You are not logged in" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -75,6 +87,8 @@
 
 - (IBAction)logoutOkBtn:(id)sender {
     _logoutView.hidden = YES;
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user_id"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (IBAction)logoutCancelBtn:(id)sender {
