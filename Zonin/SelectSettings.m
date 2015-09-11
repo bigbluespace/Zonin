@@ -125,8 +125,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-     user_id = [[NSUserDefaults standardUserDefaults]
-                         stringForKey:@"user_id"];
+    user_id = [[Zonin readData:@"user_id"] valueForKey:@"user_id"];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [Country getAllCountry:^(NSArray *list, NSError *error) {
         [self setCountry:list];

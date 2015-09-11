@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "RESideMenu.h"
 #import "AdViewObject.h"
+#import "Zonin.h"
 
 @interface LoginViewController ()
 {
@@ -191,12 +192,11 @@
             myAppDelegate.logedUser.userID=[[responseObject objectForKey:key_user_id]integerValue];
             
             NSString *user_id = [responseObject valueForKey:@"usre_id"];
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            [defaults setValue:user_id forKey:@"user_id"];
-            [defaults synchronize];
+            NSDictionary *dict = @{
+                                   @"user_id": user_id
+                                   };
+            [Zonin storeData:dict storageName:@"user_id"];
             
-            NSLog(@"user id %@",[[NSUserDefaults standardUserDefaults]
-                                 stringForKey:@"user_id"]);
             [self TostAlertMsg:alertmgs];
             [self.navigationController popViewControllerAnimated:YES];
         }

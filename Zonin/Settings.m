@@ -9,11 +9,14 @@
 #import "Settings.h"
 #import "RESideMenu.h"
 #import "AdViewObject.h"
+#import "Zonin.h"
 
 @interface Settings (){
     BOOL video;
+    NSString *user_id;
 }
 @property (weak, nonatomic) IBOutlet UIButton *videoState;
+@property (weak, nonatomic) IBOutlet UIView *logoutView;
 
 @end
 
@@ -27,6 +30,10 @@
     self.navigationController.navigationBarHidden = YES;
     AdViewObject *add = [AdViewObject sharedManager];
     [adView addSubview:add.adView];
+    NSDictionary *auth = [Zonin readData:@"user_id"];
+    user_id = [auth valueForKey:@"user_id"];
+    
+    _logoutView.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.4];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,6 +52,33 @@
         [_videoState setTitle:@"Video On" forState:UIControlStateNormal];
         video = YES;
     }
+}
+- (IBAction)changePasswordBtn:(id)sender {
+    if ([user_id integerValue] !=0) {
+        [self performSegueWithIdentifier:@"changePasswordSegue" sender:self];
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Please login before proceed" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+    }
+}
+
+- (IBAction)LogoutBtn:(id)sender {
+    if ([user_id integerValue] != 0 ) {
+        _logoutView.hidden = NO;
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"You are not logged in" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
+#pragma mark - Logout Btn
+
+- (IBAction)logoutOkBtn:(id)sender {
+    _logoutView.hidden = YES;
+}
+
+- (IBAction)logoutCancelBtn:(id)sender {
+    _logoutView.hidden = YES;
 }
 
 /*
