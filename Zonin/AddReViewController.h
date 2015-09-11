@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AddReviews.h"
 
-@interface AddReViewController : UIViewController<UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate, UITextViewDelegate>
+@interface AddReViewController : UIViewController<UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate, UITextViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *reviewContainer;
 @property Country*currentCountry;
 @property Country*currentState;

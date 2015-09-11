@@ -10,6 +10,7 @@
 #import "RESideMenu.h"
 #import "MBProgressHUD.h"
 #import "AdViewObject.h"
+#import "Zonin.h"
 
 @interface AddReViewController (){
     UIPickerView* myPickerView;
@@ -29,11 +30,12 @@
     
     float origin;
     
-    NSString *fromDate, *toDate;
+    NSString *fromDate, *toDate, *anonymous;
     UIView *tintView;
     
     BOOL isTextView;
     UIToolbar *toolBar;
+    UISwitch *anonymousSwitch;
 }
 @property (weak, nonatomic) IBOutlet UITableView *reviewTable;
 @property (weak, nonatomic) IBOutlet UIView *adView;
@@ -128,7 +130,7 @@
     AdViewObject *add = [AdViewObject sharedManager];
     [_adView addSubview:add.adView];
 
-
+    anonymous = @"yes";
     
     
 }
@@ -575,11 +577,124 @@
     detailTextView.delegate = self;
     detailTextView.inputAccessoryView = toolBar;
     detailTextView.keyboardAppearance = UIKeyboardAppearanceDark;
+    
+    anonymousSwitch = (UISwitch*)[cell viewWithTag:13];
+    [anonymousSwitch addTarget:self action:@selector(changeSwitch:) forControlEvents:UIControlEventValueChanged];
+    
+    UIButton * mediaButton = (UIButton*)[cell viewWithTag:14];
+    [mediaButton addTarget:self action:@selector(openMedia:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    UIButton * recordButton = (UIButton*)[cell viewWithTag:15];
+    [recordButton addTarget:self action:@selector(recordButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+
+    UIButton * submitButton = (UIButton*)[cell viewWithTag:16];
+    
+    [submitButton addTarget:self action:@selector(submit:) forControlEvents:UIControlEventTouchUpInside];
+
 
     
     
     return cell;
 }
+
+- (void)changeSwitch:(id)sender{
+    if([sender isOn]){
+        NSLog(@"Switch is ON");
+        anonymous = @"yes";
+    } else{
+        NSLog(@"Switch is OFF");
+        anonymous = @"no";
+    }
+}
+
+- (IBAction)openMedia:(UIButton*)sender {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                  initWithTitle:@"Select Media"
+                                  delegate:self
+                                  cancelButtonTitle:@"Cancel"
+                                  destructiveButtonTitle:nil
+                                  otherButtonTitles:@"Camera", @"Gallery", nil];
+    [actionSheet showInView:self.view];
+    
+}
+- (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if (buttonIndex == 0) {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        
+        [self presentViewController:picker animated:YES completion:NULL];
+    }else if (buttonIndex==1){
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        
+        [self presentViewController:picker animated:YES completion:NULL];
+    }
+    
+        
+    
+}
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    //UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    //self.imageView.image = chosenImage;
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
+
+
+- (IBAction)recordButtonClick:(UIButton*)sender {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notice" message:@"This feature is c oming soon." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [alert show];
+    
+}
+
+- (IBAction)submit:(UIButton*)sender {
+//    , , ,review_zipcode,, , review_batch_add,review_badge_no,review_vehicle_no, review_precinct,,user_id,
+//    file upload : review_feedback_files
+    NSDictionary *param = @{
+                            @"review_country_id": [NSString stringWithFormat:@"%d",self.currentCountry.country_id],
+                            @"review_state_id": [NSString stringWithFormat:@"%d",self.currentState.country_id],
+                            @"review_county_id" : [NSString stringWithFormat:@"%d",self.currentParish.country_id],
+                            @"review_agency" : agencyField.text,
+                            @"review_for" : reviewField.text,
+                            @"review_rating" : [NSString stringWithFormat:@"%ld", (long)currentRank],
+                            @"review_feedback_desc" : detailTextView.text
+,
+                            
+                            @"MACHINE_CODE" : @"emran4axiz"
+                            };
+    
+    [Zonin commonPost:@"add_review" parameters:param block:^(NSDictionary *dataDic, NSError *error) {
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        if ([[dataDic valueForKey:@"message"] isEqualToString:@"success"] && error==nil) {
+            
+           
+            
+            
+        }else{
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert!" message:@"No data found" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+           
+        }
+    }];
+
+    
+}
+
 - (IBAction)rankButtonClick:(UIButton*)sender {
     
     currentRank = sender.tag - 6;

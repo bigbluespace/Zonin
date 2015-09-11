@@ -10,8 +10,14 @@
 #import "AFNetworking.h"
 #import "AddCrimeView.h"
 
-@interface AddCrimeViewController : UIViewController
+@interface AddCrimeViewController : UIViewController<UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate, UITextViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+//@property (weak, nonatomic) IBOutlet UIView *reviewContainer;
+@property Country*currentCountry;
+@property Country*currentState;
+@property Country*currentParish;
+
 @property (weak, nonatomic) IBOutlet UIImageView *backGroundImageVew;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
+
 
 @end
