@@ -23,7 +23,7 @@
     if (self.isCrimeReport)
     {
         NSLog(@"getting crime");
-      self.tableItems=[Crime getAllCrime];
+      self.tableItems = [Crime getAllCrime];
     }
     else
     {
@@ -98,11 +98,11 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell* cell=[[UITableViewCell alloc]init];
-    if (!self.isCrimeReport)
+    if (self.isCrimeReport)
     {
         //for review
         cell =[tableView dequeueReusableCellWithIdentifier:@"reviewreportcell"];
-        UILabel *cellLbl = (UILabel *)[cell viewWithTag:102];
+        UILabel *cellLbl = (UILabel *)[cell viewWithTag:2];
         [cellLbl setFrame:CGRectMake(80,5,cell.frame.size.width-80, cell.frame.size.height-20)];
         [cellLbl setNeedsLayout];
         [cellLbl setNeedsDisplay];
@@ -111,7 +111,7 @@
         //reviewreportcell
         OfficerReviews*temp=[self.tableItems objectAtIndex:indexPath.row];
         cellLbl.text = temp.officer_name;
-            UILabel *cellLbl2nd = (UILabel *)[cell viewWithTag:103];
+            UILabel *cellLbl2nd = (UILabel *)[cell viewWithTag:3];
         cellLbl2nd.text=[NSString stringWithFormat:@"%@,%@",temp.country_name,temp.state_name];
     }
     else

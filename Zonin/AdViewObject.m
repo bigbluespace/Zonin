@@ -22,6 +22,7 @@
 - (id)init {
     if (self = [super init]) {
         self.adView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 100)];
+        self.adView.userInteractionEnabled = YES;
         
         UIButton *addButton = [[UIButton alloc] initWithFrame:self.adView.frame];
         [addButton addTarget:self action:@selector(handleSingleTap:) forControlEvents:UIControlEventTouchUpInside];
@@ -71,7 +72,11 @@
 }
 
 - (IBAction)handleSingleTap:(id)sender {
-   [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.daledietrich.com"]];
+    NSString *url = [self.adArray[self.counter] valueForKey:@"advertise_url"];
+    if ([url rangeOfString:@"http://"].location == NSNotFound && [url rangeOfString:@"https://"].location == NSNotFound) {
+        url = [@"http://" stringByAppendingString:url];
+    }
+   [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
 }
 
 @end

@@ -664,6 +664,15 @@
 - (IBAction)submit:(UIButton*)sender {
 //    , , ,review_zipcode,, , review_batch_add,review_badge_no,review_vehicle_no, review_precinct,,user_id,
 //    file upload : review_feedback_files
+    NSString *userId = [[Zonin readData:@"user_id"] valueForKey:@"user_id"];
+    NSLog(@"user id  %@", userId);
+    
+    if (userId == nil || userId ==(id)[NSNull null]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert!" message:@"Please login first before submit incident." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:
+                              nil];
+        [alert show];
+        return;
+    }
     NSDictionary *param = @{
                             @"review_country_id": [NSString stringWithFormat:@"%d",self.currentCountry.country_id],
                             @"review_state_id": [NSString stringWithFormat:@"%d",self.currentState.country_id],
@@ -673,7 +682,7 @@
                             @"review_rating" : [NSString stringWithFormat:@"%ld", (long)currentRank],
                             @"review_feedback_desc" : detailTextView.text
 ,
-                            
+                            @"crime_user_id" : userId,
                             @"MACHINE_CODE" : @"emran4axiz"
                             };
     

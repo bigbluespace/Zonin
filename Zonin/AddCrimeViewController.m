@@ -33,7 +33,7 @@
     
     float origin;
     
-    NSString *fromDate, *toDate, *anonymous;
+    NSString *incidentDate, *incidentTime, *anonymous;
     UIView *tintView;
     
     BOOL isTextView;
@@ -80,9 +80,9 @@
     stateArray = [[NSMutableArray alloc] init];
     parishArray = [[NSMutableArray alloc] init];
     
-    [pickerArrayList addObjectsFromArray:@[countryArray, stateArray,parishArray,@[],@[],@[], @[]]];
+    [pickerArrayList addObjectsFromArray:@[countryArray, stateArray,parishArray,@[],@[],@[], @[], @[]]];
     
-    [pickerTitleList addObjectsFromArray:@[@"Country", @"State",@"Parish", @"Incident Title", @"Date", @"Time", @"Location"]];
+    [pickerTitleList addObjectsFromArray:@[@"Country", @"State",@"Parish", @"Incident Title", @"Date", @"Time", @"Location", @"Detail"]];
     
     myPickerView = [[UIPickerView alloc]initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 216)];
     myPickerView.dataSource = self;
@@ -154,6 +154,8 @@
     [timePicker addTarget:self action:@selector(pickerChanged:)               forControlEvents:UIControlEventValueChanged];
     timePicker.datePickerMode = UIDatePickerModeTime;
     [timePicker setValue:[UIColor whiteColor] forKeyPath:@"textColor"];
+   // NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"NL"];
+   // [timePicker setLocale:locale];
 
 
     [[UIPickerView appearance] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"picker_bg"]]];
@@ -193,7 +195,7 @@
 #pragma mark - Keyboard Notifications
 
 - (void) handleShowTintedKeyboard:(NSNotification*)notification {
-    if (tintView != nil || [detailTextView isFirstResponder]) {
+    /*  if (tintView != nil || [detailTextView isFirstResponder]) {
         return;
     }
     NSDictionary *userInfo = notification.userInfo;
@@ -221,7 +223,7 @@
                      animations:^{
                          tintView.frame = keyboardEndFrame;
                      }
-                     completion:^(BOOL finished) {}];
+                     completion:^(BOOL finished) {}];*/
 }
 
 
@@ -240,18 +242,30 @@
 }
 - (void)pickerChanged:(id)sender
 {
-    //    NSString *sender_date =[NSString stringWithFormat:@"%@", [sender date]];
-    //    NSArray *array = [sender_date componentsSeparatedByString:@" "];
-    //
-    //    if (currentField == self.fromDateField) {
-    //        fromDate = array[0];
-    //        [_fromDateButton setTitle:array[0] forState:normal];
-    //    }else if (currentField == self.toDateField){
-    //        toDate = array[0];
-    //        [_toDateButton setTitle:array[0] forState:normal];
-    //    }
-    //
-    //    NSLog(@"value: %@",array[0]);
+    NSDate* sourceDate = [sender date];
+    
+    NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+    NSTimeZone* destinationTimeZone = [NSTimeZone systemTimeZone];
+    
+    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
+    NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:sourceDate];
+    NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
+    
+    NSDate* destinationDate = [[NSDate alloc] initWithTimeInterval:interval sinceDate:sourceDate];
+    NSString *sender_date =[NSString stringWithFormat:@"%@", destinationDate];
+    NSArray *array = [sender_date componentsSeparatedByString:@" "];
+    
+    NSLog(@"value: %@",array[0]);
+    NSLog(@"value: %@",array[1]);
+        if (currentField == dateField) {
+            incidentDate = array[0];
+            dateField.text = incidentDate;
+        }else if (currentField == timeField){
+            incidentTime = array[1];
+            timeField.text = incidentTime;
+        }
+    
+    
 }
 
 -(void) next{
@@ -486,11 +500,6 @@
     
     NSUInteger index = 0;
     
-    /// NSPredicate *pre = [NSPredicate predicateWithFormat:@"(name contains[c] %@)", textField.text];
-    //    NSArray *outArray = (NSArray*)[currentArray filteredArrayUsingPredicate:pre];
-    //
-    //    if(outArray.count>0)
-    //        index = [currentArray indexOfObject:outArray[0]];
     
     [myPickerView selectRow:index inComponent:0 animated:YES];
 }
@@ -618,7 +627,6 @@
     locationField = (UITextField*)[cell viewWithTag:7];
     locationField.delegate = self;
     locationField.inputAccessoryView = toolBar;
-    //officerNameField.inputView = myPickerView;
     [self setLeftView:locationField];
     fieldList[6] = locationField;
     locationField.keyboardAppearance = UIKeyboardAppearanceDark;
@@ -629,6 +637,7 @@
     detailTextView = (UITextView*)[cell viewWithTag:8];
     detailTextView.delegate = self;
     detailTextView.inputAccessoryView = toolBar;
+    fieldList[7] = detailTextView;
     detailTextView.keyboardAppearance = UIKeyboardAppearanceDark;
     
     anonymousSwitch = (UISwitch*)[cell viewWithTag:9];
@@ -706,43 +715,54 @@
 
 
 - (IBAction)recordButtonClick:(UIButton*)sender {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notice" message:@"This feature is c oming soon." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notice" message:@"This feature is coming soon." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];
     
 }
 
 - (IBAction)submit:(UIButton*)sender {
-    //    , , ,review_zipcode,, , review_batch_add,review_badge_no,review_vehicle_no, review_precinct,,user_id,
+  //  , ,,,, ,,,
+  //  file upload : crime_files (file name will be expected like this)
+
     //    file upload : review_feedback_files
-//    NSDictionary *param = @{
-//                            @"review_country_id": [NSString stringWithFormat:@"%d",self.currentCountry.country_id],
-//                            @"review_state_id": [NSString stringWithFormat:@"%d",self.currentState.country_id],
-//                            @"review_county_id" : [NSString stringWithFormat:@"%d",self.currentParish.country_id],
-//                            @"review_agency" : agencyField.text,
-//                            @"review_for" : reviewField.text,
-//                            @"review_rating" : [NSString stringWithFormat:@"%ld", (long)currentRank],
-//                            @"review_feedback_desc" : detailTextView.text
-//                            ,
-//                            
-//                            @"MACHINE_CODE" : @"emran4axiz"
-//                            };
-//    
-//    [Zonin commonPost:@"add_review" parameters:param block:^(NSDictionary *dataDic, NSError *error) {
-//        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-//        if ([[dataDic valueForKey:@"message"] isEqualToString:@"success"] && error==nil) {
-//            
-//            
-//            
-//            
-//        }else{
-//            
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert!" message:@"No data found" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//            [alert show];
-//            
-//        }
-//    }];
+    NSString *userId = [[Zonin readData:@"user_id"] valueForKey:@"user_id"];
+    NSLog(@"user id  %@", userId);
     
-    
+    if (userId == nil || userId ==(id)[NSNull null]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert!" message:@"Please login first before submit incident." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:
+                              nil];
+        [alert show];
+        return;
+    }
+    NSDictionary *param = @{
+                            @"crime_country_id": [NSString stringWithFormat:@"%d",self.currentCountry.country_id],
+                            @"crime_state_id": [NSString stringWithFormat:@"%d",self.currentState.country_id],
+                            @"crime_county_id" : [NSString stringWithFormat:@"%d",self.currentParish.country_id],
+                            @"crime_title" : titlefield.text,
+                            @"crime_date" : dateField.text,
+                            @"crime_time" : timeField.text,
+                            @"crime_location" : locationField.text,
+                            @"crime_date" : dateField.text,
+                            @"is_anonymous" : anonymous,
+                            @"crime_desc" : detailTextView.text,
+                            @"crime_user_id" : userId,
+                            @"MACHINE_CODE" : @"emran4axiz"
+                            };
+
+    [Zonin commonPost:@"add_crime" parameters:param block:^(NSDictionary *dataDic, NSError *error) {
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        if ([[dataDic valueForKey:@"message"] isEqualToString:@"success"] && error==nil) {
+            
+            
+            
+            
+        }else{
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert!" message:@"No data found" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+            
+        }
+    }];
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView{
@@ -750,8 +770,13 @@
     CGRect textFieldRect = [self.view.window convertRect:textView.bounds fromView:textView];
     [self animateView_Up:&textFieldRect];
     
-    
+    NSUInteger index = [fieldList indexOfObject:textView];
+    if (index != NSNotFound) {
+        toolbarTitle.text = [pickerTitleList objectAtIndex:index];
+        currentIndex = index;
+    }
 }
+
 - (void)textViewDidEndEditing:(UITextView *)textView{
     isTextView= NO;
     [self animateView_Down];

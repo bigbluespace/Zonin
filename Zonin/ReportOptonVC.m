@@ -38,6 +38,7 @@
     ReportReviewVC*reviewlist=[self.storyboard instantiateViewControllerWithIdentifier:@"reportlistvc"];
     reviewlist.isCrimeReport=TRUE;
     [self.navigationController pushViewController:reviewlist animated:YES];
+    
 }
 //------------------------------------
 - (IBAction)viewReviews:(id)sender {
