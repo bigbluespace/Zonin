@@ -28,12 +28,13 @@
     [super viewDidLoad];
     video = YES;
     self.navigationController.navigationBarHidden = YES;
-    AdViewObject *add = [AdViewObject sharedManager];
-    [adView addSubview:add.adView];
     NSDictionary *auth = [Zonin readData:@"user_id"];
     user_id = [auth valueForKey:@"user_id"];
     
     _logoutView.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.4];
+    
+    AdViewObject *add = [AdViewObject sharedManager];
+    [adView addSubview:add.adView];
 }
 
 - (void)didReceiveMemoryWarning {

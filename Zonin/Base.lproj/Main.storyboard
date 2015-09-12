@@ -5028,7 +5028,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="PWT-xf-ww8"/>
                     <connections>
-                        <outlet property="adView" destination="Aip-a0-nC4" id="B4d-zi-n9j"/>
+                        <outlet property="adView" destination="Aip-a0-nC4" id="w6R-ae-izP"/>
                         <outlet property="logoutView" destination="4d1-iv-oS0" id="Lz1-lM-7qi"/>
                         <outlet property="videoState" destination="kiM-iJ-TSd" id="8gn-sN-rYw"/>
                         <segue destination="4hK-cY-VMg" kind="show" identifier="changePasswordSegue" id="a7m-9X-du5"/>
