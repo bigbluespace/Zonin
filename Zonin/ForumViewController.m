@@ -184,7 +184,25 @@
 }
 
 - (IBAction)addTopicsBtn:(id)sender {
-    _addTopicsView.hidden = YES;
+    //_addTopicsView.hidden = YES;
+    NSString *title = _topicsTitleText.text;
+    NSString *description = _topicsDescriptionText.text;
+    if (![title isEqualToString:@""] && ![description isEqualToString:@""]) {
+        [self saveTopics:title description:description];
+    }
+}
+
+-(void)saveTopics:(NSString*)title description:(NSString*)description{
+    NSString *url = @"http://zoninapp.com/admin/backend/api_zonin/topic_save/emran4axiz";
+    NSDictionary *params = @{
+                             @"topic_title": title,
+                             @"topic_description": description,
+                             @"MACHINE_CODE":@"emran4axiz"
+                                 };
+    [Zonin commonPost:url parameters:params block:^(NSDictionary *JSON, NSError *error) {
+        _addTopicsView.hidden = YES;
+        [self loadListData];
+    }];
 }
 
 - (IBAction)closeTopicsBtn:(id)sender {
