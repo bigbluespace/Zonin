@@ -23,6 +23,7 @@
     if (self = [super init]) {
         self.adView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 100)];
         self.adView.userInteractionEnabled = YES;
+        self.adView.image = [UIImage imageNamed:@"home_background"];
         
         UIButton *addButton = [[UIButton alloc] initWithFrame:self.adView.frame];
         [addButton addTarget:self action:@selector(handleSingleTap:) forControlEvents:UIControlEventTouchUpInside];

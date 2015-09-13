@@ -36,7 +36,7 @@
 - (IBAction)vewcrimereport:(id)sender {
     NSLog(@"view report ....");
     ReportReviewVC*reviewlist=[self.storyboard instantiateViewControllerWithIdentifier:@"reportlistvc"];
-    reviewlist.isCrimeReport=TRUE;
+    reviewlist.isCrimeReport = YES;
     [self.navigationController pushViewController:reviewlist animated:YES];
     
 }
@@ -44,7 +44,7 @@
 - (IBAction)viewReviews:(id)sender {
     NSLog(@"view review ....");
     ReportReviewVC*reviewlist=[self.storyboard instantiateViewControllerWithIdentifier:@"reportlistvc"];
-    reviewlist.isCrimeReport=NO;
+    reviewlist.isCrimeReport = NO;
     [self.navigationController pushViewController:reviewlist animated:YES];
 }
 

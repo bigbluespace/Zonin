@@ -101,25 +101,33 @@
     if (self.isCrimeReport)
     {
         //for review
-        cell =[tableView dequeueReusableCellWithIdentifier:@"reviewreportcell"];
+        cell =[tableView dequeueReusableCellWithIdentifier:@"incidentCell"];
+        
         UILabel *cellLbl = (UILabel *)[cell viewWithTag:2];
-        [cellLbl setFrame:CGRectMake(80,5,cell.frame.size.width-80, cell.frame.size.height-20)];
-        [cellLbl setNeedsLayout];
-        [cellLbl setNeedsDisplay];
-        cellLbl.numberOfLines=0;
-       // cell.lineBreakMode=
-        //reviewreportcell
-        OfficerReviews*temp=[self.tableItems objectAtIndex:indexPath.row];
-        cellLbl.text = temp.officer_name;
-            UILabel *cellLbl2nd = (UILabel *)[cell viewWithTag:3];
-        cellLbl2nd.text=[NSString stringWithFormat:@"%@,%@",temp.country_name,temp.state_name];
+        UILabel *cellLbl2nd = (UILabel *)[cell viewWithTag:3];
+       
+        //OfficerReviews*temp=[self.tableItems objectAtIndex:indexPath.row];
+        //cellLbl.text = temp.officer_name;
+        
+        //cellLbl2nd.text=[NSString stringWithFormat:@"%@,%@",temp.country_name,temp.state_name];
+        cellLbl.text = [[self.tableItems objectAtIndex:indexPath.row] valueForKeyPath:@"crime_title"];
+        cellLbl2nd.text=[NSString stringWithFormat:@"%@ - %@",[[self.tableItems objectAtIndex:indexPath.row] valueForKeyPath:@"country_name"],[[self.tableItems objectAtIndex:indexPath.row] valueForKeyPath:@"state_name"]];
     }
     else
     {
         // for crime
-        Crime*temp=[self.tableItems objectAtIndex:indexPath.row];
-        cell.textLabel.textColor=[UIColor whiteColor];
-        cell.textLabel.text=temp.crime_title;
+        cell =[tableView dequeueReusableCellWithIdentifier:@"reviewCell"];
+        
+        UILabel *cellLbl = (UILabel *)[cell viewWithTag:2];
+        UILabel *cellLbl2nd = (UILabel *)[cell viewWithTag:3];
+        
+        OfficerReviews*temp=[self.tableItems objectAtIndex:indexPath.row];
+//        cell.textLabel.textColor=[UIColor whiteColor];
+//        cell.textLabel.text=temp.crime_title;
+       // NSDictionary *dic = [self.tableItems objectAtIndex:indexPath.row];
+       // NSLog(@"data %@", dic);
+        cellLbl.text = temp.officer_name;
+        cellLbl2nd.text=[NSString stringWithFormat:@"%@ - %@",temp.country_name,temp.state_name];
 
     }
     cell.backgroundColor=[UIColor clearColor];

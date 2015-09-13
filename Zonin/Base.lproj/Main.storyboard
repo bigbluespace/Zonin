@@ -251,7 +251,6 @@
                     <view key="view" contentMode="scaleToFill" id="Azg-Gd-Xzp">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="0.010051519906342232" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="49a-li-X69" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2029,7 +2028,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rWv-yD-KfJ">
                                         <rect key="frame" x="217" y="166" width="177" height="177"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <state key="normal" backgroundImage="review_icon">
+                                        <state key="normal" backgroundImage="view_reviews">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -2052,7 +2051,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="oes-QH-imJ" secondAttribute="height" multiplier="1:1" id="a5a-sR-CER"/>
                                         </constraints>
-                                        <state key="normal" backgroundImage="incident_icon">
+                                        <state key="normal" backgroundImage="view_incident_reports">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -3804,19 +3803,13 @@
                                 <rect key="frame" x="0.0" y="127" width="600" height="295"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reviewreportcell" rowHeight="55" id="y3K-GT-tb7">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="incidentCell" rowHeight="65" id="y3K-GT-tb7">
                                         <rect key="frame" x="0.0" y="22" width="320" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y3K-GT-tb7" id="zVB-ax-4Rf">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XaG-nm-rEz">
-                                                    <rect key="frame" x="8" y="0.0" width="52" height="55"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="52" id="ftV-Ue-DzJ"/>
-                                                    </constraints>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nQX-OF-cWu">
                                                     <rect key="frame" x="68" y="3" width="502" height="21"/>
                                                     <constraints>
@@ -3835,19 +3828,60 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="crime.png" translatesAutoresizingMaskIntoConstraints="NO" id="XaG-nm-rEz">
+                                                    <rect key="frame" x="8" y="7" width="52" height="52"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="52" id="ftV-Ue-DzJ"/>
+                                                        <constraint firstAttribute="height" constant="52" id="hw7-Cv-xfq"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="nQX-OF-cWu" secondAttribute="trailing" constant="30" id="9jc-E9-vwT"/>
-                                                <constraint firstItem="XaG-nm-rEz" firstAttribute="top" secondItem="zVB-ax-4Rf" secondAttribute="top" id="CNN-do-w1B"/>
+                                                <constraint firstAttribute="centerY" secondItem="XaG-nm-rEz" secondAttribute="centerY" id="IlA-Sf-6xo"/>
                                                 <constraint firstItem="ciV-U1-BOO" firstAttribute="leading" secondItem="XaG-nm-rEz" secondAttribute="trailing" constant="8" id="Rfd-2e-bs9"/>
                                                 <constraint firstItem="XaG-nm-rEz" firstAttribute="leading" secondItem="zVB-ax-4Rf" secondAttribute="leading" constant="8" id="Xq7-r1-TNv"/>
                                                 <constraint firstItem="nQX-OF-cWu" firstAttribute="leading" secondItem="XaG-nm-rEz" secondAttribute="trailing" constant="8" id="nPB-3o-V1z"/>
                                                 <constraint firstAttribute="trailing" secondItem="ciV-U1-BOO" secondAttribute="trailing" constant="50" id="q4y-ic-WTx"/>
-                                                <constraint firstAttribute="bottom" secondItem="XaG-nm-rEz" secondAttribute="bottom" id="sH1-Iu-Ixf"/>
                                                 <constraint firstItem="ciV-U1-BOO" firstAttribute="top" secondItem="nQX-OF-cWu" secondAttribute="bottom" constant="6" id="v0c-Do-sGf"/>
                                                 <constraint firstItem="nQX-OF-cWu" firstAttribute="top" secondItem="zVB-ax-4Rf" secondAttribute="top" constant="3" id="wtL-FD-M8F"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="1" green="0.040313026902806581" blue="0.14447211895211542" alpha="1" colorSpace="calibratedRGB"/>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reviewCell" rowHeight="65" id="l6G-xd-oqf">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l6G-xd-oqf" id="4lw-7x-eMA">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rfu-2g-3Ix">
+                                                    <rect key="frame" x="10" y="3" width="42" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="KBX-Cz-Wzu"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scZ-4u-aY4">
+                                                    <rect key="frame" x="10" y="31" width="31" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="uil-XY-aaT"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="scZ-4u-aY4" secondAttribute="bottom" constant="3" id="9yn-FB-H8V"/>
+                                                <constraint firstItem="Rfu-2g-3Ix" firstAttribute="top" secondItem="4lw-7x-eMA" secondAttribute="top" constant="3" id="Q8h-PG-0oJ"/>
+                                                <constraint firstItem="scZ-4u-aY4" firstAttribute="leading" secondItem="4lw-7x-eMA" secondAttribute="leading" constant="10" id="bgu-uc-19n"/>
+                                                <constraint firstItem="Rfu-2g-3Ix" firstAttribute="leading" secondItem="4lw-7x-eMA" secondAttribute="leading" constant="10" id="sUM-Uv-UKV"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="1" green="0.0403130269" blue="0.14447211900000001" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -5404,6 +5438,7 @@
         <image name="background" width="320" height="480"/>
         <image name="background.png" width="720" height="834"/>
         <image name="common.9" width="162" height="36"/>
+        <image name="crime.png" width="128" height="128"/>
         <image name="facebook_icon" width="64" height="66"/>
         <image name="flickr" width="64" height="65"/>
         <image name="forum" width="130" height="91"/>
@@ -5426,6 +5461,8 @@
         <image name="star_on" width="56" height="56"/>
         <image name="text_big" width="500" height="200"/>
         <image name="twitter" width="64" height="67"/>
+        <image name="view_incident_reports" width="192" height="192"/>
+        <image name="view_reviews" width="192" height="192"/>
         <image name="youtube" width="64" height="64"/>
         <image name="zn_logo" width="128" height="128"/>
         <image name="zonin" width="70" height="70"/>

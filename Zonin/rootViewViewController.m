@@ -14,83 +14,9 @@
 
 @implementation rootViewViewController
 
-//- (NSUInteger)supportedInterfaceOrientations
-//{
-//    return UIInterfaceOrientationMaskAll;
-//}
-//
-//- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
-//{
-//   // NSLog(@"preferredInterfaceOrientationForPresentation");
-//    return UIInterfaceOrientationPortrait;
-//}
-//
-//-(BOOL) shouldAutorotate {
-//   //   NSLog(@"shouldAutorotate");
-//    NSString *activeViewController = NSStringFromClass(((UINavigationController*)self.contentViewController).topViewController.class);
-//    
-//    if([activeViewController isEqualToString:@"PhotoDisplay"])
-//        return YES;
-//    else if(!UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])){
-//    //    NSLog(@"hihi");
-//        return YES;
-//    }
-//    return NO;
-//}
-
-
-//- (BOOL)shouldAutorotate
-//{
-//    return YES;
-//}
-//
-//- (NSUInteger)supportedInterfaceOrientations
-//{
-//    NSString *activeViewController = NSStringFromClass(((UINavigationController*)self.contentViewController).topViewController.class);
-//    
-//    if([activeViewController isEqualToString:@"PhotoDisplay"]){
-//        return UIInterfaceOrientationMaskAll;
-//    }
-//    return UIInterfaceOrientationMaskPortrait;
-//}
-
-
-
 - (void)awakeFromNib
 {
     
-//    _animationDuration = 0.35f;
-//    _interactivePopGestureRecognizerEnabled = YES;
-//    
-//    _menuViewControllerTransformation = CGAffineTransformMakeScale(1.5f, 1.5f);
-//    
-//    _scaleContentView = YES;
-//    _scaleBackgroundImageView = YES;
-//    _scaleMenuView = YES;
-//    
-//    _parallaxEnabled = YES;
-//    _parallaxMenuMinimumRelativeValue = -15;
-//    _parallaxMenuMaximumRelativeValue = 15;
-//    _parallaxContentMinimumRelativeValue = -25;
-//    _parallaxContentMaximumRelativeValue = 25;
-//    
-//    _bouncesHorizontally = YES;
-//    
-//    _panGestureEnabled = YES;
-//    _panFromEdge = YES;
-//    _panMinimumOpenThreshold = 60.0;
-//    
-//    _contentViewShadowEnabled = NO;
-//    _contentViewShadowColor = [UIColor blackColor];
-//    _contentViewShadowOffset = CGSizeZero;
-//    _contentViewShadowOpacity = 0.4f;
-//    _contentViewShadowRadius = 8.0f;
-//    _contentViewInLandscapeOffsetCenterX = 30.f;
-//    _contentViewInPortraitOffsetCenterX  = 30.f;
-//    _contentViewScaleValue = 0.7f;
-    
-    
-
     self.parallaxEnabled  = NO;
     self.menuPreferredStatusBarStyle = UIStatusBarStyleLightContent;
     self.contentViewShadowColor = [UIColor blackColor];
@@ -105,12 +31,6 @@
     self.menuViewControllerTransformation = CGAffineTransformMakeScale(1.2f, 1.2f);
     self.panGestureEnabled = NO;
     
-    
-    // check if the user is already logged in..
-    //  NSDictionary *auth = (NSDictionary*)[[NSUserDefaults standardUserDefaults] objectForKey:@"auth"];
-    
-    //    User *user = [[User alloc] initWithProperties:auth];
-    // if (user.userID > 0) {
     [self.navigationController.navigationBar setTranslucent:NO];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.shadowImage = [UIImage new];
@@ -120,54 +40,13 @@
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
-    
-    // check if the user is already logged in..
-
-//    NSError* error;
-//    NSInteger UserID = 0;
-//    NSData * data = [[NSUserDefaults standardUserDefaults] objectForKey:@"auth"];
-//    if (data != nil) {
-//        NSDictionary* User = [NSJSONSerialization
-//                              JSONObjectWithData:data
-//                              options:kNilOptions
-//                              error:&error];
-//        
-//        UserID = [[User valueForKeyPath:@"id"] integerValue];
-//    }
-//
-//    if ( UserID > 0) {
     self.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"contentViewStoryboard"];
-//    } else {
-//        self.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"loginViewStoryboard"];
-//        
-//    }
     
     self.leftMenuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"leftMenuController"];
     
-   // self.rightMenuViewController = [[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"SavedSearchView"]];
-    
-   // self.rightMenuViewController = [[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"SavedSearchList"]];
-    
-   // self.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"contentViewStoryboard"];
-   //self.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"loginViewStoryboard"];
-   // self.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"contentViewController"];
-
-   // self.rightMenuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"rightMenuController"];
-
-    
-    
-    //    } else {
-    //
-    //        self.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"loginViewStoryboard"];
-    //
-    //    }
-   // self.leftMenuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"leftMenuViewStoryboard"];
-    
-    //self.rightMenuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"rightMenuViewController"];
-    
-    //   self.backgroundImage = [UIImage imageNamed:@"slideMenu"];
-    
     self.delegate = self;
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
 }
 
 
