@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "User.h"
-@import MediaPlayer;
+
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property User* logedUser;
 
-@property MPMoviePlayerViewController *mMoviePlayer;
+
 
 @end
 

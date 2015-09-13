@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ejT-TD-o5h">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gp7-gD-ZA4">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -243,7 +243,7 @@
         <!--Root View View Controller-->
         <scene sceneID="Aep-Zr-jft">
             <objects>
-                <viewController id="ejT-TD-o5h" customClass="rootViewViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="rootViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ejT-TD-o5h" customClass="rootViewViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PRC-iW-ttf"/>
                         <viewControllerLayoutGuide type="bottom" id="QxA-Mt-5tb"/>
@@ -257,6 +257,56 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="49a-li-X69" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-883" y="26"/>
+        </scene>
+        <!--Player View Controller-->
+        <scene sceneID="Enq-Zo-hQA">
+            <objects>
+                <viewController storyboardIdentifier="playerView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gp7-gD-ZA4" customClass="PlayerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1C5-7Z-JzN"/>
+                        <viewControllerLayoutGuide type="bottom" id="N2p-cX-1uo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ziu-GX-Rsk">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dFk-kr-vE6">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="okF-My-G7P">
+                                <rect key="frame" x="225" y="500" width="150" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="Kad-4l-ZWZ"/>
+                                    <constraint firstAttribute="height" constant="50" id="cp3-qt-KMl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <state key="normal" title="SKIP VIDEO" backgroundImage="common.9">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="skipBtnAction:" destination="gp7-gD-ZA4" eventType="touchUpInside" id="clk-eG-VsD"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dFk-kr-vE6" firstAttribute="leading" secondItem="ziu-GX-Rsk" secondAttribute="leading" id="J0L-rk-USk"/>
+                            <constraint firstAttribute="centerX" secondItem="okF-My-G7P" secondAttribute="centerX" id="Vll-zY-OL9"/>
+                            <constraint firstAttribute="trailing" secondItem="dFk-kr-vE6" secondAttribute="trailing" id="cOf-tg-BBf"/>
+                            <constraint firstItem="N2p-cX-1uo" firstAttribute="top" secondItem="dFk-kr-vE6" secondAttribute="bottom" id="ibf-Vu-uK3"/>
+                            <constraint firstItem="dFk-kr-vE6" firstAttribute="top" secondItem="ziu-GX-Rsk" secondAttribute="top" id="lct-cE-t5g"/>
+                            <constraint firstItem="N2p-cX-1uo" firstAttribute="top" secondItem="okF-My-G7P" secondAttribute="bottom" constant="50" id="lvK-5X-tY0"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="playerView" destination="dFk-kr-vE6" id="7uE-E5-xQM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UvM-hI-4jH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-883" y="730"/>
         </scene>
         <!--Master-->
         <scene sceneID="cUi-kZ-frf">
