@@ -201,6 +201,8 @@
                                  };
     [Zonin commonPost:url parameters:params block:^(NSDictionary *JSON, NSError *error) {
         _addTopicsView.hidden = YES;
+        _topicsTitleText.text = @"";
+        _topicsDescriptionText.text=@"";
         [self loadListData];
     }];
 }
