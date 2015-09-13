@@ -12,7 +12,10 @@
 #import "AdViewObject.h"
 #import "Zonin.h"
 
-@interface HotNewsViewController()
+@interface HotNewsViewController(){
+    UIView *tintView;
+
+}
 @property (weak, nonatomic) IBOutlet UIWebView *contentWebView;
 
 @property (weak, nonatomic) IBOutlet UIButton *previousBtn;
@@ -232,7 +235,75 @@
 }
 
 - (IBAction)SearchNewsBtn:(id)sender {
-    //Need TO Do
+
+    [self visibilityHidden:YES inview:self.NewsContainerView];
+    searchView=[[SearchView alloc]init];
+    NSArray*nibs=[[NSBundle mainBundle] loadNibNamed:@"searchview"
+                                               owner:self options:nil];
+    searchView=[nibs objectAtIndex:0];
+    searchView.delegate=self;
+    [searchView setFrame:self.NewsContainerView.bounds];
+    [self.NewsContainerView addSubview:searchView];
+}
+
+-(void)visibilityHidden:(BOOL)action inview:(UIView*)mView
+{
+    for (UIView*a in [mView subviews])
+    {
+        if ([a isKindOfClass:[UIButton class]]||[a isKindOfClass:[UITextField class]]||[a isKindOfClass:[UILabel class]]  || [a isKindOfClass:[UITableView class]] || [a isKindOfClass:[UIView class]])
+        {
+            a.hidden=action;
+        }
+    }
+}
+
+#pragma mark - Keyboard Notifications
+
+- (void) handleShowTintedKeyboard:(NSNotification*)notification {
+    if (tintView != nil) {
+        return;
+    }
+    NSDictionary *userInfo = notification.userInfo;
+    
+    // Get keyboard frames
+    CGRect keyboardBeginFrame = [userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+    CGRect keyboardEndFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    
+    // Get keyboard animation.
+    NSNumber *durationValue = userInfo[UIKeyboardAnimationDurationUserInfoKey];
+    NSTimeInterval animationDuration = durationValue.doubleValue;
+    
+    NSNumber *curveValue = userInfo[UIKeyboardAnimationCurveUserInfoKey];
+    UIViewAnimationCurve animationCurve = curveValue.intValue;
+    
+    // Create animation.
+    tintView = [[UIView alloc] initWithFrame:keyboardBeginFrame];
+    
+    tintView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"keyboard_bg"]];
+    [self.view addSubview:tintView];
+    
+    // Begin animation.
+    [UIView animateWithDuration:animationDuration
+                          delay:0.0
+                        options:(animationCurve << 16)
+                     animations:^{
+                         tintView.frame = keyboardEndFrame;
+                     }
+                     completion:^(BOOL finished) {}];
+}
+
+
+- (void)textResignFirstResponder{
+    //    [[NSNotificationCenter defaultCenter] postNotificationName:UIKeyboardWillHideNotification object:nil];
+    if (tintView != nil) {
+        [tintView removeFromSuperview];
+        tintView = nil;
+    }
+}
+
+-(void) cancelButtonPressed{
+    [searchView removeFromSuperview];
+    [self visibilityHidden:NO inview:self.NewsContainerView];
 }
 
 - (IBAction)viewFeedbackBtn:(id)sender {
