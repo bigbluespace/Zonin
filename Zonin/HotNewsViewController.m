@@ -232,7 +232,7 @@
 }
 
 - (IBAction)SearchNewsBtn:(id)sender {
-    
+    //Need TO Do
 }
 
 - (IBAction)viewFeedbackBtn:(id)sender {
@@ -258,31 +258,17 @@
         return;
     }
     _addFeedbackView.hidden = NO;
-    
+}
+
+#pragma mark - Add Feed Option
+- (IBAction)feedCloseBtn:(id)sender {
+    _addFeedbackView.hidden = YES;
+}
+
+- (IBAction)feedAddBtn:(id)sender {
     [self TouchOnAddfeedBack:_feedDescription.text];
 }
 
-//---------------
-//showig tost
--(void)TostAlertMsg:(NSString*)alertmsg
-{
-    
-    UIAlertView *toast = [[UIAlertView alloc] initWithTitle:nil
-                                                    message:alertmsg
-                                                   delegate:nil
-                                          cancelButtonTitle:nil
-                                          otherButtonTitles:nil, nil];
-    [toast show];
-    
-    int duration = 1; // duration in seconds
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [toast dismissWithClickedButtonIndex:0 animated:YES];
-    });
-}
-//----------------------
-//feedbackview dlegate
-//----------------------
 -(void)TouchOnAddfeedBack:(NSString *)Feedback
 {
     NSLog(@"user id,%d and news id %d",myAppdelegate.logedUser.userID,self.currentHotNews.hot_news_id);
@@ -303,7 +289,7 @@
          if ([[responseObject objectForKey:JSON_KEY_MESSAGE] isEqual:SERVER_MESSAGE_SUCCESS])
          {
              alertmgs=[responseObject objectForKey:JSON_KEY_STATUS];
-          
+             _addFeedbackView.hidden = YES;
              [self TostAlertMsg:alertmgs];
          }
          else
@@ -378,30 +364,7 @@
      }];
 
 }
-//---------------------
-//spinner show and off
-/*-(void)spinnerShow
-{
-    
-    [newsBodyWebView addSubview:SpineerView ];
-    SpineerView.backgroundColor=[UIColor clearColor];
-    UIActivityIndicatorView *activityView=[[UIActivityIndicatorView alloc]     initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    
-    activityView.center=SpineerView.center;
-    [SpineerView addSubview:activityView];
-    [activityView startAnimating];
-    activityView.backgroundColor=[UIColor blueColor];
-    [UIView animateWithDuration:0.2
-                     animations:^{SpineerView.alpha = 1.0;}
-                     completion:nil];
-}
--(void)spinnerOff
-{
-    [UIView animateWithDuration:0.8
-                     animations:^{SpineerView.alpha = 0.0;}
-                     completion:^(BOOL finished){ [SpineerView removeFromSuperview]; }];
-}*/
-//-------------------
+
 //hide all in background view for apearing serach view
 -(void)HideAllFromBackground:(BOOL)action
 {
@@ -421,13 +384,23 @@
     return  NO;
 }
 
-#pragma mark - Add Feed Option
-- (IBAction)feedCloseBtn:(id)sender {
-    
-}
+#pragma mark - Add Toast
 
-- (IBAction)feedAddBtn:(id)sender {
+-(void)TostAlertMsg:(NSString*)alertmsg
+{
     
+    UIAlertView *toast = [[UIAlertView alloc] initWithTitle:nil
+                                                    message:alertmsg
+                                                   delegate:nil
+                                          cancelButtonTitle:nil
+                                          otherButtonTitles:nil, nil];
+    [toast show];
+    
+    int duration = 1; // duration in seconds
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [toast dismissWithClickedButtonIndex:0 animated:YES];
+    });
 }
 
 @end
