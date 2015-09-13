@@ -127,7 +127,7 @@
 //signup
 -(void)signUpWithName:(NSString*)name LastName:(NSString*)lname Email:(NSString*)email phone:(NSString*)phone andpass:(NSString*)pass
 {
-    [self spinnerShow];
+    //[self spinnerShow];
     __block NSString* alertmgs;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
@@ -165,7 +165,6 @@
          alertmgs=[error localizedDescription];
          [self TostAlertMsg:alertmgs];
      }];
-    [self spinnerOff];
     
     
 }
@@ -173,7 +172,7 @@
 //--------------------------------
 -(void)getLoginwith:(NSString*)email andpass:(NSString*)pass
 {
-    [self spinnerShow];
+    //[self spinnerShow];
     __block NSString* alertmgs;
  
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -216,7 +215,6 @@
         alertmgs=[error localizedDescription];
         [self TostAlertMsg:alertmgs];
     }];
-    [self spinnerOff];
     
 }
 //----------------------------------
@@ -230,30 +228,7 @@
 }
 */
 //spinner function
--(void)spinnerShow
-{
-    
-    [self.ContainerView addSubview:SpinnerView ];
-    SpinnerView.backgroundColor=[UIColor clearColor];
-    UIActivityIndicatorView *activityView=[[UIActivityIndicatorView alloc]     initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    
-    activityView.center=SpinnerView.center;
-    [SpinnerView addSubview:activityView];
-    [activityView startAnimating];
-    activityView.backgroundColor=[UIColor blueColor];
-    [UIView animateWithDuration:0.2
-                     animations:^{SpinnerView.alpha = 1.0;}
-                     completion:nil];
-}
--(void)spinnerOff
-{
-    [UIView animateWithDuration:0.8
-                     animations:^{SpinnerView.alpha = 0.0;}
-                     completion:^(BOOL finished){ [SpinnerView removeFromSuperview]; }];
-}
-//
-//
-//---------------
+
 //showig tost
 -(void)TostAlertMsg:(NSString*)alertmsg
 {
