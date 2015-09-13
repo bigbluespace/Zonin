@@ -10,6 +10,21 @@
 #import "RESideMenu.h"
 #import "MBProgressHUD.h"
 #import "AdViewObject.h"
+#import "Zonin.h"
+
+@interface HotNewsViewController()
+@property (weak, nonatomic) IBOutlet UIWebView *contentWebView;
+
+@property (weak, nonatomic) IBOutlet UIButton *previousBtn;
+@property (weak, nonatomic) IBOutlet UIButton *nextBtn;
+@property (weak, nonatomic) IBOutlet UIButton *searchnewsBtn;
+@property (weak, nonatomic) IBOutlet UIButton *viewFeedbackBtn;
+@property (weak, nonatomic) IBOutlet UIButton *addFeedbackBtn;
+
+@property (weak, nonatomic) IBOutlet UIView *addFeedbackView;
+@property (weak, nonatomic) IBOutlet UITextView *feedDescription;
+
+@end
 
 @implementation HotNewsViewController
 {
@@ -17,96 +32,50 @@
     UIWebView* newsBodyWebView;
     NSArray *allHotNews;
     SearchView*searchView;
-   // UIScrollView* scrollview;
+    NSInteger index;
     AppDelegate*myAppdelegate;
     __weak IBOutlet UIView *adView;
+    NSString *user_id;
 }
 -(void)viewDidLoad
 {
     
     [super viewDidLoad];
-    //
-    //scrollview=[[UIScrollView alloc]initWithFrame:self.view.bounds];
     myAppdelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
-    
-    NewsNavigationButtonImage=[[NSArray alloc]initWithObjects:@"previous", @"next",@"searchnews", @"viewfeedback", @"addfeedback",nil];
-    self.SearchHotNewsView.hidden=true;
-    //
-    
     AdViewObject *add = [AdViewObject sharedManager];
     [adView addSubview:add.adView];
-   
-    UIView* a =[[UIView alloc]initWithFrame:CGRectMake(10,180, self.NewsContainerView.bounds.size.width-20, self.NewsContainerView.bounds.size.height-225)];
     
-    [self.NewsContainerView addSubview:a];
-    a.backgroundColor=[UIColor clearColor];
-    self.NewsBodyText=[[UITextView alloc]initWithFrame:a.bounds];
-   
-   // self.NewsBodyText.textColor = [UIColor whiteColor];
-    newsBodyWebView=[[UIWebView alloc]initWithFrame:a.bounds];
-   // [a addSubview:self.NewsBodyText];
-    //setting up web view  for dsplaying body
-    [a addSubview:newsBodyWebView];
-    [newsBodyWebView setBackgroundColor:[UIColor clearColor]];
-    [newsBodyWebView setOpaque:NO];
-
-    self.NewsBodyText.backgroundColor=[UIColor clearColor];
-    self.NewsBodyText.text=@"this is text";
-    int buttonWeight=(self.NewsNavigationView.bounds.size.width-20)/4.7;
-    int buttontag=101;
-    for (int i=10; i<self.NewsNavigationView.bounds.size.width; i=i+buttonWeight)
-    {
-        UIButton* button=[[UIButton alloc]initWithFrame:CGRectMake(i-5, 10, buttonWeight-10, 20)];
-        button.backgroundColor=[UIColor clearColor];
-        [button setBackgroundImage:[UIImage imageNamed:[NewsNavigationButtonImage objectAtIndex:(buttontag-101)]] forState:UIControlStateNormal];
-        button.tag=buttontag;
-        buttontag++;
-        [button addTarget:self action:@selector(NewsNavigationButtonClick:)forControlEvents:UIControlEventTouchUpInside];
-        [self.NewsNavigationView addSubview:button];
-        NSLog(@"button added");
-    }
-   
+    _searchnewsBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+    _viewFeedbackBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+    _addFeedbackBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     
+    _addFeedbackView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.4];
+    user_id = [[Zonin readData:@"user_id"] valueForKey:@"user_id"];
+    self.SearchHotNewsView.hidden=true;
 }
-//view appearing
-//-------------------------
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    //SpineerView.backgroundColor=[UIColor lightTextColor];
-    //[self spinnerShow];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
- 
- 
 }
 
-- (IBAction)back:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-}
 - (IBAction)menuBtn:(id)sender {
     [self.sideMenuViewController presentLeftMenuViewController];
 }
-//--------------------------
 - (void)viewWillDisappear:(BOOL)animated {
-    
-    
-    
     [super viewWillDisappear:animated];
     
 }
-//--------------------------
 -(void)viewDidAppear:(BOOL)animated
 {
     self.lblViewTitle.text=@"Hot News";
     allHotNews=self.hotnewsCollection;
     if (!allHotNews)
     {
-        [newsBodyWebView loadHTMLString:@"An Error occured." baseURL:nil];
+        [_contentWebView loadHTMLString:@"An Error occured." baseURL:nil];
     }
     self.currentHotNews=self.currentHotNews;
-   // self.currentHotNews.news_file=[News_fileURL_prefix stringByAppendingString:_currentHotNews.news_file];
-    //[self spinnerOff];
     [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
@@ -141,7 +110,7 @@
                                            
                                        } failure:nil];
          NSString *html = [NSString stringWithFormat:@"<html><head></head><body style=\"color:#fff\">%@</body></html>",currentHotNews.news_desc];
-        [newsBodyWebView loadHTMLString:html baseURL:nil];
+        [_contentWebView loadHTMLString:html baseURL:nil];
     }
 }
 
@@ -149,9 +118,9 @@
 //new navigation button function
 -(void)NewsNavigationButtonClick:(UIButton*)sender
 {
-    int index=[allHotNews indexOfObject:self.currentHotNews];
+    index=[allHotNews indexOfObject:self.currentHotNews];
     
-    NSLog(@"index is %d",index);
+    NSLog(@"index is %ld",(long)index);
     if (sender.tag==101)
     {
         //
@@ -199,14 +168,10 @@
             searchView.delegate=self;
             [searchView setFrame:self.NewsContainerView.bounds];
             [self.NewsContainerView addSubview:searchView];
-            //searchView.countrys=[Country getAllCountry];
-            // searchView.StatesUnderCountry=[searchView.countrys obj]
             [MBProgressHUD hideHUDForView:self.view animated:YES];
 
         }];
-        
-        
-        
+ 
     }
     if (sender.tag==104)
     {
@@ -245,6 +210,58 @@
         
     }
 }
+#pragma mark - UIButtonEvent
+
+- (IBAction)previousBtn:(id)sender {
+    index=[allHotNews indexOfObject:self.currentHotNews];
+    if (index>0){
+        self.currentHotNews=[allHotNews objectAtIndex:index-1];
+    } else {
+        [self TostAlertMsg:@"No more hot news,go next."];
+    }
+}
+
+- (IBAction)NextBtn:(id)sender {
+    index=[allHotNews indexOfObject:self.currentHotNews];
+    if (index<allHotNews.count-1){
+        NSLog(@"need to chnage");
+        self.currentHotNews=[allHotNews objectAtIndex:index+1];
+    }else{
+        [self TostAlertMsg:@"No more hot news,go previous."];
+    }
+}
+
+- (IBAction)SearchNewsBtn:(id)sender {
+    
+}
+
+- (IBAction)viewFeedbackBtn:(id)sender {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSArray* feedbacklist=[self.currentHotNews Feedback];
+    if (feedbacklist.count>0){
+        FeedbackVC* feedbackVC=[self.storyboard instantiateViewControllerWithIdentifier:@"feedbackvc"];
+        feedbackVC.feedbacks=feedbacklist;
+        [self.navigationController pushViewController:feedbackVC animated:YES];
+    }
+    else
+    {
+        [self TostAlertMsg:@"No feedback"];
+    }
+    
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+}
+
+- (IBAction)addFeedbackBtn:(id)sender {
+    
+    if ([user_id integerValue] == 0){
+        [self TostAlertMsg:@"Login to add feedback"];
+        return;
+    }
+    _addFeedbackView.hidden = NO;
+    
+    [self TouchOnAddfeedBack:_feedDescription.text];
+}
+
 //---------------
 //showig tost
 -(void)TostAlertMsg:(NSString*)alertmsg
@@ -402,6 +419,15 @@
 {
     NSLog(@"editing text");
     return  NO;
+}
+
+#pragma mark - Add Feed Option
+- (IBAction)feedCloseBtn:(id)sender {
+    
+}
+
+- (IBAction)feedAddBtn:(id)sender {
+    
 }
 
 @end
