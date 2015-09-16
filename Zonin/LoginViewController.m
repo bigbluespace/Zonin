@@ -11,7 +11,13 @@
 #import "AdViewObject.h"
 #import "Zonin.h"
 
-@interface LoginViewController ()
+#import <GooglePlus/GooglePlus.h>
+#import <GoogleOpenSource/GoogleOpenSource.h>
+#import <QuartzCore/QuartzCore.h>
+
+static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u23h.apps.googleusercontent.com";//@"452265719636-qbqmhro0t3j9jip1npl69a3er7biidd2.apps.googleusercontent.com";
+
+@interface LoginViewController () <GPPSignInDelegate>
 {
     UIView*SpinnerView;
     AppDelegate* myAppDelegate;
@@ -42,6 +48,34 @@
     _txtPassword.leftView = paddingTxtfieldView2;
     _txtPassword.leftViewMode = UITextFieldViewModeAlways;
     
+//    _googleSignInButton.colorScheme = kGPPSignInButtonColorSchemeDark;
+//    _googleSignInButton.style = kGPPSignInButtonStyleIconOnly;
+    
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+}
+
+#pragma mark - Google+ Login
+-(void)googlePlusLoginInit{
+    [GPPSignInButton class];
+    GPPSignIn *signIn = [GPPSignIn sharedInstance];
+    [signIn trySilentAuthentication];
+    signIn.shouldFetchGooglePlusUser = YES;
+    signIn.clientID = kClientId;
+    signIn.scopes = @[ kGTLAuthScopePlusUserinfoProfile ];
+    signIn.delegate = self;
+}
+
+- (void)finishedWithAuth: (GTMOAuth2Authentication *)auth
+                   error: (NSError *) error {
+    NSLog(@"Received error %@ and auth object %@",error, auth);
+}
+
+- (IBAction)googlePlusLogin:(UIButton*)sender {
+    [self googlePlusLoginInit];
 }
 
 

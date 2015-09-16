@@ -4130,20 +4130,24 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OrV-VZ-PtM" userLabel="FBButton">
-                                                <rect key="frame" x="190" y="22" width="40" height="40"/>
+                                                <rect key="frame" x="190" y="17" width="50" height="50"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="5p2-ty-CGu"/>
-                                                    <constraint firstAttribute="width" constant="40" id="C2R-xk-qLu"/>
+                                                    <constraint firstAttribute="height" constant="50" id="5p2-ty-CGu"/>
+                                                    <constraint firstAttribute="width" constant="50" id="C2R-xk-qLu"/>
                                                 </constraints>
                                                 <state key="normal" backgroundImage="facebook_icon">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5L3-3B-IUa" userLabel="GoogleButton">
-                                                <rect key="frame" x="314" y="22" width="40" height="40"/>
+                                                <rect key="frame" x="304" y="17" width="50" height="50"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <state key="normal" backgroundImage="googleplus_icon">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="googlePlusLogin:" destination="00E-VO-PTe" eventType="touchUpInside" id="tXk-a0-2NO"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1. User Name* :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Xl-3e-ncS">
                                                 <rect key="frame" x="20" y="79" width="165" height="18"/>
@@ -4430,6 +4434,7 @@
                         <outlet property="ContainerView" destination="wHX-UW-2TG" id="38x-SK-H8i"/>
                         <outlet property="adView" destination="vD8-Yc-HaO" id="e5H-YO-SSo"/>
                         <outlet property="genderTxt" destination="6NJ-Sr-dnz" id="nzi-jg-hiO"/>
+                        <outlet property="googleSignInButton" destination="5L3-3B-IUa" id="AIB-a8-7zN"/>
                         <outlet property="registerView" destination="m6a-OZ-9hS" id="MYy-Mm-Omj"/>
                         <outlet property="txtEmail" destination="DFb-92-wlh" id="dsk-qu-6NC"/>
                         <outlet property="txtEmailreg" destination="CZE-8M-HGn" id="56e-PA-Qve"/>
@@ -5470,7 +5475,7 @@
         <image name="zonin_logo_final" width="200" height="200"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uIh-Fc-cNq"/>
-        <segue reference="tPe-0m-tyu"/>
+        <segue reference="CRk-Ih-13U"/>
+        <segue reference="Y7n-VT-0fw"/>
     </inferredMetricsTieBreakers>
 </document>

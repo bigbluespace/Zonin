@@ -8,7 +8,8 @@
 
 #import "AppDelegate.h"
 #import "DetailViewController.h"
-#import <FacebookSDK/FacebookSDK.h>
+//#import <FacebookSDK/FacebookSDK.h>
+#import <GooglePlus/GooglePlus.h>
 
 @import AVFoundation;
 
@@ -18,88 +19,31 @@
 
 @implementation AppDelegate
 
+static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u23h.apps.googleusercontent.com";
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-//    self.logedUser=[[User alloc]init];
     
-    
-    
-//    NSURL* mMovieURL;
-//    NSBundle *bundle = [NSBundle mainBundle];
-//    if(bundle != nil)
-//    {
-//        NSString *moviePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"videostart.mp4"];
-//        if (moviePath)
-//        {
-//            mMovieURL = [NSURL fileURLWithPath:moviePath];
-//           
-//        }
-//    }
-//    AVAudioSession *session = [AVAudioSession sharedInstance];
-//    [session setCategory:AVAudioSessionCategoryPlayback error:nil];
-//    self.mMoviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:mMovieURL];
-//    
-//     self.mMoviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:mMovieURL];
-//   
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(moviePlayBackDidFinish)
-//                                                 name:MPMoviePlayerPlaybackDidFinishNotification
-//                                               object:self.mMoviePlayer.moviePlayer];
-//    self.mMoviePlayer.moviePlayer.controlStyle = MPMovieControlStyleNone;
-//   // [mMoviePlayer.moviePlayer.backgroundView  addSubview:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background"]]];
-//    self.mMoviePlayer.moviePlayer.scalingMode = MPMovieScalingModeFill;
-//    self.window.rootViewController=  self.mMoviePlayer;
-//
-//    
-//    [self.mMoviePlayer.moviePlayer setFullscreen:YES animated:NO];
-//    [self.mMoviePlayer.moviePlayer prepareToPlay];
-//    [self.mMoviePlayer.moviePlayer play];
-    
- /*   NSString *url = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"videostart.mp4"];
-    
-    MPMoviePlayerViewController *playerViewController = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:url]];
-    
-    [[NSNotificationCenter defaultCenter]
-     addObserver:self
-     selector:@selector(movieFinishedCallback:)
-     name:MPMoviePlayerPlaybackDidFinishNotification
-     object:[playerViewController moviePlayer]];
-    
-    self.window.rootViewController = playerViewController;
-    
-    //play movie
-    
-    MPMoviePlayerController *player = [playerViewController moviePlayer];
-    
-    [player play];*/
-    
+    [GPPSignIn sharedInstance].clientID = kClientId;
+
+    // Read Google+ deep-link data.
     
     return YES;
 }
 -(BOOL) application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
+    NSLog(@"url %@", url);
     if (url != nil)
     {
         
-        return [[FBSession activeSession] handleOpenURL:url];
+        return [GPPURLHandler handleURL:url
+                      sourceApplication:sourceApplication
+                             annotation:annotation];
     }
     
     return NO;
 }
-- (void)moviePlayBackDidFinish{
-    
-   // MPMoviePlayerController *player = [aNotification object];
-//    [[NSNotificationCenter defaultCenter]
-//     removeObserver:self
-//     name:MPMoviePlayerPlaybackDidFinishNotification
-//     object:player];
-    
-    //player.initialPlaybackTime = -1;
-    //[player pause];
-//    [player stop];
-    
-//    [player.view removeFromSuperview];
-}
+
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -116,12 +60,12 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-     [[FBSession activeSession] handleDidBecomeActive];
+     //[[FBSession activeSession] handleDidBecomeActive];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    [[FBSession activeSession] close];
+   // [[FBSession activeSession] close];
 }
 
 @end

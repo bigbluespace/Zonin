@@ -10,8 +10,15 @@
 #import "AFNetworking.h"
 #import "App-Utilities.h"
 #import "AppDelegate.h"
+#import <GooglePlus/GooglePlus.h>
+
+@class GPPSignInButton;
 
 @interface LoginViewController : UIViewController<UITextFieldDelegate>
+
+@property (weak, nonatomic) IBOutlet GPPSignInButton *googleSignInButton;
+
+
 @property (weak, nonatomic) IBOutlet UIView *ContainerView;
 @property (weak, nonatomic) IBOutlet UIView *registerView;
 
