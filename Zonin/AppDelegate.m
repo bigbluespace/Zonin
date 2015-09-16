@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "DetailViewController.h"
-#import <FacebookSDK/FacebookSDK.h>
+//#import <FacebookSDK/FacebookSDK.h>
 
 @import AVFoundation;
 
@@ -81,7 +81,7 @@
     if (url != nil)
     {
         
-        return [[FBSession activeSession] handleOpenURL:url];
+        //return [[FBSession activeSession] handleOpenURL:url];
     }
     
     return NO;
@@ -116,12 +116,12 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-     [[FBSession activeSession] handleDidBecomeActive];
+   //  [[FBSession activeSession] handleDidBecomeActive];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    [[FBSession activeSession] close];
+   // [[FBSession activeSession] close];
 }
 
 @end

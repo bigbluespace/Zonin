@@ -75,7 +75,6 @@
 		931A32D11B80A98200939D90 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 931A32D01B80A98200939D90 /* Settings.m */; };
 		931A32D41B80AA1D00939D90 /* About.m in Sources */ = {isa = PBXBuildFile; fileRef = 931A32D31B80AA1D00939D90 /* About.m */; };
 		9334FC791B7FC16900FD7FF0 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 9334FC781B7FC16900FD7FF0 /* MBProgressHUD.m */; };
-		934D1E2E1BA6155C00632FB0 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 934D1E2D1BA6155C00632FB0 /* FacebookSDK.framework */; };
 		9364018E1B94D3A100EF8CBF /* AboutSupportController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9364018D1B94D3A100EF8CBF /* AboutSupportController.m */; };
 		938A6BA21B7F0E8200FE810B /* rootViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A6BA11B7F0E8200FE810B /* rootViewViewController.m */; };
 		938A6BAA1B7F0EA000FE810B /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A6BA51B7F0EA000FE810B /* RECommonFunctions.m */; };
@@ -281,7 +280,6 @@
 		931A32D31B80AA1D00939D90 /* About.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = About.m; sourceTree = "<group>"; };
 		9334FC771B7FC16900FD7FF0 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		9334FC781B7FC16900FD7FF0 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		934D1E2D1BA6155C00632FB0 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		9364018C1B94D3A100EF8CBF /* AboutSupportController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutSupportController.h; sourceTree = "<group>"; };
 		9364018D1B94D3A100EF8CBF /* AboutSupportController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutSupportController.m; sourceTree = "<group>"; };
 		938956AD1B89BF6500392711 /* videostart.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = videostart.mp4; sourceTree = "<group>"; };
@@ -398,7 +396,6 @@
 				80FB8FC31B3AA04400789914 /* SystemConfiguration.framework in Frameworks */,
 				80FB8FC11B3AA00500789914 /* CFNetwork.framework in Frameworks */,
 				80FB8FBF1B3A9FFD00789914 /* Security.framework in Frameworks */,
-				934D1E2E1BA6155C00632FB0 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -671,7 +668,6 @@
 		9E0BB3B31B23A0AA002D4C9B = {
 			isa = PBXGroup;
 			children = (
-				934D1E2D1BA6155C00632FB0 /* FacebookSDK.framework */,
 				80FB8FC41B3AA04B00789914 /* MobileCoreServices.framework */,
 				80FB8FC21B3AA04400789914 /* SystemConfiguration.framework */,
 				80FB8FC01B3AA00500789914 /* CFNetwork.framework */,
