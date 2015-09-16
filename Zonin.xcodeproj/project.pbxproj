@@ -49,6 +49,7 @@
 		84255C511BA5FA5A0069216F /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84255C501BA5FA5A0069216F /* MediaPlayer.framework */; };
 		84255C521BA5FA8F0069216F /* videostart.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 938956AD1B89BF6500392711 /* videostart.mp4 */; };
 		84255C551BA5FB890069216F /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84255C541BA5FB890069216F /* PlayerViewController.m */; };
+		8489C3C61BA9EFAD005242DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8489C3C51BA9EFAD005242DB /* Foundation.framework */; };
 		930F3E161B88D7EE002090E7 /* SelectSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 930F3E151B88D7EE002090E7 /* SelectSettings.m */; };
 		931880F81BA75C1500A904D9 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 931880F61BA75C1500A904D9 /* GoogleOpenSource.framework */; };
 		931880F91BA75C1500A904D9 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 931880F71BA75C1500A904D9 /* GooglePlus.framework */; };
@@ -239,6 +240,7 @@
 		84255C501BA5FA5A0069216F /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		84255C531BA5FB890069216F /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
 		84255C541BA5FB890069216F /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
+		8489C3C51BA9EFAD005242DB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		930F3E141B88D7EE002090E7 /* SelectSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectSettings.h; sourceTree = "<group>"; };
 		930F3E151B88D7EE002090E7 /* SelectSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectSettings.m; sourceTree = "<group>"; };
 		931880F61BA75C1500A904D9 /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleOpenSource.framework; sourceTree = "<group>"; };
@@ -411,6 +413,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8489C3C61BA9EFAD005242DB /* Foundation.framework in Frameworks */,
 				931881071BA75DCA00A904D9 /* UIKit.framework in Frameworks */,
 				80FB8FBF1B3A9FFD00789914 /* Security.framework in Frameworks */,
 				80FB8FC31B3AA04400789914 /* SystemConfiguration.framework in Frameworks */,
@@ -426,7 +429,6 @@
 				80FB8FC51B3AA04B00789914 /* MobileCoreServices.framework in Frameworks */,
 				80FB8FC11B3AA00500789914 /* CFNetwork.framework in Frameworks */,
 				80FB8FBF1B3A9FFD00789914 /* Security.framework in Frameworks */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +438,7 @@
 		2049EE79CB604918D9339DF6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8489C3C51BA9EFAD005242DB /* Foundation.framework */,
 				931881061BA75DCA00A904D9 /* UIKit.framework */,
 				931880FA1BA75D9900A904D9 /* AddressBook.framework */,
 				931880FB1BA75D9900A904D9 /* AssetsLibrary.framework */,
@@ -706,11 +709,9 @@
 		9E0BB3B31B23A0AA002D4C9B = {
 			isa = PBXGroup;
 			children = (
-
 				937461501BA8895000F243FF /* GooglePlus.bundle */,
 				931880F61BA75C1500A904D9 /* GoogleOpenSource.framework */,
 				931880F71BA75C1500A904D9 /* GooglePlus.framework */,
-
 				80FB8FC41B3AA04B00789914 /* MobileCoreServices.framework */,
 				80FB8FC21B3AA04400789914 /* SystemConfiguration.framework */,
 				80FB8FC01B3AA00500789914 /* CFNetwork.framework */,

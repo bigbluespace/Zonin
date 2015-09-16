@@ -10,20 +10,21 @@
 #import "RESideMenu.h"
 #import "AdViewObject.h"
 #import "Zonin.h"
-
-#import <GooglePlus/GooglePlus.h>
 #import <GoogleOpenSource/GoogleOpenSource.h>
 #import <QuartzCore/QuartzCore.h>
+#import "Zonin.h"
 
-static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u23h.apps.googleusercontent.com";//@"452265719636-qbqmhro0t3j9jip1npl69a3er7biidd2.apps.googleusercontent.com";
+static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u23h.apps.googleusercontent.com";
 
-@interface LoginViewController () <GPPSignInDelegate>
+@interface LoginViewController ()
 {
     UIView*SpinnerView;
     AppDelegate* myAppDelegate;
     __weak IBOutlet UIView *adView;
 }
 
+//@property (nonatomic, copy) void (^confirmActionBlock)(void);
+//@property (nonatomic, copy) void (^cancelActionBlock)(void);
 @end
 
 @implementation LoginViewController
@@ -48,31 +49,99 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
     _txtPassword.leftView = paddingTxtfieldView2;
     _txtPassword.leftViewMode = UITextFieldViewModeAlways;
     
-//    _googleSignInButton.colorScheme = kGPPSignInButtonColorSchemeDark;
-//    _googleSignInButton.style = kGPPSignInButtonStyleIconOnly;
+   // _googleSignInButton.colorScheme = kGPPSignInButtonColorSchemeDark;
+   // _googleSignInButton.style = kGPPSignInButtonStyleIconOnly;
     
     
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+  
+    _googleSignInButton.colorScheme = kGPPSignInButtonColorSchemeLight;
+    _googleSignInButton.style = kGPPSignInButtonStyleIconOnly;
 }
 
 #pragma mark - Google+ Login
 -(void)googlePlusLoginInit{
+
+    
     [GPPSignInButton class];
+    
     GPPSignIn *signIn = [GPPSignIn sharedInstance];
-    [signIn trySilentAuthentication];
+    
+    //[signIn disconnect];
+    //[signIn signOut];
+    
     signIn.shouldFetchGooglePlusUser = YES;
+    signIn.shouldFetchGoogleUserEmail = YES;
+    
     signIn.clientID = kClientId;
-    signIn.scopes = @[ kGTLAuthScopePlusUserinfoProfile ];
+    signIn.scopes = @[ kGTLAuthScopePlusLogin, @"profile"];
+    signIn.shouldFetchGooglePlusUser = YES;
+    signIn.shouldFetchGoogleUserEmail = YES;
     signIn.delegate = self;
+    
+    [signIn trySilentAuthentication];
+   
 }
 
 - (void)finishedWithAuth: (GTMOAuth2Authentication *)auth
                    error: (NSError *) error {
     NSLog(@"Received error %@ and auth object %@",error, auth);
+    
+    if ([GPPSignIn sharedInstance].authentication) {
+        NSLog( @"Status: Authenticated");
+        GTLPlusPerson *person = [GPPSignIn sharedInstance].googlePlusUser;
+        
+        NSDictionary *parameters = @{@"F_NAME": person.displayName,
+                                     @"L_NAME": @"",
+                                     @"EMAIL": [GPPSignIn sharedInstance].userEmail,
+                                    
+                                     @"MACHINE_CODE": MACHINE_CODE
+                                     };
+        
+        __block NSString* alertmgs;
+        
+        [Zonin commonPost:@"user_registration" parameters:parameters block:^(NSDictionary *responseObject, NSError *error) {
+            if ([[responseObject objectForKey:JSON_KEY_MESSAGE] isEqual:SERVER_MESSAGE_SUCCESS])
+            {
+                alertmgs=[responseObject objectForKey:JSON_KEY_STATUS];
+                
+                [self TostAlertMsg:alertmgs];
+            }
+            else
+            {
+                
+                alertmgs=[responseObject objectForKey:JSON_KEY_STATUS];
+                if (!alertmgs)
+                {
+                    alertmgs=[responseObject objectForKey:JSON_KEY_ERROR];
+                }
+                [self TostAlertMsg:alertmgs];
+            }
+            
+        }];
+        
+    } else {
+        
+        NSLog(@"Status: Not authenticated");
+    }
+    
+    
+    
 }
+- (void)didDisconnectWithError:(NSError *)error {
+    if (error) {
+        NSLog(@"Status: Failed to disconnect: %@", error);
+    } else {
+        
+        NSLog(@"Status: Disconnected");
+    }
+    
+}
+
+
 
 - (IBAction)googlePlusLogin:(UIButton*)sender {
     [self googlePlusLoginInit];
@@ -131,6 +200,7 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
 //------------------------------
 - (IBAction)loginwithGoogle:(id)sender
 {
+    //[signIn authenticate]
 }
 //-----------------------------
 - (IBAction)signuptouch:(id)sender
