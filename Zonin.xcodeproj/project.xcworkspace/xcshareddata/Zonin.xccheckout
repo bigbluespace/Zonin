@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>723861D8-4C04-46EC-9656-D780E6F6DC7F</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>Zonin</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>C8A525A64300968A196BC70E829D5181A9E09C34</key>
 		<string>https://github.com/majorarif/Zonin.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Zonin.xcodeproj/project.xcworkspace</string>
+	<string>Zonin.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>C8A525A64300968A196BC70E829D5181A9E09C34</key>

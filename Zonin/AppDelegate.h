@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "User.h"
 
+@class GTMOAuth2Authentication;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
