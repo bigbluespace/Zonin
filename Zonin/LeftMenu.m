@@ -49,7 +49,7 @@
     
     UIView *header = _tableView.tableHeaderView;
     CGRect headerFrame           = header.frame;
-    headerFrame.size.height      = IPAD ? 250 : 144;
+    headerFrame.size.height      = IPAD ? 250 : 375;//144
     header.frame            = headerFrame;
     _tableView.tableHeaderView = header;
     _tableView.tableHeaderView = _tableView.tableHeaderView;
@@ -118,7 +118,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (IPAD )
-        return 44;
+        return 90;
     return 60;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -129,7 +129,7 @@
     NSString *CellIdentifier = @"leftRow";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-   
+    cell.backgroundColor = [UIColor clearColor];
     UIImageView *iconImage = (UIImageView*)[cell viewWithTag:1];
     iconImage.image = [UIImage imageNamed:imageList[indexPath.row]];
     
