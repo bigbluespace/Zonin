@@ -20,6 +20,8 @@
 
 @property (weak, nonatomic) IBOutlet GPPSignInButton *googleSignInButton;
 
+@property (weak, nonatomic) IBOutlet GPPSignInButton *googleLogin;
+
 
 @property (weak, nonatomic) IBOutlet UIView *ContainerView;
 @property (weak, nonatomic) IBOutlet UIView *registerView;

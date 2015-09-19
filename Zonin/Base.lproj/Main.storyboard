@@ -4125,9 +4125,9 @@
                                             <action selector="loginWithfacebook:" destination="00E-VO-PTe" eventType="touchUpInside" id="w9P-sV-fbN"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="76i-94-Vxh">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="76i-94-Vxh" customClass="GPPSignInButton">
                                         <rect key="frame" x="470" y="267" width="80" height="80"/>
-                                        <state key="normal" backgroundImage="googleplus_icon">
+                                        <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -4179,7 +4179,6 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5L3-3B-IUa" userLabel="GoogleButton" customClass="GPPSignInButton">
                                                 <rect key="frame" x="490" y="17" width="50" height="50"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <state key="normal">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -4472,6 +4471,7 @@
                         <outlet property="ContainerView" destination="wHX-UW-2TG" id="38x-SK-H8i"/>
                         <outlet property="adView" destination="vD8-Yc-HaO" id="e5H-YO-SSo"/>
                         <outlet property="genderTxt" destination="6NJ-Sr-dnz" id="nzi-jg-hiO"/>
+                        <outlet property="googleLogin" destination="76i-94-Vxh" id="YDG-XC-zL0"/>
                         <outlet property="googleSignInButton" destination="5L3-3B-IUa" id="AIB-a8-7zN"/>
                         <outlet property="registerView" destination="m6a-OZ-9hS" id="MYy-Mm-Omj"/>
                         <outlet property="txtEmail" destination="DFb-92-wlh" id="dsk-qu-6NC"/>

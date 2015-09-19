@@ -22,6 +22,7 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
     UIView*SpinnerView;
     AppDelegate* myAppDelegate;
     __weak IBOutlet UIView *adView;
+    BOOL isLogin;
 }
 
 
@@ -61,13 +62,10 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
   
-    _googleSignInButton.colorScheme = kGPPSignInButtonColorSchemeDark;
+    _googleSignInButton.colorScheme = kGPPSignInButtonColorSchemeLight;
     _googleSignInButton.style = kGPPSignInButtonStyleIconOnly;
-}
-
-#pragma mark - Google+ Login
--(void)googlePlusLoginInit{
-
+    _googleLogin.colorScheme = kGPPSignInButtonColorSchemeLight;
+    _googleLogin.style = kGPPSignInButtonStyleIconOnly;
     
     [GPPSignInButton class];
     
@@ -85,7 +83,15 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
     signIn.shouldFetchGoogleUserEmail = YES;
     signIn.delegate = self;
     
-    [signIn trySilentAuthentication];
+}
+
+#pragma mark - Google+ Login
+-(void)googlePlusLoginInit{
+
+    
+    
+    
+    //[signIn trySilentAuthentication];
    
 }
 
@@ -97,18 +103,38 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
         NSLog( @"Status: Authenticated");
         GTLPlusPerson *person = [GPPSignIn sharedInstance].googlePlusUser;
         
-        NSDictionary *parameters = @{@"F_NAME": person.displayName,
-                                     @"L_NAME": @"",
-                                     @"EMAIL": [GPPSignIn sharedInstance].userEmail,
-                                    
-                                     @"MACHINE_CODE": MACHINE_CODE
-                                     };
+//        params.put("EMAIL", e);
+//        params.put("MACHINE_CODE", Utils.MACHINE_CODE);
+//        client.post(URLs.login, params, new AsyncHttpResponseHandler() {
+        
+        
+        NSMutableDictionary *parameters = [[NSMutableDictionary alloc] initWithDictionary: @{
+                                                                                @"EMAIL": [GPPSignIn sharedInstance].userEmail,
+                                                                                @"MACHINE_CODE": MACHINE_CODE
+                                     }];
+        NSString *url = @"get_login";
+        if (!isLogin) {
+            
+            [parameters setObject:person.displayName forKey:@"F_NAME"];
+            [parameters setObject:@"" forKey:@"L_NAME"];
+            url = @"user_registration";
+        }
+        
         
         __block NSString* alertmgs;
         
-        [Zonin commonPost:@"user_registration" parameters:parameters block:^(NSDictionary *responseObject, NSError *error) {
+        [Zonin commonPost:url parameters:parameters block:^(NSDictionary *responseObject, NSError *error) {
             if ([[responseObject objectForKey:JSON_KEY_MESSAGE] isEqual:SERVER_MESSAGE_SUCCESS])
             {
+                
+                NSString *user_id = [responseObject valueForKey:@"user_id"];
+                if (user_id == nil || user_id == (id)[NSNull null]) {
+                    user_id = [responseObject valueForKey:@"usre_id"];
+                }
+                NSDictionary *dict = @{
+                                       @"user_id": user_id
+                                       };
+                [Zonin storeData:dict storageName:@"user_id"];
                 alertmgs=[responseObject objectForKey:JSON_KEY_STATUS];
                 
                 [self TostAlertMsg:alertmgs];
@@ -137,17 +163,21 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
 - (void)didDisconnectWithError:(NSError *)error {
     if (error) {
         NSLog(@"Status: Failed to disconnect: %@", error);
+        
+        [self TostAlertMsg:[NSString stringWithFormat:@"Status: Failed to disconnect: %@", error]];
     } else {
         
         NSLog(@"Status: Disconnected");
+        [self TostAlertMsg:@"Status: Disconnected"];
     }
     
 }
 
 
-
+//Register with Google
 - (IBAction)googlePlusLogin:(UIButton*)sender {
-    [self googlePlusLoginInit];
+    isLogin = NO;
+   
 }
 
 
@@ -203,7 +233,8 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
 //------------------------------
 - (IBAction)loginwithGoogle:(id)sender
 {
-    //[signIn authenticate]
+    isLogin = YES;
+    
 }
 //-----------------------------
 - (IBAction)signuptouch:(id)sender
@@ -251,6 +282,12 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
          NSLog(@"json:%@",responseObject);
          if ([[responseObject objectForKey:JSON_KEY_MESSAGE] isEqual:SERVER_MESSAGE_SUCCESS])
          {
+             
+             NSString *user_id = [responseObject valueForKey:@"usre_id"];
+             NSDictionary *dict = @{
+                                    @"user_id": user_id
+                                    };
+             [Zonin storeData:dict storageName:@"user_id"];
              alertmgs=[responseObject objectForKey:JSON_KEY_STATUS];
              
              [self TostAlertMsg:alertmgs];
