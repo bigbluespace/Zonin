@@ -12,6 +12,7 @@
 #import "Zonin.h"
 #import "ForumDetailViewController.h"
 #import "AdViewObject.h"
+#define IPAD     UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
 
 @interface ForumViewController (){
     NSMutableArray *listData;
@@ -166,11 +167,16 @@
     header.text = [listData[indexPath.row] valueForKey:@"topic_title"];
     detail.text = [listData[indexPath.row] valueForKey:@"topic_date"];
     
+    cell.backgroundColor = [UIColor clearColor];
+    
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    if (IPAD) {
+        return 96;
+    }
     return 64;
 }
 
