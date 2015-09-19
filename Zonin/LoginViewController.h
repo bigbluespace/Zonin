@@ -11,10 +11,12 @@
 #import "App-Utilities.h"
 #import "AppDelegate.h"
 #import <GooglePlus/GooglePlus.h>
+#import <GoogleOpenSource/GoogleOpenSource.h>
+#import <QuartzCore/QuartzCore.h>
 
 @class GPPSignInButton;
 
-@interface LoginViewController : UIViewController<UITextFieldDelegate>
+@interface LoginViewController : UIViewController<UITextFieldDelegate,GPPSignInDelegate>
 
 @property (weak, nonatomic) IBOutlet GPPSignInButton *googleSignInButton;
 

@@ -10,6 +10,7 @@
 #import "RESideMenu.h"
 #import "AdViewObject.h"
 #import "Zonin.h"
+#define IPAD     UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
 
 @interface Settings (){
     BOOL video;
@@ -17,6 +18,10 @@
 }
 @property (weak, nonatomic) IBOutlet UIButton *videoState;
 @property (weak, nonatomic) IBOutlet UIView *logoutView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *menuHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *adsHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnHeightConstraint;
 
 @end
 
@@ -35,6 +40,12 @@
     
     AdViewObject *add = [AdViewObject sharedManager];
     [adView addSubview:add.adView];
+    if (IPAD) {
+        _btnHeightConstraint.constant = 84;
+        _headerHeightConstraint.constant = 160;
+        _menuHeightConstraint.constant = 48;
+        _adsHeightConstraint.constant = 150;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

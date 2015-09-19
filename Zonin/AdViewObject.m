@@ -8,6 +8,7 @@
 
 #import "AdViewObject.h"
 #import "Zonin.h"
+#define IPAD     UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
 
 @implementation AdViewObject
 + (id)sharedManager {
@@ -21,7 +22,12 @@
 
 - (id)init {
     if (self = [super init]) {
-        self.adView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 100)];
+        NSInteger height = 100;;
+        if (IPAD) {
+            height = 150;
+        }
+        
+        self.adView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, height)];
         self.adView.userInteractionEnabled = YES;
         self.adView.image = [UIImage imageNamed:@"home_background"];
         

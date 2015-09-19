@@ -11,10 +11,16 @@
 #import "Zonin.h"
 #import "AboutSupportController.h"
 #import "AdViewObject.h"
+#define IPAD     UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
 
 @interface About (){
     NSString *page_type;
 }
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *shareBtnHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *aboutHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *menuHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *adViewHeightConstraint;
 
 @end
 
@@ -27,6 +33,13 @@
      self.navigationController.navigationBarHidden = YES;
     AdViewObject *add = [AdViewObject sharedManager];
     [adView addSubview:add.adView];
+    if (IPAD) {
+        _shareBtnHeightConstraint.constant = 240;
+        _aboutHeightConstraint.constant = 82;
+        _headerHeightConstraint.constant = 160;
+        _menuHeightConstraint.constant = 48;
+        _adViewHeightConstraint.constant = 150;
+    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

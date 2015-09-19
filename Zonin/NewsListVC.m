@@ -12,11 +12,17 @@
 #import "RESideMenu.h"
 #import "AdViewObject.h"
 
+#define IPAD     UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
+
 @interface NewsListVC (){
     SearchView* searchView;
     UIView *tintView;
     
 }
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *adViewConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *searchBtnConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *menuHeightConstraint;
 
 @end
 
@@ -50,7 +56,12 @@ static NSInteger kKeyboardTintViewTag = 1234;
    
     
     self.view.backgroundColor = [UIColor clearColor];
-    
+    if (IPAD) {
+        _adViewConstraint.constant = 150;
+        _searchBtnConstraint.constant = 72;
+        _headerHeightConstraint.constant = 160;
+        _menuHeightConstraint.constant = 48;
+    }
     
 }
 
@@ -185,14 +196,8 @@ static NSInteger kKeyboardTintViewTag = 1234;
     
     [self getHotNewsData:parameter];
     
-    
     [searchView removeFromSuperview];
     [self visibilityHidden:NO inview:self.containerView];
-    
-    
-    
-    
-    
 }
 
 
@@ -255,6 +260,7 @@ static NSInteger kKeyboardTintViewTag = 1234;
     if (!cell)
     {
         cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"newslistcell"];
+       
     }
 //    cell.backgroundColor = [UIColor clearColor];
 //    cell.backgroundView = [UIView new];
@@ -269,8 +275,10 @@ static NSInteger kKeyboardTintViewTag = 1234;
     [cellLbl setFrame:CGRectMake(80,5,cell.frame.size.width-80, cell.frame.size.height-20)];
     [cellLbl setNeedsLayout];
     [cellLbl setNeedsDisplay];
+    cell.backgroundColor = [UIColor clearColor];
     //[cell.contentView addSubview:cellLbl];
     cellLbl.text=temp.news_title;
+    
     UILabel *datelbl = (UILabel *)[cell viewWithTag:103];
     datelbl.text=temp.news_date;
     return cell;
@@ -319,20 +327,28 @@ static NSInteger kKeyboardTintViewTag = 1234;
     //------------------
     UILabel  * label = [[UILabel alloc] initWithFrame:CGRectMake(8, 5,300, 9999)];
     label.numberOfLines=0;
-    label.font = [UIFont fontWithName:@"system" size:14];
+    //label.font = [UIFont fontWithName:@"system" size:14];
     HotNews*temp=[self.hotNewsCollection objectAtIndex:indexPath.row];
     label.text = temp.news_title;
     
-    CGSize maximumLabelSize = CGSizeMake(300, 9999);
-    CGSize expectedSize = [label sizeThatFits:maximumLabelSize];
+//    CGSize maximumLabelSize = CGSizeMake(300, 9999);
+//    CGSize expectedSize = [label sizeThatFits:maximumLabelSize];
     
-    CGFloat height = expectedSize.height+20;
-    
-    if (height<65) {
-        return 65;
+ //   CGFloat height = expectedSize.height+20;
+//    if (IPAD) {
+//        
+//    }else{
+//        if (height<65) {
+//            return 65;
+//        }
+//    }
+    if (IPAD) {
+        return 93;
+    }else{
+        return 62;
     }
     
-    return height;
+    
 }
 
 - (IBAction)back:(id)sender {

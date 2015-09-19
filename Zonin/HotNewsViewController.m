@@ -11,6 +11,7 @@
 #import "MBProgressHUD.h"
 #import "AdViewObject.h"
 #import "Zonin.h"
+#define IPAD     UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
 
 @interface HotNewsViewController(){
     UIView *tintView;
@@ -26,6 +27,10 @@
 
 @property (weak, nonatomic) IBOutlet UIView *addFeedbackView;
 @property (weak, nonatomic) IBOutlet UITextView *feedDescription;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *adViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *menuHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *picHeightConstraint;
 
 @end
 
@@ -55,6 +60,14 @@
     _addFeedbackView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.4];
     user_id = [[Zonin readData:@"user_id"] valueForKey:@"user_id"];
     self.SearchHotNewsView.hidden=true;
+    
+    if (IPAD) {
+        _adViewHeightConstraint.constant = 150;
+        _menuHeightConstraint.constant = 48;
+        _headerHeightConstraint.constant = 160;
+        _picHeightConstraint.constant = 180;
+    }
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated

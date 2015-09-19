@@ -9,6 +9,15 @@
 #import "HomeViewController.h"
 #import "RESideMenu.h"
 #import "AdViewObject.h"
+#define IPAD     UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
+
+@interface HomeViewController ()
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *homeLowerviewConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *adViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerViewConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *menuBtnConstraint;
+
+@end
 
 @implementation HomeViewController
 {
@@ -25,6 +34,12 @@
      AdViewObject *add = [AdViewObject sharedManager];
     [adView addSubview:add.adView];
 
+    if (IPAD) {
+        _homeLowerviewConstraint.constant = 75;
+        _adViewHeightConstraint.constant = 150;
+        _headerViewConstraint.constant = 160;
+        _menuBtnConstraint.constant = 48;
+    }
 }
 
 - (IBAction)menuBtn:(id)sender {

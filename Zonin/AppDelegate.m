@@ -9,11 +9,13 @@
 #import "AppDelegate.h"
 #import "DetailViewController.h"
 //#import <FacebookSDK/FacebookSDK.h>
+
 #import <GooglePlus/GooglePlus.h>
+
 
 @import AVFoundation;
 
-@interface AppDelegate ()
+@interface AppDelegate ()<GPPDeepLinkDelegate>
 
 @end
 
@@ -26,22 +28,36 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
     
     [GPPSignIn sharedInstance].clientID = kClientId;
 
-    // Read Google+ deep-link data.
+    [GPPDeepLink setDelegate:self];
+    [GPPDeepLink readDeepLinkAfterInstall];
     
     return YES;
 }
 -(BOOL) application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    NSLog(@"url %@", url);
-    if (url != nil)
-    {
+    //NSLog(@"url %@", url);
+   // if (url != nil)
+   // {
         
+
         return [GPPURLHandler handleURL:url
                       sourceApplication:sourceApplication
                              annotation:annotation];
-    }
+   // }
     
     return NO;
+}
+#pragma mark - GPPDeepLinkDelegate
+
+- (void)didReceiveDeepLink:(GPPDeepLink *)deepLink {
+    // An example to handle the deep link data.
+  /*  UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:@"Deep-link Data"
+                          message:[deepLink deepLinkID]
+                          delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil];
+    [alert show];*/
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -60,7 +76,9 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-     //[[FBSession activeSession] handleDidBecomeActive];
+
+   //  [[FBSession activeSession] handleDidBecomeActive];
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
