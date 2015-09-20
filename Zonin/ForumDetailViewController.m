@@ -11,6 +11,7 @@
 #import "Zonin.h"
 #import "RESideMenu.h"
 #import "AdViewObject.h"
+#define IPAD     UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
 
 @interface ForumDetailViewController (){
     AppDelegate *appDelegate;
@@ -131,12 +132,23 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return commentArray.count;
+    if (commentArray.count > 0) {
+        return commentArray.count;
+    }
+    return 0;
+}
+
+-(CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (IPAD) {
+        return 78;
+    }
+    return 52;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"commentCell" forIndexPath:indexPath];
     UILabel *title = (UILabel*)[cell viewWithTag:500];
+    cell.backgroundColor= [UIColor clearColor];
     title.text = [commentArray[indexPath.row] valueForKey:@"topic_comment"];
     return cell;
 }
