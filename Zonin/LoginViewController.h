@@ -19,7 +19,6 @@
 @interface LoginViewController : UIViewController<UITextFieldDelegate,GPPSignInDelegate>
 
 @property (weak, nonatomic) IBOutlet GPPSignInButton *googleSignInButton;
-
 @property (weak, nonatomic) IBOutlet GPPSignInButton *googleLogin;
 
 
@@ -27,8 +26,9 @@
 @property (weak, nonatomic) IBOutlet UIView *registerView;
 
 @property (weak, nonatomic) IBOutlet UITextField *txtEmail;
-
 @property (weak, nonatomic) IBOutlet UITextField *txtPassword;
+
+
 //register view fields
 @property (weak, nonatomic) IBOutlet UITextField *txtFirstName;
 @property (weak, nonatomic) IBOutlet UITextField *txtLastName;

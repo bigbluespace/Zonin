@@ -8,6 +8,8 @@
 
 #import "AdViewObject.h"
 #import "Zonin.h"
+
+
 #define IPAD     UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
 
 @implementation AdViewObject
@@ -33,41 +35,45 @@
         
         UIButton *addButton = [[UIButton alloc] initWithFrame:self.adView.frame];
         [addButton addTarget:self action:@selector(handleSingleTap:) forControlEvents:UIControlEventTouchUpInside];
-        //addButton.backgroundColor = [UIColor redColor];
+        
         [self.adView addSubview:addButton];
+        [self fetchAdd:[Zonin readData:@"settingData"]];
         
-        
-//        UITapGestureRecognizer *singleFingerTap =
-//        [[UITapGestureRecognizer alloc] initWithTarget:self
-//                                                action:@selector(handleSingleTap:)];
-//        singleFingerTap.numberOfTapsRequired = 1;
-//        [self.adView addGestureRecognizer:singleFingerTap];
-        NSDictionary *param = @{
-                                @"MACHINE_CODE" : @"emran4axiz"
-                                };
-        
-        [Zonin commonPost:@"get_advertisement/emran4axiz" parameters:param block:^(NSDictionary *JSON, NSError *error) {
-            self.adArray = [JSON valueForKey:@"status"];
-            [self.adView setImageWithURL:[NSURL URLWithString:[self.adArray[0] valueForKey:@"media_url"]]];
-            
-        
-            
-            self.timer = [NSTimer scheduledTimerWithTimeInterval:10.0
-                                                          target:self
-                                                        selector:@selector(targetMethod)
-                                                        userInfo:nil
-                                                         repeats:YES];
-            
-            
-            
-            
-            NSLog(@"json  %@", JSON);
-            
-        }];
-        
+       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(settingsChanged:) name:@"settingsChanged" object:nil];
         
     }
     return self;
+}
+- (void)fetchAdd:(NSDictionary*)dic{
+    
+    NSLog(@"[Zonin readData  %@", dic);
+    
+    NSMutableDictionary *param = [[NSMutableDictionary alloc] initWithDictionary:@{
+                            @"MACHINE_CODE" : @"emran4axiz"
+                            }];
+    if (dic != nil && dic != (id) [NSNull null]) {
+        [param setObject:[dic valueForKey:@"country_id"] forKey:@"country_id"];
+        [param setObject:[dic valueForKey:@"state_id"] forKey:@"state_id"];
+        [param setObject:[dic valueForKey:@"county_id"] forKey:@"county_id"];
+    }
+    
+    
+    [Zonin commonPost:@"get_advertisement/emran4axiz" parameters:param block:^(NSDictionary *JSON, NSError *error) {
+        self.adArray = [JSON valueForKey:@"status"];
+        [self.adView setImageWithURL:[NSURL URLWithString:[self.adArray[0] valueForKey:@"media_url"]]];
+        
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:10.0
+                                                      target:self
+                                                    selector:@selector(targetMethod)
+                                                    userInfo:nil
+                                                     repeats:YES];
+    }];
+}
+- (void)settingsChanged:(NSNotification *)notification {
+    
+    NSDictionary *settingsParam = [notification valueForKey:@"userInfo"];
+    [self fetchAdd:settingsParam];
+
 }
 
 - (void) targetMethod{

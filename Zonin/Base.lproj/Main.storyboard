@@ -1156,11 +1156,21 @@
                                             <constraint firstAttribute="trailing" secondItem="c41-5n-T9i" secondAttribute="trailing" id="xAN-uU-lGg"/>
                                         </constraints>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="goI-nb-Sm2">
+                                        <rect key="frame" x="0.0" y="353" width="600" height="20"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="nlA-4V-sje"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="goI-nb-Sm2" firstAttribute="leading" secondItem="weX-VE-caW" secondAttribute="leading" id="2un-b7-bkp"/>
                                     <constraint firstItem="g43-Ay-8Tf" firstAttribute="leading" secondItem="weX-VE-caW" secondAttribute="leading" id="5EW-CB-6w5"/>
                                     <constraint firstItem="g43-Ay-8Tf" firstAttribute="top" secondItem="weX-VE-caW" secondAttribute="top" id="7MQ-Q1-4S0"/>
+                                    <constraint firstAttribute="bottom" secondItem="goI-nb-Sm2" secondAttribute="bottom" id="O1q-ZX-Ckc"/>
+                                    <constraint firstAttribute="trailing" secondItem="goI-nb-Sm2" secondAttribute="trailing" id="QEP-No-IgN"/>
                                     <constraint firstAttribute="trailing" secondItem="g43-Ay-8Tf" secondAttribute="trailing" id="oeR-3E-jTM"/>
                                     <constraint firstAttribute="bottom" secondItem="g43-Ay-8Tf" secondAttribute="bottom" id="wH2-cn-q9W"/>
                                 </constraints>
@@ -1230,6 +1240,7 @@
                         <outlet property="headerViewConstraint" destination="iD2-Av-X3B" id="jXZ-4F-26x"/>
                         <outlet property="homeLowerviewConstraint" destination="T73-ae-zOm" id="MAy-DZ-Xxt"/>
                         <outlet property="menuBtnConstraint" destination="qNe-YH-OD7" id="jUU-yc-vZf"/>
+                        <outlet property="newsLabelView" destination="goI-nb-Sm2" id="EBr-iF-X3l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gjq-wz-P18" userLabel="First Responder" sceneMemberID="firstResponder"/>

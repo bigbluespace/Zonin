@@ -434,7 +434,10 @@
                            };
 
     [Zonin commonPost:url parameters:dict block:^(NSDictionary *JSON, NSError *error) {
-        NSLog(@"JSON %@", JSON);
+        
+        [Zonin storeData:dict storageName:@"settingData"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"settingsChanged" object:self userInfo:dict];
+        [self.navigationController popViewControllerAnimated:YES];
     }];
 }
 

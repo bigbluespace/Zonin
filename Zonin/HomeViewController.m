@@ -9,13 +9,18 @@
 #import "HomeViewController.h"
 #import "RESideMenu.h"
 #import "AdViewObject.h"
+#import "MarqueeLabel.h"
+#import "Zonin.h"
 #define IPAD     UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
 
-@interface HomeViewController ()
+@interface HomeViewController (){
+    MarqueeLabel *scrollyLabel;
+}
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *homeLowerviewConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *adViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerViewConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *menuBtnConstraint;
+@property (weak, nonatomic) IBOutlet UIView *newsLabelView;
 
 @end
 
@@ -40,6 +45,38 @@
         _headerViewConstraint.constant = 160;
         _menuBtnConstraint.constant = 48;
     }
+    
+    scrollyLabel = [[MarqueeLabel alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 20) rate:50.0 andFadeLength:10.0f];
+    scrollyLabel.tag = 101;
+    scrollyLabel.marqueeType = MLContinuous;
+    //scrollyLabel.scrollDuration = 15.0;
+    scrollyLabel.animationCurve = UIViewAnimationOptionCurveEaseInOut;
+    scrollyLabel.rate = 40.0f;
+    scrollyLabel.fadeLength = 10.0f;
+    scrollyLabel.leadingBuffer = 40.0f;
+    scrollyLabel.trailingBuffer = 40.0f;
+    scrollyLabel.textColor = [UIColor whiteColor];
+    scrollyLabel.textAlignment = NSTextAlignmentCenter;
+    scrollyLabel.text = @"This is another long label that scrolls at a specific rate, rather than scrolling its length in a defined time window!";
+    
+    [_newsLabelView addSubview:scrollyLabel];
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    NSDictionary *params = @{
+                             @"MACHINE_CODE" : @"emran4axiz"
+                             };
+    [Zonin commonPost:@"get_news_ticker/emran4axiz" parameters:params block:^(NSDictionary *JSON, NSError *error) {
+        if([[JSON valueForKey:@"message"] isEqualToString:@"success"]){
+            
+            NSArray *newsArray = [JSON valueForKey:@"status"];
+            NSString *newsString = [[NSMutableString alloc] init];
+            for (int i = 0; i < newsArray.count; i++) {
+                newsString = [newsString stringByAppendingString:[NSString stringWithFormat:@"%@    ",newsArray[i]]];
+            }
+            scrollyLabel.text = newsString;
+        }
+    }];
 }
 
 - (IBAction)menuBtn:(id)sender {

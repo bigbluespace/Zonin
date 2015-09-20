@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "UIKit+AFNetworking.h"
 
+
 @interface AdViewObject : NSObject
 
 

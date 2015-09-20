@@ -10,7 +10,15 @@
 #import "Country.h"
 #import "AppDelegate.h"
 
+//@protocol SelectSettingsDelegates <NSObject>
+//@optional
+//- (void)settingsChanged:(NSDictionary*)settingsParam;
+//
+//@end
+
 @interface SelectSettings : UIViewController<UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
+
+//@property (nonatomic, weak) id <SelectSettingsDelegates> delegate;
 @property Country*currentCountry;
 @property Country*currentState;
 @property Country*currentParish;

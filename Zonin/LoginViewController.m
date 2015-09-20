@@ -23,11 +23,32 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
     AppDelegate* myAppDelegate;
     __weak IBOutlet UIView *adView;
     BOOL isLogin;
+    
+    
+    
+   
+    //UIPickerView* optionPicker;
+    UIPickerView* myPickerView;
+    UILabel* toolbarTitle;
+    
+    
+    NSMutableArray* fieldList;
+    NSMutableArray* pickerArrayList;
+    NSMutableArray* pickerTitleList;
+    
+    NSMutableArray* currentArray;
+    UITextField* currentField;
+    NSInteger currentIndex;
+    
+    NSInteger tempIndex;
+    
+    CGFloat PORTRAIT_KEYBOARD_HEIGHT;
+    
+    float origin;
+    CGFloat animatedDistance;
+    CGFloat KEYBOARD_ANIMATION_DURATION ;
 }
 
-
-//@property (nonatomic, copy) void (^confirmActionBlock)(void);
-//@property (nonatomic, copy) void (^cancelActionBlock)(void);
 @end
 
 @implementation LoginViewController
@@ -88,10 +109,6 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
 #pragma mark - Google+ Login
 -(void)googlePlusLoginInit{
 
-    
-    
-    
-    //[signIn trySilentAuthentication];
    
 }
 
@@ -103,14 +120,11 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
         NSLog( @"Status: Authenticated");
         GTLPlusPerson *person = [GPPSignIn sharedInstance].googlePlusUser;
         
-//        params.put("EMAIL", e);
-//        params.put("MACHINE_CODE", Utils.MACHINE_CODE);
-//        client.post(URLs.login, params, new AsyncHttpResponseHandler() {
         
-        
-        NSMutableDictionary *parameters = [[NSMutableDictionary alloc] initWithDictionary: @{
-                                                                                @"EMAIL": [GPPSignIn sharedInstance].userEmail,
-                                                                                @"MACHINE_CODE": MACHINE_CODE
+        NSMutableDictionary *parameters = [[NSMutableDictionary alloc]
+                                           initWithDictionary: @{
+                                                                 @"EMAIL": [GPPSignIn sharedInstance].userEmail,
+                                                                @"MACHINE_CODE": MACHINE_CODE
                                      }];
         NSString *url = @"get_login";
         if (!isLogin) {
@@ -156,10 +170,8 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
         
         NSLog(@"Status: Not authenticated");
     }
-    
-    
-    
 }
+
 - (void)didDisconnectWithError:(NSError *)error {
     if (error) {
         NSLog(@"Status: Failed to disconnect: %@", error);
@@ -170,7 +182,6 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
         NSLog(@"Status: Disconnected");
         [self TostAlertMsg:@"Status: Disconnected"];
     }
-    
 }
 
 
@@ -205,7 +216,7 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
     self.txtPasswordreg.text=@"";
     self.txtEmailreg.text=@"";
     self.txtPhone.text=@"";
-    self.registerView.hidden=false;
+    self.registerView.hidden = false;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -258,7 +269,7 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
 //-------------------------------
 - (IBAction)CancelTouch:(id)sender
 {
-    self.registerView.hidden=true;
+    self.registerView.hidden = true;
     [self isNotlogincontrolShow:NO];
 }
 //------------------------------

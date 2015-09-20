@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Zonin/AdViewObject.m"
-            timestampString = "463864728.651089"
+            timestampString = "464362423.495904"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "-handleSingleTap:"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "-targetMethod"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
