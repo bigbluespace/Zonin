@@ -57,10 +57,7 @@ static NSInteger kKeyboardTintViewTag = 1234;
     
     self.view.backgroundColor = [UIColor clearColor];
     if (IPAD) {
-        _adViewConstraint.constant = 150;
         _searchBtnConstraint.constant = 72;
-        _headerHeightConstraint.constant = 160;
-        _menuHeightConstraint.constant = 48;
     }
     
 }

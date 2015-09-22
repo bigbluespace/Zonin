@@ -40,10 +40,7 @@
     [adView addSubview:add.adView];
 
     if (IPAD) {
-        _homeLowerviewConstraint.constant = 75;
-        _adViewHeightConstraint.constant = 150;
-        _headerViewConstraint.constant = 160;
-        _menuBtnConstraint.constant = 48;
+
     }
     
     scrollyLabel = [[MarqueeLabel alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 20) rate:50.0 andFadeLength:10.0f];

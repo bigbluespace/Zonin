@@ -9,6 +9,7 @@
 #import "SendFeedbackController.h"
 #import "MBProgressHUD.h"
 #import "Zonin.h"
+#define IPAD     UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
 
 @interface SendFeedbackController (){
     BOOL valid;
@@ -46,6 +47,7 @@
         [self setViewPicker:text];
     }
     _feedBackgroudView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.4];
+    
 }
 
 #pragma mark - Custom Toolbar & view

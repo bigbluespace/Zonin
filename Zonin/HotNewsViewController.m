@@ -62,7 +62,6 @@
     self.SearchHotNewsView.hidden=true;
     
     if (IPAD) {
-        _adViewHeightConstraint.constant = 150;
         _menuHeightConstraint.constant = 48;
         _headerHeightConstraint.constant = 160;
         _picHeightConstraint.constant = 180;

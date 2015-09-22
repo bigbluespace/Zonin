@@ -36,9 +36,6 @@
     if (IPAD) {
         _shareBtnHeightConstraint.constant = 240;
         _aboutHeightConstraint.constant = 82;
-        _headerHeightConstraint.constant = 160;
-        _menuHeightConstraint.constant = 48;
-        _adViewHeightConstraint.constant = 150;
     }
 }
 - (void)didReceiveMemoryWarning {
