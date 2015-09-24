@@ -45,11 +45,13 @@
 		80FB8FC11B3AA00500789914 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80FB8FC01B3AA00500789914 /* CFNetwork.framework */; };
 		80FB8FC31B3AA04400789914 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80FB8FC21B3AA04400789914 /* SystemConfiguration.framework */; };
 		80FB8FC51B3AA04B00789914 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80FB8FC41B3AA04B00789914 /* MobileCoreServices.framework */; };
+		840630461BB1A56000C31A6B /* SearchIncidentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840630451BB1A56000C31A6B /* SearchIncidentViewController.m */; };
 		84255C511BA5FA5A0069216F /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84255C501BA5FA5A0069216F /* MediaPlayer.framework */; };
 		84255C521BA5FA8F0069216F /* videostart.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 938956AD1B89BF6500392711 /* videostart.mp4 */; };
 		84255C551BA5FB890069216F /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84255C541BA5FB890069216F /* PlayerViewController.m */; };
 		842AEC191BAD8638005328EC /* MarqueeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 842AEC181BAD8638005328EC /* MarqueeLabel.m */; };
 		8489C3C61BA9EFAD005242DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8489C3C51BA9EFAD005242DB /* Foundation.framework */; };
+		84EC398E1BB076280083C3DE /* KeyboardToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EC398D1BB076280083C3DE /* KeyboardToolbar.m */; };
 		930F3E161B88D7EE002090E7 /* SelectSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 930F3E151B88D7EE002090E7 /* SelectSettings.m */; };
 		931880F81BA75C1500A904D9 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 931880F61BA75C1500A904D9 /* GoogleOpenSource.framework */; };
 		931880F91BA75C1500A904D9 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 931880F71BA75C1500A904D9 /* GooglePlus.framework */; };
@@ -237,12 +239,16 @@
 		80FB8FC01B3AA00500789914 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		80FB8FC21B3AA04400789914 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		80FB8FC41B3AA04B00789914 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		840630441BB1A55F00C31A6B /* SearchIncidentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchIncidentViewController.h; sourceTree = "<group>"; };
+		840630451BB1A56000C31A6B /* SearchIncidentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchIncidentViewController.m; sourceTree = "<group>"; };
 		84255C501BA5FA5A0069216F /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		84255C531BA5FB890069216F /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
 		84255C541BA5FB890069216F /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
 		842AEC171BAD8638005328EC /* MarqueeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarqueeLabel.h; sourceTree = "<group>"; };
 		842AEC181BAD8638005328EC /* MarqueeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarqueeLabel.m; sourceTree = "<group>"; };
 		8489C3C51BA9EFAD005242DB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		84EC398C1BB076280083C3DE /* KeyboardToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardToolbar.h; sourceTree = "<group>"; };
+		84EC398D1BB076280083C3DE /* KeyboardToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardToolbar.m; sourceTree = "<group>"; };
 		930F3E141B88D7EE002090E7 /* SelectSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectSettings.h; sourceTree = "<group>"; };
 		930F3E151B88D7EE002090E7 /* SelectSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectSettings.m; sourceTree = "<group>"; };
 		931880F61BA75C1500A904D9 /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleOpenSource.framework; sourceTree = "<group>"; };
@@ -525,6 +531,8 @@
 				93CA2CCD1B998E40009DE64B /* SendFeedbackController.m */,
 				931A32CF1B80A98200939D90 /* Settings.h */,
 				931A32D01B80A98200939D90 /* Settings.m */,
+				840630441BB1A55F00C31A6B /* SearchIncidentViewController.h */,
+				840630451BB1A56000C31A6B /* SearchIncidentViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -565,6 +573,8 @@
 				80C860951B4523190054321E /* FeedBackView.h */,
 				80C860961B4523190054321E /* FeedBackView.m */,
 				80C860981B45233A0054321E /* feedback.xib */,
+				84EC398C1BB076280083C3DE /* KeyboardToolbar.h */,
+				84EC398D1BB076280083C3DE /* KeyboardToolbar.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1019,6 +1029,7 @@
 				80C322DF1B52614A00798522 /* OfficerReviews.m in Sources */,
 				931A32D11B80A98200939D90 /* Settings.m in Sources */,
 				9E0BB3C51B23A0AA002D4C9B /* AppDelegate.m in Sources */,
+				840630461BB1A56000C31A6B /* SearchIncidentViewController.m in Sources */,
 				938A6BA21B7F0E8200FE810B /* rootViewViewController.m in Sources */,
 				80C860971B4523190054321E /* FeedBackView.m in Sources */,
 				802F0F771B3291000020B927 /* AddReviews.m in Sources */,
@@ -1050,6 +1061,7 @@
 				931A32BA1B807B5000939D90 /* AFURLRequestSerialization.m in Sources */,
 				802532151B3946B30054B6DF /* AddCrimeViewController.m in Sources */,
 				931A32BB1B807B5000939D90 /* AFURLResponseSerialization.m in Sources */,
+				84EC398E1BB076280083C3DE /* KeyboardToolbar.m in Sources */,
 				802052D01B36A048002AA52B /* NewsListVC.m in Sources */,
 				931A32D41B80AA1D00939D90 /* About.m in Sources */,
 				842AEC191BAD8638005328EC /* MarqueeLabel.m in Sources */,
@@ -1121,8 +1133,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: ZONIN, LLC (7T8458VF7U)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ZONIN, LLC (7T8458VF7U)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1141,11 +1153,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "21faa32c-4cb1-4859-a328-2292caaa53ab";
 				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Debug;
 		};
@@ -1166,8 +1179,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: ZONIN, LLC (7T8458VF7U)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ZONIN, LLC (7T8458VF7U)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1180,10 +1193,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "21faa32c-4cb1-4859-a328-2292caaa53ab";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1194,8 +1207,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: ZONIN, LLC (7T8458VF7U)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ZONIN, LLC (7T8458VF7U)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1206,7 +1219,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "21faa32c-4cb1-4859-a328-2292caaa53ab";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1216,8 +1229,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: ZONIN, LLC (7T8458VF7U)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ZONIN, LLC (7T8458VF7U)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1228,7 +1241,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "21faa32c-4cb1-4859-a328-2292caaa53ab";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

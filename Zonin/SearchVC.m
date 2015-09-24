@@ -11,6 +11,7 @@
 #import "MBProgressHUD.h"
 #import "Zonin.h"
 #import "AdViewObject.h"
+#import "SearchIncidentViewController.h"
 
 @interface SearchVC ()
 
@@ -78,6 +79,16 @@
         tintView = nil;
     }
 }
+
+- (IBAction)searchIncident:(id)sender {
+    SearchIncidentViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"searchIncident"];
+    [self.navigationController pushViewController:vc animated:YES];
+
+}
+
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -205,15 +216,7 @@
     }
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 //---------------------
 //spinner show and off
 -(void)spinnerShow

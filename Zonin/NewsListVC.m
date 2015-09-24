@@ -11,6 +11,7 @@
 #import "MBProgressHUD.h"
 #import "RESideMenu.h"
 #import "AdViewObject.h"
+#import "UIImageView+AFNetworking.h"
 
 #define IPAD     UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
 
@@ -270,7 +271,9 @@ static NSInteger kKeyboardTintViewTag = 1234;
 //    cell.backgroundView = backView;
     HotNews*temp=[self.hotNewsCollection objectAtIndex:indexPath.row];
     UIImageView *newsImage = (UIImageView *)[cell viewWithTag:101];
-    newsImage.image=[UIImage imageNamed:@"zonin_logo_f"];
+    
+    [newsImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://zoninapp.com/admin/upload/hot_news_files/%@", temp.news_file]] placeholderImage:[UIImage imageNamed:@"zonin_logo_f"]];
+    
     UILabel *cellLbl = (UILabel *)[cell viewWithTag:102];
     [cellLbl setFrame:CGRectMake(80,5,cell.frame.size.width-80, cell.frame.size.height-20)];
     [cellLbl setNeedsLayout];

@@ -16,7 +16,7 @@
 
 @class GPPSignInButton;
 
-@interface LoginViewController : UIViewController<UITextFieldDelegate,GPPSignInDelegate>
+@interface LoginViewController : UIViewController<UITextFieldDelegate,GPPSignInDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (weak, nonatomic) IBOutlet GPPSignInButton *googleSignInButton;
 @property (weak, nonatomic) IBOutlet GPPSignInButton *googleLogin;

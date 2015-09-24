@@ -56,8 +56,9 @@
     scrollyLabel.leadingBuffer = 40.0f;
     scrollyLabel.trailingBuffer = 40.0f;
     scrollyLabel.textColor = [UIColor whiteColor];
+    [scrollyLabel setFont:[UIFont systemFontOfSize:14]];
     scrollyLabel.textAlignment = NSTextAlignmentCenter;
-    scrollyLabel.text = @"This is another long label that scrolls at a specific rate, rather than scrolling its length in a defined time window!";
+    scrollyLabel.text = @"";
     
     [_newsLabelView addSubview:scrollyLabel];
 }
@@ -70,9 +71,9 @@
         if([[JSON valueForKey:@"message"] isEqualToString:@"success"]){
             
             NSArray *newsArray = [JSON valueForKey:@"status"];
-            NSString *newsString = [[NSMutableString alloc] init];
+            NSString *newsString = @"";
             for (int i = 0; i < newsArray.count; i++) {
-                newsString = [newsString stringByAppendingString:[NSString stringWithFormat:@"%@    ",newsArray[i]]];
+                newsString = [newsString stringByAppendingString:[NSString stringWithFormat:@"%@    ",[newsArray[i] valueForKey:@"ticker_name"]]];
             }
             scrollyLabel.text = newsString;
         }
