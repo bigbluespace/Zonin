@@ -10,22 +10,16 @@
 #import "RESideMenu.h"
 #import "AdViewObject.h"
 
-
-@interface ForgotPassVC (){
-    UITextField *currentField;
-    KeyboardToolbar *toolbarwithoutButton, *toolbarwithButton;
-}
+@interface ForgotPassVC ()
 @property (weak, nonatomic) IBOutlet UIView *emailView;
 @property (weak, nonatomic) IBOutlet UIView *verificationView;
 @property (weak, nonatomic) IBOutlet UIView *passwordView;
-
 
 @end
 
 @implementation ForgotPassVC
 {
     __weak IBOutlet UIView *adView;
-    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,44 +29,6 @@
     
     AdViewObject *add = [AdViewObject sharedManager];
     [adView addSubview:add.adView];
-    
-    toolbarwithoutButton = [[KeyboardToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
-   
-    
-    toolbarwithoutButton.delegate = self;
-    self.txtEnterEmail.inputAccessoryView = toolbarwithoutButton;
-    self.txtEnterEmail.keyboardAppearance = UIKeyboardAppearanceDark;
-    
-    self.txtVerifyCode.inputAccessoryView = toolbarwithoutButton;
-    self.txtVerifyCode.keyboardAppearance = UIKeyboardAppearanceDark;
-    
-    
-    self.txtEnterPass_1.inputAccessoryView = toolbarwithoutButton;
-    self.txtEnterPass_1.keyboardAppearance = UIKeyboardAppearanceDark;
-    
-    
-    self.txtEnterPass_2.inputAccessoryView = toolbarwithoutButton;
-    self.txtEnterPass_2.keyboardAppearance = UIKeyboardAppearanceDark;
-    
-    
-}
-
--(void)keyboardNext{
-    if (currentField == self.txtEnterPass_1){
-        [self.txtEnterPass_2 becomeFirstResponder];
-    }else if(currentField == self.txtEnterPass_2){
-       [self.txtEnterPass_1 becomeFirstResponder];
-    }
-}
--(void)keyboardPrevious{
-    if (currentField == self.txtEnterPass_1){
-        [self.txtEnterPass_2 becomeFirstResponder];
-    }else if(currentField == self.txtEnterPass_2){
-        [self.txtEnterPass_1 becomeFirstResponder];
-    }
-}
--(void)keyboardDone{
-    [currentField resignFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,32 +39,16 @@
 //button funtion
 - (IBAction)btnSubmitEmail:(id)sender
 {
-    if ([self.txtEnterEmail.text isEqualToString:@""]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning!" message:@"Please enter email addtess" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
-        return;
-    }
-    
-    
     [self AskingCodeforEmail:self.txtEnterEmail.text];
     //set all field empty
     self.txtVerifyCode.text=@"";
-    self.txtEnterPass_1.text=@"";
-    
-    self.txtEnterPass_2.text=@"";
-    [currentField resignFirstResponder];
+    //self.txtEnterPass_1.text=@"";
+    //self.txtEnterPass_2.text=@"";
 }
 //--------------------------------------
 - (IBAction)VerifyCodeTouch:(id)sender
 {
-    if ([self.txtVerifyCode.text isEqualToString:@""]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning!" message:@"Please enter verification code" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
-        return;
-
-    }
     [self VerifyCode:self.txtVerifyCode.text forEmail:[self.txtEnterEmail.text lowercaseString ]];
-    [currentField resignFirstResponder];
 }
 
 //-------------------------------------
@@ -132,10 +72,6 @@
              
              _emailView.hidden = YES;
              _verificationView.hidden = NO;
-             
-             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Zonin!" message:alertmgs delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-             [alert show];
-
              //[self visibilityHidden:NO inview:self.varifyCodeView];
              //[self TostAlertMsg:alertmgs];
          }
@@ -201,13 +137,6 @@
 //
 - (IBAction)setNewpasswordTouch:(id)sender
 {
-    if ([self.txtEnterPass_1.text isEqualToString:@""] || [self.txtEnterPass_2.text isEqualToString:@""]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning!" message:@"Please enter password" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
-        return;
-
-    }
-    
     if ([self.txtEnterPass_1.text isEqualToString:self.txtEnterPass_2.text])
     {
         NSString* pass=[self.txtEnterPass_1.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -275,28 +204,17 @@
     }
 }
 //-----------------------------------
-#pragma mark - textfield delegates -
+/*
+#pragma mark - Navigation
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-   
-    currentField = textField;
-    if (currentField == self.txtEnterEmail) {
-        [toolbarwithoutButton setBarTitle:@"Email"];
-         [toolbarwithoutButton hideLeftButtons:YES];
-    }else if (currentField == self.txtVerifyCode){
-        [toolbarwithoutButton setBarTitle:@"Enter Code"];
-        [toolbarwithoutButton hideLeftButtons:YES];
-    }else if (currentField == self.txtEnterPass_1){
-        [toolbarwithoutButton setBarTitle:@"Password"];
-        [toolbarwithoutButton hideLeftButtons:NO];
-    }else if(currentField == self.txtEnterPass_2){
-        [toolbarwithoutButton setBarTitle:@"Verify"];
-        [toolbarwithoutButton hideLeftButtons:NO];
-    }
-    
-    
-    return YES;
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
 }
+*/
+//
+//
 //---------------
 //showig tost
 -(void)TostAlertMsg:(NSString*)alertmsg

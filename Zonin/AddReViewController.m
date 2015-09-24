@@ -249,6 +249,8 @@
     {
         self.currentCountry=[countrys objectAtIndex:0];
         [self setCurrentCountry:self.currentCountry];
+        
+        
     }
 }
 //----------------------
@@ -290,7 +292,7 @@
 {
     _currentState = currentState;
     if (currentState) {
-        stateField.text = currentState.Name;
+        parishField.text = currentState.Name;
         [self.currentState getAllCountyForSate:^(NSArray *list, NSDictionary *error) {
             if (list != nil) {
                 parishArray = [[NSMutableArray alloc] initWithArray:list];

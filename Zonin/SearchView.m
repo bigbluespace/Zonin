@@ -311,13 +311,105 @@
     [self.delegate TouchOnSearchButtonWithValue:parameters];
 }
 
+//---------------------------------
+//- (IBAction)PickerCancelBotton:(id)sender {
+//    [DatePicker removeFromSuperview];
+//    [optionPicker removeFromSuperview];
+//    self.pickerView.hidden=true;
+//}
+//- (IBAction)pickerDoneButton:(id)sender
+//{
+//    if (selectedfield==self.txtFromDate||selectedfield==self.txtTodate)
+//    {
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setDateFormat:@"YYYY-MM-dd"];
+//    NSString *currentTime = [dateFormatter stringFromDate:DatePicker.date];
+//    selectedfield.text=currentTime;
+//    }
+//    [DatePicker removeFromSuperview];
+//    [optionPicker removeFromSuperview];
+//    self.pickerView.hidden=true;
+//    if (selectedfield==self.txtCountryName)
+//    {
+//        //  Country*temp=[self.countrys objectAtIndex:0];
+//        self.txtCountryName.text= self.currentCountry.Name;
+//    }
+//    if (selectedfield==self.txtStateName)
+//    {
+//        self.txtStateName.text=self.currentState.Name;
+//    }
+//
+//    
+//}
+//
+//textfield text changed
 -(void)textChanged:(id)sender
 {
     NSLog(@"text changed");
 }
 
 //-------------------------------
+//
+//text field delegate
+//-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+//{
+//     NSLog(@"editing text on view");
+//    if (textField==self.txtKeyword)
+//    {
+//        [UIView beginAnimations:nil context:NULL];
+//        [UIView setAnimationDelegate:self];
+//        [UIView setAnimationDuration:0.5];
+//        [UIView setAnimationBeginsFromCurrentState:YES];
+//         self.frame = CGRectMake(self.frame.origin.x, (self.frame.origin.y - 100.0), self.frame.size.width, self.frame.size.height);
+//        [UIView commitAnimations];
+//        return YES;
+//    }
+//    else if (textField==self.txtFromDate||textField==self.txtTodate)
+//    {
+//        selectedfield=textField;
+//        self.pickerView.hidden=false;
+//        DatePicker=[[UIDatePicker alloc]init];
+//        DatePicker.maximumDate=[NSDate date];
+//        DatePicker.datePickerMode=UIDatePickerModeDate;
+//        [self.PickerContainer addSubview:DatePicker];
+//       // DatePicker.center=self.pickerView.center;
+//        return NO;
+//    }
+//  else
+//  {
+//       selectedfield=textField;
+//      if (selectedfield==self.txtCountryName)
+//      {
+//        //  Country*temp=[self.countrys objectAtIndex:0];
+//          self.txtCountryName.text= self.currentCountry.Name;
+//      }
+//      if (selectedfield==self.txtStateName)
+//      {
+//          self.txtStateName.text=self.currentState.Name;
+//      }
+//      [optionPicker removeFromSuperview];
+//       self.pickerView.hidden=false;
+//      optionPicker=[[UIPickerView alloc]init];
+//      [self.PickerContainer addSubview:optionPicker];
+//      optionPicker.delegate=self;
+//      optionPicker.dataSource=self;
+//    return  NO;
+//  }
+ //   return YES;
+//}
+//---------------
 
+//--------------------------------------------
+//-(void)textFieldDidEndEditing:(UITextField *)textField
+//{
+//    [UIView beginAnimations:nil context:NULL];
+//    [UIView setAnimationDelegate:self];
+//    [UIView setAnimationDuration:0.5];
+//    [UIView setAnimationBeginsFromCurrentState:YES];
+//    self.frame = CGRectMake(self.frame.origin.x, (self.frame.origin.y +100.0), self.frame.size.width, self.frame.size.height);
+//    [UIView commitAnimations];
+//}
+//------------------------------------------
 
 - (IBAction)textfieldValueChange:(id)sender {
     NSLog(@"value");
@@ -335,6 +427,42 @@
 //     self.pickerView.hidden=true;
 //    [self.txtKeyword resignFirstResponder];
 }
+//
+
+//--------------------
+//-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+//{
+//    if (selectedfield==self.txtCountryName)
+//    {
+//         return self.countrys.count;
+//    }
+//    if (selectedfield==self.txtStateName)
+//    {
+//        return self.StatesUnderCountry.count;
+//    }
+//    return 2;
+//}
+//-----------------------
+//-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+//{
+//    
+//    
+//    if (selectedfield==self.txtCountryName)
+//    {
+//        Country*temp=[self.countrys objectAtIndex:row];
+//        return temp.Name;
+//    }
+//    if (selectedfield==self.txtStateName)
+//    {
+//        Country*temp= [self.StatesUnderCountry objectAtIndex:row];
+//        return temp.Name;
+//    }
+//    else
+//        
+//        
+//        
+//    return @"country name";
+//}
 
 
 //-----------------------------------
@@ -346,44 +474,35 @@
     if (countrys)
     {
         self.currentCountry=[countrys objectAtIndex:0];
-        [self setCurrentCountry:self.currentCountry];
+       
     }
 }
 //----------------------
 -(void)setCurrentCountry:(Country *)currentCountry
 {
-    
     _currentCountry=currentCountry;
     if (currentCountry)
     {
-        self.txtCountryName.text = currentCountry.Name;
+        self.txtCountryName.text=currentCountry.Name;
         
-        [currentCountry getStates:^(NSArray *list, NSDictionary *error) {
-            if (list != nil) {
-                stateArray = [[NSMutableArray alloc] initWithArray:list];
-                [pickerArrayList replaceObjectAtIndex:1 withObject:stateArray];
-                Country*temp=[stateArray objectAtIndex:0];
-                
-                self.txtStateName.text=temp.Name;
-                self.txtStateName.enabled = YES;
-                
-                self.currentState = temp;
-                [self setCurrentState:temp];
-                
-                
-            }else{
-                self.txtStateName.text=@"";
-                self.txtStateName.placeholder = @"No data found";
-                self.txtStateName.enabled = NO;
-                self.currentState = nil;
-            }
-            
-            
-            
+         [currentCountry getStates:^(NSArray *list, NSDictionary *error) {
+             if (list != nil) {
+                 stateArray = [[NSMutableArray alloc] initWithArray:list];
+                 [pickerArrayList replaceObjectAtIndex:1 withObject:stateArray];
+                 Country*temp=[stateArray objectAtIndex:0];
+                 self.txtStateName.text=temp.Name;
+                 self.txtStateName.enabled = YES;
+             }else{
+                 self.txtStateName.text=@"";
+                 self.txtStateName.placeholder = @"No data found";
+                 self.txtStateName.enabled = NO;
+             }
+             
+
+
         }];
         
     }
-
 }
 
 -(void)setCurrentState:(Country *)currentState
@@ -391,19 +510,18 @@
     _currentState = currentState;
     if (currentState) {
         self.txtStateName.text = currentState.Name;
-        [self.currentState getAllCountyForSate:^(NSArray *list, NSDictionary *error) {
-            if (list != nil) {
-                parishArray = [[NSMutableArray alloc] initWithArray:list];
-                [pickerArrayList replaceObjectAtIndex:2 withObject:parishArray];
-                Country*temp=[parishArray objectAtIndex:0];
-                _parishField.text=temp.Name;
-                _parishField.enabled = YES;
-                [self setCurrentParish:temp];
-            }else{
-                _parishField.text=@"";
-                _parishField.placeholder = @"No data found";
-                _parishField.enabled = NO;
-            }
+       [self.currentState getAllCountyForSate:^(NSArray *list, NSDictionary *error) {
+           if (list != nil) {
+               parishArray = [[NSMutableArray alloc] initWithArray:list];
+               [pickerArrayList replaceObjectAtIndex:2 withObject:parishArray];
+               Country*temp=[parishArray objectAtIndex:0];
+               _parishField.text=temp.Name;
+               _parishField.enabled = YES;
+           }else{
+               _parishField.text=@"";
+               _parishField.placeholder = @"No data found";
+               _parishField.enabled = NO;
+           }
         }];
         //self.StatList=currentCountry.Stats;
     }

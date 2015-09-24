@@ -32,16 +32,16 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
     [GPPDeepLink setDelegate:self];
     [GPPDeepLink readDeepLinkAfterInstall];
     
- //   return [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
+   // return [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
     
     return YES;
 }
 -(BOOL) application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    NSLog(@"url %@", url);
+    //NSLog(@"url %@", url);
    // if (url != nil)
    // {
- //   return [[FBSDKApplicationDelegate sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+  //  return [[FBSDKApplicationDelegate sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
 
     return [GPPURLHandler handleURL:url
                       sourceApplication:sourceApplication
@@ -78,7 +78,7 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
- //  [FBSDKAppEvents activateApp];
+   //[FBSDKAppEvents activateApp];
 
    //  [[FBSession activeSession] handleDidBecomeActive];
 
