@@ -8,7 +8,7 @@
 #include "RESideMenu.h"
 #import "FeedbackVC.h"
 #import "AdViewObject.h"
-
+#define IPAD     UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
 @interface FeedbackVC ()
 
 @end

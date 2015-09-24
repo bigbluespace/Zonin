@@ -9,7 +9,7 @@
 #import "ReportReviewVC.h"
 #include "RESideMenu.h"
 #import "AdViewObject.h"
-
+#define IPAD     UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
 @interface ReportReviewVC ()
 
 @end
@@ -98,6 +98,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell* cell=[[UITableViewCell alloc]init];
+    cell.backgroundColor = [UIColor clearColor];
     if (self.isCrimeReport)
     {
         //for review
@@ -155,6 +156,14 @@
     
     [self.navigationController pushViewController:vc animated:YES];
 }
+
+-(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (IPAD) {
+        return 93;
+    }
+    return 65;
+}
+
 //-----------------------
 //-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 //{

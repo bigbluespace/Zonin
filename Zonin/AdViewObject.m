@@ -26,7 +26,7 @@
     if (self = [super init]) {
         NSInteger height = 100;;
         if (IPAD) {
-            height = 150;
+            height = 200;
         }
         
         self.adView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, height)];

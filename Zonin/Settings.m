@@ -42,9 +42,6 @@
     [adView addSubview:add.adView];
     if (IPAD) {
         _btnHeightConstraint.constant = 84;
-        _headerHeightConstraint.constant = 160;
-        _menuHeightConstraint.constant = 48;
-        _adsHeightConstraint.constant = 150;
     }
 }
 

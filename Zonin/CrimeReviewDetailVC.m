@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 #import "RESideMenu.h"
 #import "AdViewObject.h"
-
+#define IPAD     UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
 @interface CrimeReviewDetailVC ()
 {
     NSArray* crimeSubjectContent;
@@ -180,7 +180,7 @@
         return reviewSubjectContent.count;
     }
 }
-//--------------------------
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell* cell =[tableView dequeueReusableCellWithIdentifier:@"detailcell"];
@@ -189,6 +189,7 @@
     [lblleft setFrame:CGRectMake(5,0,cell.frame.size.width/2-5, cell.frame.size.height)];
     [lblleft setNeedsLayout];
     [lblleft setNeedsDisplay];
+    cell.backgroundColor = [UIColor clearColor];
     @try
     {
    
@@ -196,7 +197,7 @@
     {
         Crime*temp=(Crime*)self.object;
      lblleft.text=[crimeSubjectContent objectAtIndex:indexPath.row];
-         NSLog(@"table subject cell :%d,%@",indexPath.row,temp.crime_date);
+         NSLog(@"table subject cell :%ld,%@",(long)indexPath.row,temp.crime_date);
         
         if (indexPath.row==0)
         {
