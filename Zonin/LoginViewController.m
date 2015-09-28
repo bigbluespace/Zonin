@@ -117,13 +117,14 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
 {
     FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
     [login
-     logInWithReadPermissions: @[@"public_profile"]
+     logInWithReadPermissions: @[@"public_profile", @"email"]
      handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
          if (error) {
              NSLog(@"Process error");
          } else if (result.isCancelled) {
              NSLog(@"Cancelled");
          } else {
+             NSLog(@"fb result %@", result.token.userID);
              NSLog(@"Logged in");
          }
      }];
@@ -260,10 +261,7 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
 //------------------------------
 - (IBAction)forgotPssTouch:(id)sender {
 }
-//----------------------------
-- (IBAction)loginWithfacebook:(id)sender
-{
-}
+
 //------------------------------
 - (IBAction)loginwithGoogle:(id)sender
 {

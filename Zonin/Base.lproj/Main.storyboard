@@ -4889,7 +4889,7 @@
                                             <segue destination="Ski-zp-D1v" kind="show" id="lwf-6P-Xkx"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oF3-be-you">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oF3-be-you" userLabel="Facebook Login">
                                         <rect key="frame" x="50" y="291" width="66" height="69"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="oF3-be-you" secondAttribute="height" multiplier="22:23" id="Q4i-OY-dba"/>
@@ -4901,7 +4901,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="loginWithfacebook:" destination="00E-VO-PTe" eventType="touchUpInside" id="w9P-sV-fbN"/>
+                                            <action selector="fbLogin:" destination="00E-VO-PTe" eventType="touchUpInside" id="LXp-FG-vfk"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="76i-94-Vxh" customClass="GPPSignInButton">
