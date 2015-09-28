@@ -11,6 +11,7 @@
 #import "MBProgressHUD.h"
 #import "RESideMenu.h"
 #import "AdViewObject.h"
+#import  "UIImageView+AFNetworking.h"
 
 #define IPAD     UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
 
