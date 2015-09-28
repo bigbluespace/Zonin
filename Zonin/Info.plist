@@ -27,26 +27,16 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb543002195856394</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLName</key>
-			<string>com.zoninapp.zoninapp</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>com.zoninapp.zoninapp</string>
+				<string>fb490865117740359</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>8</string>
+	<string>9</string>
 	<key>FacebookAppID</key>
-	<string>543002195856394</string>
+	<string>490865117740359</string>
 	<key>FacebookDisplayName</key>
-	<string>Zonin App</string>
+	<string>Zonin</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -71,25 +61,11 @@
 			<false/>
 		</dict>
 	</dict>
-    
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-    <key>CFBundleURLTypes</key>
-    <array>
-        <dict>
-            <key>CFBundleURLSchemes</key>
-            <array>
-                <string>fb490865117740359</string>
-            </array>
-        </dict>
-    </array>
-    <key>FacebookAppID</key>
-    <string>490865117740359</string>
-    <key>FacebookDisplayName</key>
-    <string>Zonin</string>
 </dict>
 </plist>

@@ -11,6 +11,8 @@
 #import "MBProgressHUD.h"
 #import "AdViewObject.h"
 #import "Zonin.h"
+#define IPAD     UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
+
 
 @interface AddReViewController (){
     UIPickerView* myPickerView;
@@ -501,6 +503,9 @@
     return 1;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (IPAD) {
+        return 1010;
+    }
     return 770;
 }
 
