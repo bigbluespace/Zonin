@@ -11,6 +11,7 @@
 #import "AdViewObject.h"
 #import "MBProgressHUD.h"
 #import "Zonin.h"
+#define IPAD     UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
 
 @interface AddCrimeViewController ()
 {
@@ -572,6 +573,9 @@
     return 1;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (IPAD) {
+        return 900;
+    }
     return 700;
 }
 
