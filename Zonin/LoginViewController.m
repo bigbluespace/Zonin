@@ -13,6 +13,9 @@
 #import <GoogleOpenSource/GoogleOpenSource.h>
 #import <QuartzCore/QuartzCore.h>
 #import "Zonin.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+
 #define IPAD     UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
 
 static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u23h.apps.googleusercontent.com";
@@ -104,6 +107,26 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
     signIn.shouldFetchGoogleUserEmail = YES;
     signIn.delegate = self;
     
+}
+
+- (IBAction)fbLogin:(id)sender {
+    [self loginButtonClicked];
+}
+
+-(void)loginButtonClicked
+{
+    FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
+    [login
+     logInWithReadPermissions: @[@"public_profile"]
+     handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+         if (error) {
+             NSLog(@"Process error");
+         } else if (result.isCancelled) {
+             NSLog(@"Cancelled");
+         } else {
+             NSLog(@"Logged in");
+         }
+     }];
 }
 
 #pragma mark - Google+ Login
