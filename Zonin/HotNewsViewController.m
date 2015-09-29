@@ -66,7 +66,7 @@
         _headerHeightConstraint.constant = 160;
         _picHeightConstraint.constant = 180;
     }
-    _feedDescription.text = @"Enter Feedback*";
+    
     [[UITextView appearance] setTintColor:[UIColor whiteColor]];
     _feedDescription.keyboardAppearance = UIKeyboardAppearanceDark;
     
@@ -76,6 +76,7 @@
 {
     [super viewWillAppear:animated];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    _feedDescription.text = @"Enter Feedback*";
 }
 
 - (IBAction)menuBtn:(id)sender {
@@ -343,16 +344,26 @@
         [self TostAlertMsg:@"Login to add feedback"];
         return;
     }
+    _feedDescription.text = @"Enter Feedback*";
     _addFeedbackView.hidden = NO;
 }
 
 #pragma mark - Add Feed Option
 - (IBAction)feedCloseBtn:(id)sender {
+    [_feedDescription resignFirstResponder];
     _addFeedbackView.hidden = YES;
 }
 
 - (IBAction)feedAddBtn:(id)sender {
-    [self TouchOnAddfeedBack:_feedDescription.text];
+    
+    if ([_feedDescription.text isEqualToString:@""] || _feedDescription.text.length > 0 || [_feedDescription.text isEqualToString:@" "]) {
+        [self TostAlertMsg:@"Please enter feedback first"];
+        return;
+    }
+        [_feedDescription resignFirstResponder];
+        [self TouchOnAddfeedBack:_feedDescription.text];
+    
+    
 }
 
 -(void)TouchOnAddfeedBack:(NSString *)Feedback
@@ -476,6 +487,10 @@
     if ([textView.text isEqualToString:@""]) {
         textView.text = @"Enter Feedback*";
     }
+}
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView{
+    [textView resignFirstResponder];
+    return YES;
 }
 
 #pragma mark - Add Toast
