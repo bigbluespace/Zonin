@@ -46,7 +46,7 @@
     for (UITextField *text in textFieldArray) {
         [self setViewPicker:text];
     }
-    _feedBackgroudView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.4];
+    _feedBackgroudView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.45];
     
 }
 
@@ -145,6 +145,9 @@
                 [self.navigationController popViewControllerAnimated:YES];
             }
         }];
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Please fill required fields" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
     }
 }
 

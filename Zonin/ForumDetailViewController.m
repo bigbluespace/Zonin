@@ -160,6 +160,11 @@
 }
 
 - (IBAction)addCommentBtn:(id)sender {
+    if ([_commentTextField.text isEqualToString:@""] || [_commentTextField.text isEqualToString:@" "]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Please write comment first." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        return;
+    }
     NSDictionary *dict = @{
                            @"topic_ids":[_forumData valueForKey:@"topic_id"],
                            @"user_id":[NSString stringWithFormat:@"%d",appDelegate.logedUser.userID],
