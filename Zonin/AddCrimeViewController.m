@@ -387,7 +387,7 @@
 // The number of rows of data
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    NSLog(@"currentArray.count  %ld", (unsigned long)currentArray.count);
+    //NSLog(@"currentArray.count  %ld", (unsigned long)currentArray.count);
     return currentArray.count;
 }
 - (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component

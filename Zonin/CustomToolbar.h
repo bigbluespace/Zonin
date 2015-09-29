@@ -21,6 +21,6 @@
 
 @property (nonatomic, weak) id <CustomToolbarDelegate> delegate;
 
--(void)setTitle:(NSString*)text;
+-(void)setBarTitle:(NSString*)text;
 
 @end

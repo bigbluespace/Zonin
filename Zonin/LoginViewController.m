@@ -60,7 +60,7 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
     [super viewDidLoad];
     [[UITextField appearance] setTintColor:[UIColor redColor]];
     SpinnerView=[[UIView alloc]initWithFrame:self.ContainerView.bounds];
-    self.registerView.hidden=true;
+    self.registerView.hidden=YES;
     myAppDelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     
     self.navigationController.navigationBarHidden = YES;
@@ -76,6 +76,9 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
     _txtPassword.leftView = paddingTxtfieldView2;
     _txtPassword.leftViewMode = UITextFieldViewModeAlways;
     
+    
+    
+    isLogin = YES;
     if (IPAD) {
         
     }
@@ -116,9 +119,8 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
 -(void)loginButtonClicked
 {
     FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
-    [login
-     logInWithReadPermissions: @[@"public_profile", @"email"]
-     handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+    //login.readPermissions =  @[@"email"];
+    [login logInWithReadPermissions:@[@"public_profile", @"email"] fromViewController:self handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
          if (error) {
              NSLog(@"Process error");
          } else if (result.isCancelled) {
@@ -126,7 +128,70 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
          } else {
              NSLog(@"fb result %@", result.token.userID);
              NSLog(@"Logged in");
+             //
+             [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:@{@"fields": @"email, name"}]
+               startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+                   
+                   if (!error) {
+                      // NSLog(@"fetched user:%@  and Email : %@", result,result[@"email"]);
+                       
+                       
+                       
+                       NSMutableDictionary *parameters = [[NSMutableDictionary alloc]
+                                                          initWithDictionary: @{
+                                                                                @"EMAIL": result[@"email"],
+                                                                                @"MACHINE_CODE": MACHINE_CODE
+                                                                                }];
+                       NSString *url = @"get_login";
+                       if (!isLogin) {
+                           
+                           [parameters setObject:result[@"name"] forKey:@"F_NAME"];
+                           [parameters setObject:@"" forKey:@"L_NAME"];
+                           url = @"user_registration";
+                       }
+                       
+                       
+                       __block NSString* alertmgs;
+                       
+                       [Zonin commonPost:url parameters:parameters block:^(NSDictionary *responseObject, NSError *error) {
+                           if ([[responseObject objectForKey:JSON_KEY_MESSAGE] isEqual:SERVER_MESSAGE_SUCCESS])
+                           {
+                               
+                               NSString *user_id = [responseObject valueForKey:@"user_id"];
+                               if (user_id == nil || user_id == (id)[NSNull null]) {
+                                   user_id = [responseObject valueForKey:@"usre_id"];
+                               }
+                               NSDictionary *dict = @{
+                                                      @"user_id": user_id
+                                                      };
+                               [Zonin storeData:dict storageName:@"user_id"];
+                               alertmgs=[responseObject objectForKey:JSON_KEY_STATUS];
+                               
+                               [self TostAlertMsg:alertmgs];
+                           }
+                           else
+                           {
+                               
+                               alertmgs=[responseObject objectForKey:JSON_KEY_STATUS];
+                               if (!alertmgs)
+                               {
+                                   alertmgs=[responseObject objectForKey:JSON_KEY_ERROR];
+                               }
+                               [self TostAlertMsg:alertmgs];
+                           }
+                           
+                       }];
+                       
+                       
+                       
+                       
+                       
+                   }
+               }];
+             
+             
          }
+         
      }];
 }
 
@@ -234,13 +299,14 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
 //-----------------------------
 - (IBAction)RegisterTouch:(id)sender
 {
+    isLogin = NO;
     [self isNotlogincontrolShow:YES];
     self.txtFirstName.text=@"";
     self.txtLastName.text=@"";
     self.txtPasswordreg.text=@"";
     self.txtEmailreg.text=@"";
     self.txtPhone.text=@"";
-    self.registerView.hidden = false;
+    self.registerView.hidden = NO;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -283,14 +349,15 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
                        [NSCharacterSet whitespaceCharacterSet]];
     [self signUpWithName:name LastName:lastname Email:email phone:phone andpass:pass];
     
-    
-    self.registerView.hidden=true;
+    isLogin = YES;
+    self.registerView.hidden=YES;
      [self isNotlogincontrolShow:NO];
 }
 //-------------------------------
 - (IBAction)CancelTouch:(id)sender
 {
-    self.registerView.hidden = true;
+    isLogin = YES;
+    self.registerView.hidden = YES;
     [self isNotlogincontrolShow:NO];
 }
 //------------------------------

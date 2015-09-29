@@ -32,7 +32,7 @@
     
     NSString *fromDate, *toDate;
     
-    UIToolbar *toolBar;
+    CustomToolbar *toolBar;
     
 }
 @property (weak, nonatomic) IBOutlet UITextField *countryField;
@@ -359,7 +359,7 @@
 // The number of rows of data
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    NSLog(@"currentArray.count  %ld", currentArray.count);
+    //NSLog(@"currentArray.count  %ld", currentArray.count);
     return currentArray.count;
 }
 - (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
@@ -398,7 +398,7 @@
         
         currentArray = [pickerArrayList objectAtIndex:index];
         
-       // toolbarTitle.text = [pickerTitleList objectAtIndex:index];
+       [toolBar setBarTitle:[pickerTitleList objectAtIndex:index]];
         currentIndex = index;
         
         [myPickerView reloadAllComponents];

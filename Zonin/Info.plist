@@ -4,7 +4,6 @@
 <dict>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-        <string>fbapi</string>
 		<string>fbauth2</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>

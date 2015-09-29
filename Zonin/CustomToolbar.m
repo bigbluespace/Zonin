@@ -69,7 +69,7 @@ UILabel* toolbarTitle;
 -(void) done{
     [self.delegate toolbarDone];
 }
--(void)setTitle:(NSString *)text{
+-(void)setBarTitle:(NSString *)text{
     toolbarTitle.text = text;
 }
 /*
