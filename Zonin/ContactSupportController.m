@@ -58,6 +58,12 @@
         }
     }];
 }
+
+- (IBAction)ratingApplication:(UIButton *)sender {
+    NSString *url = @"itms-apps://itunes.apple.com/app/id1033251065";
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+}
+
 /*
 #pragma mark - Navigation
 
