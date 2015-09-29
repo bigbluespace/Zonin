@@ -164,7 +164,9 @@
     if (countrys)
     {
         self.currentCountry=[countrys objectAtIndex:0];
+        
         [self setCurrentCountry:self.currentCountry];
+        _countryTxt.text=self.currentCountry.Name;
     }
 }
 //----------------------

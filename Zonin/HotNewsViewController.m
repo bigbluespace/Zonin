@@ -66,6 +66,9 @@
         _headerHeightConstraint.constant = 160;
         _picHeightConstraint.constant = 180;
     }
+    _feedDescription.text = @"Enter Feedback*";
+    [[UITextView appearance] setTintColor:[UIColor whiteColor]];
+    _feedDescription.keyboardAppearance = UIKeyboardAppearanceDark;
     
 }
 
@@ -459,12 +462,20 @@
         
     }
 }
-//
-//textfields delegate
--(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
-{
-    NSLog(@"editing text");
-    return  NO;
+#pragma mark - UITextView Delegate
+-(BOOL) textViewShouldBeginEditing:(UITextView *)textView{
+    textView.text = @"";
+    return YES;
+}
+
+-(void)textViewDidBeginEditing:(UITextView *)textView{
+    
+}
+
+-(void)textViewDidEndEditing:(UITextView *)textView{
+    if ([textView.text isEqualToString:@""]) {
+        textView.text = @"Enter Feedback*";
+    }
 }
 
 #pragma mark - Add Toast

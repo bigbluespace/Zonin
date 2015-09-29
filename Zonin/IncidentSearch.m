@@ -22,10 +22,7 @@
 
     
     UITextField *currentField;
-    
-    
     NSInteger currentIndex, tempIndex;
-    
     CGFloat PORTRAIT_KEYBOARD_HEIGHT, animatedDistance, KEYBOARD_ANIMATION_DURATION;
     
     float origin;
@@ -125,10 +122,6 @@
     _toDateField.inputView = myPicker;
     _toDateField.inputAccessoryView = toolBar;
 
-    
-    
-    
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated{
