@@ -98,7 +98,8 @@
     _logoutView.hidden = YES;
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user_id"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    user_id = nil;
+    //[self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (IBAction)logoutCancelBtn:(id)sender {
