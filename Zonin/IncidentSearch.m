@@ -12,6 +12,9 @@
 #import "AdViewObject.h"
 #import "Zonin.h"
 #import "Country.h"
+#import "AddCrimeViewController.h"
+#import "ReportOptonVC.h"
+
 #define IPAD     UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
 
 @interface IncidentSearch (){
@@ -144,7 +147,6 @@
         self.currentCountry=[countrys objectAtIndex:0];
         [self setCurrentCountry:self.currentCountry];
         
-        
     }
 }
 //----------------------
@@ -260,11 +262,44 @@
     [Zonin commonPost:_isIncident ? @"get_crime_as_state_country" : @"get_review_as_country_state_county" parameters:parameters block:^(NSDictionary *dataDic, NSError *error) {
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         if ([[dataDic valueForKey:@"message"] isEqualToString:@"success"] && error==nil) {
+            ReportReviewVC*reviewlist=[self.storyboard instantiateViewControllerWithIdentifier:@"reportlistvc"];
+            reviewlist.isCrimeReport = _isIncident;
+
+            if (_isIncident) {
+                reviewlist.tableItems = [dataDic valueForKey:@"status"];
+                
+            }else{
+                NSMutableArray* crimes=[[NSMutableArray alloc]init];
+                NSDictionary* crimedic=[dataDic objectForKey:JSON_KEY_STATUS];
+                for (NSDictionary* crime in crimedic)
+                {
+                    OfficerReviews*temp=[[OfficerReviews alloc]init];
+                    temp.review_county_id=[[crime objectForKey:@"review_county_id"]intValue];
+                    temp.review_date=[crime objectForKey:@"review_date"];
+                    temp.review_id=[[crime objectForKey:@"review_id"]intValue];
+                    temp.review_text=[crime objectForKey:@"review_text"];
+                    temp.review_for=[crime objectForKey:@"review_for"];
+                    //
+                    temp.review_rating=[[NSString stringWithFormat:@"%@",[crime objectForKey:@"review_rating"]]intValue];
+                    temp.officer_name=[crime objectForKey:@"review_officer_name"];
+                    temp.country_name=[crime objectForKey:@"country_name"];
+                    temp.state_name=[crime objectForKey:@"state_name"];
+                    temp.review_details=[crime objectForKey:@"review_details"];
+                    temp.f_name=[crime objectForKey:@"f_name"];
+                    temp.l_name=[crime objectForKey:@"l_name"];
+                    temp.agency=[crime objectForKey:@"agency"];
+                    //  temp.review_text=[crime objectForKey:@"review_text"];
+                    
+                    [crimes addObject:temp];
+                }
+                reviewlist.tableItems = crimes;
+
+            }
             
             
+            [self.navigationController pushViewController:reviewlist animated:YES];
             
-            
-        }else{
+            }else{
             
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert!" message:@"No data found" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
@@ -288,6 +323,14 @@
     }
 }
 - (IBAction)newsHome:(id)sender {
+    if (_isIncident) {
+        AddCrimeViewController *cv = [self.storyboard instantiateViewControllerWithIdentifier:@"addCrimeView"];
+        [self.navigationController pushViewController:cv animated:YES];
+    }else{
+        
+        ReportOptonVC *rc = [self.storyboard instantiateViewControllerWithIdentifier:@"reportOptonVC"];
+        [self.navigationController pushViewController:rc animated:YES];
+    }
     
 }
 - (IBAction)fromDateBtn:(id)sender {

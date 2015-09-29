@@ -32,14 +32,13 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
    
     //UIPickerView* optionPicker;
     UIPickerView* myPickerView;
-    UILabel* toolbarTitle;
+    UILabel *loginToolbarTitle, *registerToolbarTitle;
     
+    NSMutableArray *loginFieldList, *registerFieldList;;
+    NSMutableArray *genderArray;
+    NSMutableArray *loginPickerTitleList, *registerPickerTitleList;
     
-    NSMutableArray* fieldList;
-    NSMutableArray* pickerArrayList;
-    NSMutableArray* pickerTitleList;
-    
-    NSMutableArray* currentArray;
+    //NSMutableArray* currentArray;
     UITextField* currentField;
     NSInteger currentIndex;
     
@@ -58,6 +57,11 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    PORTRAIT_KEYBOARD_HEIGHT = 270;
+    origin = self.view.frame.origin.y;
+    KEYBOARD_ANIMATION_DURATION = 0.3;
+    
     [[UITextField appearance] setTintColor:[UIColor redColor]];
     SpinnerView=[[UIView alloc]initWithFrame:self.ContainerView.bounds];
     self.registerView.hidden=YES;
@@ -68,13 +72,7 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
     AdViewObject *add = [AdViewObject sharedManager];
     [adView addSubview:add.adView];
     
-    UIView *paddingTxtfieldView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 42)];
-    _txtEmail.leftView = paddingTxtfieldView;
-    _txtEmail.leftViewMode = UITextFieldViewModeAlways;
-    
-    UIView *paddingTxtfieldView2 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 42)];
-    _txtPassword.leftView = paddingTxtfieldView2;
-    _txtPassword.leftViewMode = UITextFieldViewModeAlways;
+    [self uiLoginInitialization];
     
     
     
@@ -85,6 +83,141 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
     
     
 }
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    [self animateView_Down];
+}
+
+-(void) loginnext{
+    tempIndex = currentIndex;
+    if (isLogin) {
+        if(currentIndex<loginFieldList.count-1){
+            currentIndex++;
+        }else{
+            currentIndex = 0;
+        }
+        [[loginFieldList objectAtIndex:currentIndex] becomeFirstResponder];
+    }else{
+        if(currentIndex<registerFieldList.count-1){
+            currentIndex++;
+        }else{
+            currentIndex = 0;
+        }
+        [[registerFieldList objectAtIndex:currentIndex] becomeFirstResponder];
+    }
+    
+    
+    
+}
+-(void) loginprevious{
+    tempIndex = currentIndex;
+    if (isLogin) {
+        if(currentIndex>0){
+            currentIndex--;
+        }else{
+            currentIndex = loginFieldList.count-1;
+        }
+        [[loginFieldList objectAtIndex:currentIndex] becomeFirstResponder];
+    }else{
+        if(currentIndex>0){
+            currentIndex--;
+        }else{
+            currentIndex = registerFieldList.count-1;
+        }
+        [[registerFieldList objectAtIndex:currentIndex] becomeFirstResponder];
+    }
+    
+}
+
+-(void) logindone{
+    [currentField resignFirstResponder];
+}
+
+
+- (void) uiLoginInitialization{
+    
+    loginFieldList = [[NSMutableArray alloc] initWithArray:@[self.txtEmail, self.txtPassword]];
+    loginPickerTitleList = [[NSMutableArray alloc] initWithArray:@[@"Email", @"Password"]];
+    genderArray = [[NSMutableArray alloc] initWithArray:@[@"Male", @"Female"]];
+    
+    registerFieldList = [[NSMutableArray alloc] initWithArray:@[self.userName, self.txtFirstName, self.txtLastName, self.genderTxt,self.txtPhone, self.txtEmailreg, self.txtPasswordreg]];
+    registerPickerTitleList = [[NSMutableArray alloc] initWithArray:@[@"User Name", @"First Name", @"Last Name", @"Gender", @"Phone Number", @"Email", @"Password"]];
+    
+    myPickerView = [[UIPickerView alloc]initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 216)];
+    myPickerView.dataSource = self;
+    myPickerView.delegate = self;
+    myPickerView.showsSelectionIndicator = YES;
+    
+    [[UIPickerView appearance] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"picker_bg"]]];
+    
+    UIButton *next_btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    next_btn.frame = CGRectMake(0, 0, 30, 46);
+    [next_btn setImage:[UIImage imageNamed:@"picker-next"] forState:UIControlStateNormal];
+    [next_btn addTarget:self action:@selector(loginnext) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *nextButton = [[UIBarButtonItem alloc] initWithCustomView:next_btn];
+    
+    UIButton *prev_btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    prev_btn.frame = CGRectMake(0, 0, 30, 46);
+    [prev_btn setImage:[UIImage imageNamed:@"picker-prev"] forState:UIControlStateNormal];
+    [prev_btn addTarget:self action:@selector(loginprevious) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *pevButton = [[UIBarButtonItem alloc] initWithCustomView:prev_btn];
+    
+    loginToolbarTitle = [[UILabel alloc] initWithFrame:CGRectMake(0.0 , 11.0f, 100, 21.0f)];
+    [loginToolbarTitle setFont:[UIFont fontWithName:@"Helvetica-Bold" size:14]];
+    [loginToolbarTitle setBackgroundColor:[UIColor clearColor]];
+    [loginToolbarTitle setTextColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0]];
+    [loginToolbarTitle setText:@"Title"];
+    [loginToolbarTitle setTextAlignment:NSTextAlignmentCenter];
+    
+    UIBarButtonItem *title = [[UIBarButtonItem alloc] initWithCustomView:loginToolbarTitle];
+    
+    
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]
+                                   initWithTitle:@"Done" style:UIBarButtonItemStylePlain
+                                   target:self action:@selector(logindone)];
+    
+    UIBarButtonItem *flexibleItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    UIBarButtonItem *fixedSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    fixedSpace.width = 20;
+    
+    NSArray *toolbarItems = [NSArray arrayWithObjects: pevButton, nextButton, flexibleItem, title, flexibleItem, doneButton, nil];
+    
+    UIToolbar *toolBar = [[UIToolbar alloc]initWithFrame:
+                          CGRectMake(0, self.view.frame.size.height-
+                                     myPickerView.frame.size.height-50, 320, 44)];
+    [toolBar setBarStyle:UIBarStyleDefault];
+    [toolBar setItems:toolbarItems];
+    [toolBar setTintColor:[UIColor whiteColor]];
+    //[toolBar setBarTintColor:[UIColor colorWithRed:22.0/255.0 green:110.0/255.0 blue:209.0/255.0 alpha:1.0]];
+    [toolBar setBackgroundImage:[UIImage imageNamed:@"toolbar_bg"] forToolbarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+    
+    
+    
+    self.txtEmail.inputAccessoryView = toolBar;
+    [self setLeftView:self.txtEmail];
+    
+    
+    self.txtPassword.inputAccessoryView = toolBar;
+    [self setLeftView:self.txtPassword];
+    
+    for (int i = 0; i < registerFieldList.count; i++) {
+        ((UITextField*)registerFieldList[i]).inputAccessoryView = toolBar;
+        [self setLeftView:registerFieldList[i]];
+    }
+}
+
+- (void)setLeftView:(UITextField*)textField{
+    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
+    textField.leftView = paddingView;
+    textField.leftViewMode = UITextFieldViewModeAlways;
+    textField.keyboardAppearance = UIKeyboardAppearanceDark;
+    if (textField == self.genderTxt) {
+        textField.inputView = myPickerView;
+    }
+}
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -111,6 +244,32 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
     signIn.delegate = self;
     
 }
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+// The number of rows of data
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return genderArray.count;
+}
+- (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    NSString *title = genderArray[row] ;
+    NSAttributedString *attString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    
+    return attString;
+    
+}
+//-----------------------
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    self.genderTxt.text = genderArray[row];
+    
+}
+
 
 - (IBAction)fbLogin:(id)sender {
     [self loginButtonClicked];
@@ -293,6 +452,11 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
 //button functions
 - (IBAction)btnLoginTouch:(id)sender
 {
+    if([self.txtEmail.text isEqualToString:@""] || [self.txtPassword.text isEqualToString:@""]){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning!" message:@"Please fill up all fields." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
     NSString*pass=self.txtPassword.text;
     [self getLoginwith:[self.txtEmail.text lowercaseString] andpass:pass];
 }
@@ -313,6 +477,73 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
     [textField resignFirstResponder];
     return YES;
 }
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    currentField = textField;
+    if (isLogin) {
+        NSUInteger index = [loginFieldList indexOfObject:textField];
+        if (index != NSNotFound) {
+            loginToolbarTitle.text = [loginPickerTitleList objectAtIndex:index];
+            currentIndex = index;
+        }
+    }else {
+        NSUInteger index = [registerFieldList indexOfObject:textField];
+        if (index != NSNotFound) {
+            loginToolbarTitle.text = [registerPickerTitleList objectAtIndex:index];
+            currentIndex = index;
+        }
+    }
+    
+    return YES;
+}
+
+#pragma mark -animation functions
+- (void)animateView_Up: (CGRect*)rect{
+    CGFloat fieldBottom =rect->origin.y+rect->size.height;
+    CGFloat screenHeight = [[UIScreen mainScreen] bounds].size.height;
+    
+    CGRect viewFrame = self.view.frame;
+    
+    // NSLog(@"%f",viewFrame.origin.y);
+    // NSLog(@"%f",origin);
+    
+    if (fieldBottom<(screenHeight-PORTRAIT_KEYBOARD_HEIGHT) && viewFrame.origin.y == origin) {
+        animatedDistance = 0;
+        return;
+    }    else{
+        animatedDistance = fieldBottom - (screenHeight-PORTRAIT_KEYBOARD_HEIGHT);
+    }
+    
+    [self aniamteFields:animatedDistance down:NO];
+    
+}
+- (void) animateView_Down{
+    [self aniamteFields:origin down:YES];
+}
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    CGRect textFieldRect = [self.view.window convertRect:textField.bounds fromView:textField];
+    [self animateView_Up:&textFieldRect];
+}
+- (void)aniamteFields:(CGFloat)distance down:(BOOL)down{
+    CGRect viewFrame = self.view.frame;
+    if (down) {
+        viewFrame.origin.y = distance;
+    }else{
+        viewFrame.origin.y -= distance;
+    }
+    
+    if (viewFrame.origin.y > origin) {
+        viewFrame.origin.y = origin;
+    }
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
+    
+    [self.view setFrame:viewFrame];
+    
+    [UIView commitAnimations];
+}
+
 
 -(void)isNotlogincontrolShow:(BOOL)action
 {
@@ -337,6 +568,19 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
 //-----------------------------
 - (IBAction)signuptouch:(id)sender
 {
+    
+    if([self.userName.text isEqualToString:@""]
+       || [self.txtFirstName.text isEqualToString:@""]
+       || [self.txtLastName.text isEqualToString:@""]
+       || [self.genderTxt.text isEqualToString:@""]
+       || [self.txtPhone.text isEqualToString:@""]
+       || [self.txtEmailreg.text isEqualToString:@""]
+       || [self.txtPasswordreg.text isEqualToString:@""]){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning!" message:@"Please fill up all fields." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
+    
     NSString*name=[self.txtFirstName.text stringByTrimmingCharactersInSet:
                    [NSCharacterSet whitespaceCharacterSet]];
     NSString*lastname=[self.txtLastName.text stringByTrimmingCharactersInSet:

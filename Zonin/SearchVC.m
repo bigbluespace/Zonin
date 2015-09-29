@@ -208,13 +208,13 @@
 - (IBAction)searchIncident:(id)sender {
     //
     IncidentSearch *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"incidentSearch"];
-    vc.isIncident = YES;
+    vc.isIncident = NO;
     [self.navigationController pushViewController:vc animated:YES];
     
 }
 - (IBAction)searchReview:(id)sender {
     IncidentSearch *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"incidentSearch"];
-    vc.isIncident = NO;
+    vc.isIncident = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

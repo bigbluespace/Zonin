@@ -9,8 +9,19 @@
 #import "ReportReviewVC.h"
 #include "RESideMenu.h"
 #import "AdViewObject.h"
+#import "IncidentSearch.h"
+#import "AddReViewController.h"
+#import "AddCrimeViewController.h"
 #define IPAD     UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
 @interface ReportReviewVC ()
+
+@property (weak, nonatomic) IBOutlet UIButton *leftLowerBtn;
+@property (weak, nonatomic) IBOutlet UIButton *rightLowerBtn;
+
+@property (weak, nonatomic) IBOutlet UILabel *leftBtnLabel;
+@property (weak, nonatomic) IBOutlet UILabel *rightBtnLabel;
+
+
 
 @end
 
@@ -23,12 +34,24 @@
     if (self.isCrimeReport)
     {
         NSLog(@"getting crime");
-      self.tableItems = [Crime getAllCrime];
+        if (self.tableItems == nil || self.tableItems == (id)[NSNull null]) {
+            self.tableItems = [Crime getAllCrime];
+        }
+      
+        _leftBtnLabel.text = @"SEARCH AN INCIDENT REPORT";
+        _rightBtnLabel.text = @"REPORT AN INCIDENT";
+        
     }
     else
     {
         NSLog(@"getting reviews");
-       self.tableItems=[OfficerReviews GetAllReview];
+        if (self.tableItems == nil || self.tableItems == (id)[NSNull null]) {
+            self.tableItems=[OfficerReviews GetAllReview];
+        }
+       
+        _leftBtnLabel.text = @"SEARCH A REVIEW";
+        _rightBtnLabel.text = @"ADD A NEW REVIEW";
+
     }
    // NSLog(@"number of table items %d",self.tableItems.count);
     self.reportTable.backgroundColor = [UIColor clearColor];
@@ -123,10 +146,8 @@
         UILabel *cellLbl2nd = (UILabel *)[cell viewWithTag:3];
         
         OfficerReviews*temp=[self.tableItems objectAtIndex:indexPath.row];
-//        cell.textLabel.textColor=[UIColor whiteColor];
-//        cell.textLabel.text=temp.crime_title;
-       // NSDictionary *dic = [self.tableItems objectAtIndex:indexPath.row];
-       // NSLog(@"data %@", dic);
+
+
         cellLbl.text = temp.officer_name;
         cellLbl2nd.text=[NSString stringWithFormat:@"%@ - %@",temp.country_name,temp.state_name];
 
@@ -163,6 +184,36 @@
     }
     return 65;
 }
+- (IBAction)leftLowerBtnClick:(id)sender {
+    
+    if (self.isCrimeReport)
+    {
+        IncidentSearch *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"incidentSearch"];
+        vc.isIncident = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+
+    }
+    else
+    {
+        IncidentSearch *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"incidentSearch"];
+        vc.isIncident = NO;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+- (IBAction)rightLowerBtnClick:(id)sender {
+    if (self.isCrimeReport)
+    {
+        AddCrimeViewController *cv = [self.storyboard instantiateViewControllerWithIdentifier:@"addCrimeView"];
+        [self.navigationController pushViewController:cv animated:YES];
+    }
+    else
+    {
+        AddReViewController *rc = [self.storyboard instantiateViewControllerWithIdentifier:@"addReViewController"];
+        [self.navigationController pushViewController:rc animated:YES];
+        
+    }
+}
+
 
 //-----------------------
 //-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
