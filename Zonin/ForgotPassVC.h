@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "AFNetworking.h"
 #import "App-Utilities.h"
+#import "KeyboardToolbar.h"
 
-@interface ForgotPassVC : UIViewController
+@interface ForgotPassVC : UIViewController<KeyboardToolbarDelegates>
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UITextField *txtEnterEmail;
 //@property (weak, nonatomic) IBOutlet UIView *varifyCodeView;

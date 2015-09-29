@@ -294,7 +294,7 @@
 {
     _currentState = currentState;
     if (currentState) {
-        parishField.text = currentState.Name;
+        stateField.text = currentState.Name;
         [self.currentState getAllCountyForSate:^(NSArray *list, NSDictionary *error) {
             if (list != nil) {
                 parishArray = [[NSMutableArray alloc] initWithArray:list];

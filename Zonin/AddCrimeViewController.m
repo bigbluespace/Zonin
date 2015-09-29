@@ -188,6 +188,7 @@
 }
 - (IBAction)disagree:(id)sender {
     _disclaimerView.hidden = YES;
+    [self.navigationController popViewControllerAnimated:YES];
 
 }
 - (IBAction)menuBtn:(id)sender {
