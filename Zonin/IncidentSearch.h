@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomToolbar.h"
+#import "Country.h"
 
-@interface IncidentSearch : UIViewController
+@interface IncidentSearch : UIViewController<CustomToolbarDelegate,UIPickerViewDataSource, UIPickerViewDelegate>
+
+@property Country*currentCountry;
+@property Country*currentState;
+@property Country*currentParish;
+
+@property BOOL isIncident;
+
 
 @end

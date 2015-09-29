@@ -11,6 +11,7 @@
 #import "MBProgressHUD.h"
 #import "Zonin.h"
 #import "AdViewObject.h"
+#import "IncidentSearch.h"
 
 @interface SearchVC ()
 
@@ -203,6 +204,18 @@
             a.hidden=action;
         }
     }
+}
+- (IBAction)searchIncident:(id)sender {
+    //
+    IncidentSearch *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"incidentSearch"];
+    vc.isIncident = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+- (IBAction)searchReview:(id)sender {
+    IncidentSearch *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"incidentSearch"];
+    vc.isIncident = NO;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /*

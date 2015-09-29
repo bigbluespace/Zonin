@@ -708,11 +708,6 @@
     
     NSUInteger index = 0;
     
-   /// NSPredicate *pre = [NSPredicate predicateWithFormat:@"(name contains[c] %@)", textField.text];
-//    NSArray *outArray = (NSArray*)[currentArray filteredArrayUsingPredicate:pre];
-//    
-//    if(outArray.count>0)
-//        index = [currentArray indexOfObject:outArray[0]];
     
     [myPickerView selectRow:index inComponent:0 animated:YES];
 }
