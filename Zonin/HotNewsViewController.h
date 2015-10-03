@@ -22,7 +22,7 @@
 
 
 
-@interface HotNewsViewController : UIViewController<UITextFieldDelegate,searchViewDelegate,FeedbackViewDelegate>
+@interface HotNewsViewController : UIViewController<UITextFieldDelegate,searchViewDelegate,FeedbackViewDelegate, UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *lblNewsTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblNewsDate;
 @property (weak, nonatomic) IBOutlet UIView *NewsContainerView;

@@ -1871,6 +1871,10 @@
                                     <webView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EpF-C3-UNw" userLabel="contentView">
                                         <rect key="frame" x="0.0" y="187" width="600" height="326"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="ZNL-IW-WT2" id="771-pB-XMb"/>
+                                        </connections>
                                     </webView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n0g-yQ-vB1" userLabel="buttonView">
                                         <rect key="frame" x="0.0" y="513" width="600" height="60"/>
@@ -3240,6 +3244,9 @@
                                                 <state key="normal" backgroundImage="linkedin">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="linkedinBtn:" destination="Pjg-oO-IEe" eventType="touchUpInside" id="YUl-sv-NDO"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dy1-iZ-ZIS">
                                                 <rect key="frame" x="8" y="82" width="70" height="70"/>
@@ -3252,6 +3259,9 @@
                                                 <state key="normal" backgroundImage="zonin">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="zoninBtn:" destination="Pjg-oO-IEe" eventType="touchUpInside" id="Jf0-lF-BqL"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wiZ-OA-ZxD">
                                                 <rect key="frame" x="393" y="82" width="70" height="70"/>
@@ -3276,6 +3286,9 @@
                                                 <state key="normal" backgroundImage="facebook_icon">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="facebookBtn:" destination="Pjg-oO-IEe" eventType="touchUpInside" id="pAX-zC-t0m"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wip-g3-ARb">
                                                 <rect key="frame" x="137" y="82" width="70" height="70"/>
@@ -3288,6 +3301,9 @@
                                                 <state key="normal" backgroundImage="twitter">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="twitterBtn:" destination="Pjg-oO-IEe" eventType="touchUpInside" id="b2f-5V-IXV"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -4011,8 +4027,8 @@
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                                 </textField>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="7. Rate Your Experience* :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u58-iO-BYd">
-                                                                    <rect key="frame" x="15" y="357" width="272" height="29"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7. Rate Your Experience* :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u58-iO-BYd">
+                                                                    <rect key="frame" x="15" y="357" width="275" height="29"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
@@ -4020,8 +4036,8 @@
                                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                     </variation>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="8. Enter your Review Details* :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BHO-c6-80g">
-                                                                    <rect key="frame" x="15" y="531" width="314" height="29"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8. Enter your Review Details* :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BHO-c6-80g">
+                                                                    <rect key="frame" x="15" y="531" width="322" height="29"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>

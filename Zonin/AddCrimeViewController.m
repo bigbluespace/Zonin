@@ -63,6 +63,7 @@
     
     
     self.navigationController.navigationBarHidden = YES;
+    self.view.backgroundColor = [UIColor clearColor];
     
     [[UITextField appearance] setTintColor:[UIColor redColor]];
     

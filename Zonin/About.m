@@ -76,7 +76,23 @@
     
     [self performSegueWithIdentifier:@"contactSupportSegue" sender:self];
 }
+#pragma mark - Bottom Button Events
 
+- (IBAction)zoninBtn:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.zoninapp.com"]];
+}
+
+- (IBAction)linkedinBtn:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.linkedin.com/pub/zonin-app/102/91a/7b9"]];
+}
+
+- (IBAction)twitterBtn:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://twitter.com/ZoninApp"]];
+}
+
+- (IBAction)facebookBtn:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.facebook.com/ZoninApp"]];
+}
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
