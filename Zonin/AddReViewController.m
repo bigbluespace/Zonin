@@ -11,6 +11,9 @@
 #import "MBProgressHUD.h"
 #import "AdViewObject.h"
 #import "Zonin.h"
+#import "UIImage+FixOrientation.h"
+#import "UIImage+Resize.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 #define IPAD     UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
 
 
@@ -31,6 +34,7 @@
     CGFloat PORTRAIT_KEYBOARD_HEIGHT, animatedDistance, KEYBOARD_ANIMATION_DURATION;
     
     float origin;
+    UIButton * mediaButton;
     
     NSString *fromDate, *toDate, *anonymous;
     UIView *tintView;
@@ -38,6 +42,8 @@
     BOOL isTextView;
     UIToolbar *toolBar;
     UISwitch *anonymousSwitch;
+    NSString *imagePath;
+    NSString *fileName;
 }
 @property (weak, nonatomic) IBOutlet UITableView *reviewTable;
 @property (weak, nonatomic) IBOutlet UIView *adView;
@@ -512,6 +518,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
+    
+    cell.backgroundColor = [UIColor clearColor];
+    
     countryField = (UITextField*)[cell viewWithTag:1];
     countryField.delegate = self;
     countryField.inputAccessoryView = toolBar;
@@ -586,7 +595,7 @@
     anonymousSwitch = (UISwitch*)[cell viewWithTag:13];
     [anonymousSwitch addTarget:self action:@selector(changeSwitch:) forControlEvents:UIControlEventValueChanged];
     
-    UIButton * mediaButton = (UIButton*)[cell viewWithTag:14];
+    mediaButton = (UIButton*)[cell viewWithTag:14];
     [mediaButton addTarget:self action:@selector(openMedia:) forControlEvents:UIControlEventTouchUpInside];
     
     
@@ -626,12 +635,21 @@
 - (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex {
     
     if (buttonIndex == 0) {
-        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        picker.delegate = self;
-        picker.allowsEditing = YES;
-        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
         
-        [self presentViewController:picker animated:YES completion:NULL];
+#if TARGET_IPHONE_SIMULATOR
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Simulator" message:@"Camera not available." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+#elif TARGET_OS_IPHONE
+        if (selectedImagePicker) {
+            [selectedImagePicker dismissViewControllerAnimated:NO completion:nil];
+        }
+        UIImagePickerController *cameraImagePicker = [[UIImagePickerController alloc] init];
+        cameraImagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        cameraImagePicker.delegate = self;
+        cameraImagePicker.allowsEditing = NO;
+        ;
+        [self presentViewController:cameraImagePicker animated:YES completion:nil];
+#endif
     }else if (buttonIndex==1){
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
@@ -650,6 +668,64 @@
     //self.imageView.image = chosenImage;
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+    NSLog(@"image info %@", info);
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+    // Extract image from the picker
+    NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+    if ([mediaType isEqualToString:@"public.image"]){
+        
+        
+        NSURL *refURL = [info valueForKey:UIImagePickerControllerReferenceURL];
+        
+        // define the block to call when we get the asset based on the url (below)
+        ALAssetsLibraryAssetForURLResultBlock resultblock = ^(ALAsset *imageAsset)
+        {
+            ALAssetRepresentation *imageRep = [imageAsset defaultRepresentation];
+            NSLog(@"[imageRep filename] : %@", [imageRep filename]);
+            
+            
+            fileName = [imageRep filename];
+            [mediaButton setTitle:fileName forState:normal];
+            
+            UIImage *largeimage = [[info objectForKey:UIImagePickerControllerOriginalImage] fixOrientation];
+            
+            UIImage *image = [largeimage resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(750,520) interpolationQuality:kCGInterpolationHigh];
+            
+            NSData *imageData = UIImageJPEGRepresentation(image,1.0);
+            
+            NSError *error = nil;
+            NSString *dataPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+            
+            
+            if (![[NSFileManager defaultManager] fileExistsAtPath:dataPath])
+                [[NSFileManager defaultManager] createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:&error];
+            
+            
+            
+            
+            imagePath = [dataPath stringByAppendingPathComponent:fileName];
+            
+            
+            
+            
+            if (![imageData writeToFile:imagePath atomically:YES])
+            {
+                NSLog((@"Failed to cache image data to disk"));
+            }
+            
+            
+        };
+        
+        // get the asset library and fetch the asset based on the ref url (pass in block above)
+        ALAssetsLibrary* assetslibrary = [[ALAssetsLibrary alloc] init];
+        [assetslibrary assetForURL:refURL resultBlock:resultblock failureBlock:nil];
+        
+        
+        
+    }
     
 }
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
@@ -691,20 +767,46 @@
                             @"MACHINE_CODE" : @"emran4axiz"
                             };
     
-    [Zonin commonPost:@"add_review" parameters:param block:^(NSDictionary *dataDic, NSError *error) {
+//    [Zonin commonPost:@"add_review" parameters:param block:^(NSDictionary *dataDic, NSError *error) {
+//        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+//        if ([[dataDic valueForKey:@"message"] isEqualToString:@"success"] && error==nil) {
+//            
+//           
+//            
+//            
+//        }else{
+//            
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert!" message:@"No data found" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//            [alert show];
+//           
+//        }
+//    }];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [Zonin commonFileUpload:@"add_review" data:param constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        
+        //NSString* keyName_large = [NSString stringWithFormat:@"data[Photo][imagex][%d][largeImage]", i];
+        
+        [formData appendPartWithFileURL:[NSURL fileURLWithPath:imagePath] name:@"crime_files" fileName:fileName mimeType:@"image/jpeg" error:nil];
+        
+    } block:^(NSDictionary *JSON, NSError *error) {
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-        if ([[dataDic valueForKey:@"message"] isEqualToString:@"success"] && error==nil) {
+        if ([[JSON valueForKey:@"message"] isEqualToString:@"success"] && error==nil) {
             
-           
+            
             
             
         }else{
             
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert!" message:@"No data found" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
-           
+            
         }
+        
     }];
+
+    
+    
 
     
 }

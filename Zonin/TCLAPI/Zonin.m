@@ -228,8 +228,11 @@
             success:^(NSURLSessionDataTask * __unused task, id JSON) {
                 NSLog(@"successData  %@", JSON);
                 
+                NSDictionary*dataDic=[self parseJESONObjectFromData:JSON];
+                 NSLog(@"successData  %@", dataDic);
+                
                 if (block) {
-                    block(JSON, nil);
+                    block(dataDic, nil);
                 }
             }
             failure:^(NSURLSessionDataTask *__unused task, NSError *error) {

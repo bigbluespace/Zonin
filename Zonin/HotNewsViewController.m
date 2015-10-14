@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *menuHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *picHeightConstraint;
+@property (weak, nonatomic) IBOutlet UIView *videoView;
 
 @end
 
@@ -94,7 +95,7 @@
     {
         [_contentWebView loadHTMLString:@"An Error occured." baseURL:nil];
     }
-    self.currentHotNews=self.currentHotNews;
+    self.currentHotNews = self.currentHotNews;
     [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
@@ -117,21 +118,76 @@
         {
             url = [NSURL URLWithString:self.currentHotNews.news_file];
         }
-        NSURLRequest *request = [NSURLRequest requestWithURL:url];
-        UIImage *newsimage = [UIImage imageNamed:@"newsimage"];
-        NSLog(@"news image url :%@",currentHotNews.news_file);
-        [self.NewsImage setImageWithURLRequest:request
-                              placeholderImage:newsimage
-                                       success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                                           
-                                           self.NewsImage.image = image;
-                                           [self.NewsImage setNeedsLayout];
-                                           
-                                       } failure:nil];
+        
+        if ([file_url containsString:@".jpg"] || [file_url containsString:@"jpeg"] || [file_url containsString:@".png"] || [file_url containsString:@"JPG"] || [file_url containsString:@".JPEG"] || [file_url containsString:@".PNG"]){
+            
+            NSURLRequest *request = [NSURLRequest requestWithURL:url];
+            UIImage *newsimage = [UIImage imageNamed:@"newsimage"];
+            NSLog(@"news image url :%@",url);
+            [self.NewsImage setImageWithURLRequest:request
+                                  placeholderImage:newsimage
+                                           success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                               self.NewsImage.hidden = NO;
+                                               self.NewsImage.image = image;
+                                               [self.NewsImage setNeedsLayout];
+                                               self.videoView.hidden = YES;
+                                               
+                                               
+                                           } failure:nil];
+            
+        }else{
+            
+            self.NewsImage.hidden = YES;
+            self.videoView.hidden = NO;
+            
+            if (self.moviePlayer != nil) {
+                [self.moviePlayer.view removeFromSuperview];
+                [self.moviePlayer stop];
+                
+                self.moviePlayer = nil;
+            }
+                
+            
+            self.moviePlayer=[[MPMoviePlayerController alloc] initWithContentURL:url];
+            [self.moviePlayer.view setFrame:CGRectMake(0, 0, _videoView.frame.size.width, _videoView.frame.size.height)];
+            [self.moviePlayer prepareToPlay];
+            [self.moviePlayer setShouldAutoplay:NO];
+            //self.moviePlayer.controlStyle = NO;
+           // [_playerView addSubview:self.moviePlayer.view];
+            
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playBackFinished:) name:MPMoviePlayerPlaybackDidFinishNotification object:self.moviePlayer];
+            [_videoView addSubview:self.moviePlayer.view];
+            
+            [self.moviePlayer play];
+            
+            
+//            _moviePlayer.controlStyle=MPMovieControlStyleDefault;
+//            _moviePlayer.shouldAutoplay=YES;
+          
+//            [_moviePlayer setFullscreen:NO animated:YES];
+//            [_moviePlayer play];
+            
+        }
+        
          NSString *html = [NSString stringWithFormat:@"<html><head></head><body style=\"color:#fff\">%@</body></html>",currentHotNews.news_desc];
         [_contentWebView loadHTMLString:html baseURL:nil];
     }
 }
+
+- (void) playBackFinished:(NSNotification*)notification
+{
+    
+    MPMoviePlayerController *player = [notification object];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:MPMoviePlayerPlaybackDidFinishNotification object:player];
+    
+//    if ([player respondsToSelector:@selector(setFullscreen:animated:)])
+//    {
+//        [player.view removeFromSuperview];
+//    }
+}
+//http://zoninapp.com/admin/upload/hot_news_files/videostart.mp4
 
 //-------------------------
 //new navigation button function
