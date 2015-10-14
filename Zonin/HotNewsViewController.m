@@ -112,6 +112,7 @@
         self.lblNewsDate.text=currentHotNews.news_date;
         // self.NewsBodyText.text=news.news_desc;
         NSString* file_url=[News_fileURL_prefix stringByAppendingString:_currentHotNews.news_file];
+    
         NSURL *url = [NSURL URLWithString:file_url];
         if ([_currentHotNews.news_file containsString:News_fileURL_prefix])
         {
