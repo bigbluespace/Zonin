@@ -173,17 +173,24 @@
 {
     if (self.isCrime)
     {
-        return  crimeSubjectContent.count;
+        return  crimeSubjectContent.count+1;
     }
     else
     {
-        return reviewSubjectContent.count;
+        return reviewSubjectContent.count+1;
     }
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell* cell =[tableView dequeueReusableCellWithIdentifier:@"detailcell"];
+    UITableViewCell* cell;
+    
+    if (indexPath.row == 8) {
+        cell =[tableView dequeueReusableCellWithIdentifier:@"buttoncell"];
+        return cell;
+    }
+    
+    cell =[tableView dequeueReusableCellWithIdentifier:@"detailcell"];
     UILabel*lblright=(UILabel*)[cell viewWithTag:102];
     UILabel*lblleft=(UILabel*)[cell viewWithTag:103];
     [lblleft setFrame:CGRectMake(5,0,cell.frame.size.width/2-5, cell.frame.size.height)];
@@ -300,7 +307,11 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-
+    
+    if(indexPath.row == 8){
+        return 200;
+    }
+    
     UILabel  * label = [[UILabel alloc] initWithFrame:CGRectMake(8, 0,300, 9999)];
     label.numberOfLines=0;
     label.font = [UIFont fontWithName:@"system" size:14];
