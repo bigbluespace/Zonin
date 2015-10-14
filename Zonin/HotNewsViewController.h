@@ -20,6 +20,7 @@
 #import "FeedBackView.h"
 #import "FeedbackVC.h"
 
+#import <MediaPlayer/MediaPlayer.h>
 
 
 @interface HotNewsViewController : UIViewController<UITextFieldDelegate,searchViewDelegate,FeedbackViewDelegate, UIWebViewDelegate>
@@ -38,4 +39,5 @@
 //
 @property (nonatomic,setter=setCurrentHotNews:)HotNews* currentHotNews;
 @property NSArray*hotnewsCollection;
+@property MPMoviePlayerController *moviePlayer;
 @end

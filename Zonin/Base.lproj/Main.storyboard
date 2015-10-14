@@ -1965,7 +1965,7 @@
                                     </constraint>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background.png" translatesAutoresizingMaskIntoConstraints="NO" id="6im-M7-jMC">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="6im-M7-jMC">
                                 <rect key="frame" x="0.0" y="127" width="600" height="573"/>
                                 <animations/>
                             </imageView>
@@ -1992,15 +1992,22 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         </variation>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="zonin_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="pNc-vQ-cJp">
-                                        <rect key="frame" x="8" y="64" width="584" height="120"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BDJ-fQ-aYm">
+                                        <rect key="frame" x="8" y="67" width="584" height="300"/>
+                                        <animations/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zonin_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="pNc-vQ-cJp">
+                                        <rect key="frame" x="8" y="67" width="584" height="300"/>
                                         <animations/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="120" id="XB1-fH-lrN"/>
+                                            <constraint firstAttribute="height" constant="300" id="XB1-fH-lrN">
+                                                <variation key="widthClass=compact" constant="200"/>
+                                            </constraint>
                                         </constraints>
                                     </imageView>
                                     <webView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EpF-C3-UNw" userLabel="contentView">
-                                        <rect key="frame" x="0.0" y="187" width="600" height="326"/>
+                                        <rect key="frame" x="0.0" y="367" width="600" height="146"/>
                                         <animations/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
@@ -2109,6 +2116,7 @@
                                     <constraint firstAttribute="trailing" secondItem="pNc-vQ-cJp" secondAttribute="trailing" constant="8" id="33P-Za-aem"/>
                                     <constraint firstAttribute="trailing" secondItem="EpF-C3-UNw" secondAttribute="trailing" id="762-oe-4cg"/>
                                     <constraint firstAttribute="trailing" secondItem="n0g-yQ-vB1" secondAttribute="trailing" id="9xv-3t-nSC"/>
+                                    <constraint firstItem="BDJ-fQ-aYm" firstAttribute="leading" secondItem="pNc-vQ-cJp" secondAttribute="leading" id="AxE-1n-eqn"/>
                                     <constraint firstItem="FzO-PU-NU9" firstAttribute="leading" secondItem="eEl-MZ-OVf" secondAttribute="leading" constant="8" id="EmQ-7J-Zus"/>
                                     <constraint firstItem="EpF-C3-UNw" firstAttribute="leading" secondItem="eEl-MZ-OVf" secondAttribute="leading" id="JKl-qc-Njx"/>
                                     <constraint firstItem="pNc-vQ-cJp" firstAttribute="leading" secondItem="eEl-MZ-OVf" secondAttribute="leading" constant="8" id="Jgc-7d-LhK"/>
@@ -2117,11 +2125,14 @@
                                     <constraint firstItem="ufl-50-oS8" firstAttribute="leading" secondItem="eEl-MZ-OVf" secondAttribute="leading" constant="8" id="VZf-og-fZW"/>
                                     <constraint firstItem="n0g-yQ-vB1" firstAttribute="top" secondItem="EpF-C3-UNw" secondAttribute="bottom" id="XDe-C2-bAz"/>
                                     <constraint firstAttribute="trailing" secondItem="FzO-PU-NU9" secondAttribute="trailing" constant="8" id="ehB-Fd-qL4"/>
+                                    <constraint firstItem="BDJ-fQ-aYm" firstAttribute="height" secondItem="pNc-vQ-cJp" secondAttribute="height" id="ihu-tn-2Q8"/>
                                     <constraint firstAttribute="trailing" secondItem="ufl-50-oS8" secondAttribute="trailing" constant="8" id="j0p-l8-kIx"/>
                                     <constraint firstItem="ufl-50-oS8" firstAttribute="top" secondItem="FzO-PU-NU9" secondAttribute="bottom" constant="8" id="k9K-Zb-isn"/>
+                                    <constraint firstItem="BDJ-fQ-aYm" firstAttribute="top" secondItem="pNc-vQ-cJp" secondAttribute="top" id="kBM-s3-7EM"/>
                                     <constraint firstItem="pNc-vQ-cJp" firstAttribute="top" secondItem="ufl-50-oS8" secondAttribute="bottom" constant="8" id="sE3-CT-vqa"/>
                                     <constraint firstItem="n0g-yQ-vB1" firstAttribute="leading" secondItem="eEl-MZ-OVf" secondAttribute="leading" id="wIk-G2-yT9"/>
                                     <constraint firstAttribute="bottom" secondItem="n0g-yQ-vB1" secondAttribute="bottom" id="ybz-3T-bsU"/>
+                                    <constraint firstItem="BDJ-fQ-aYm" firstAttribute="width" secondItem="pNc-vQ-cJp" secondAttribute="width" id="zav-5Z-1uS"/>
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dGF-WJ-JTn" userLabel="AddFeedbackView">
@@ -2312,6 +2323,7 @@
                         <outlet property="picHeightConstraint" destination="XB1-fH-lrN" id="Yx8-5r-wuL"/>
                         <outlet property="previousBtn" destination="Jk9-TX-rEu" id="9Tz-2U-342"/>
                         <outlet property="searchnewsBtn" destination="yPH-1g-Tfz" id="HnD-zz-BBw"/>
+                        <outlet property="videoView" destination="BDJ-fQ-aYm" id="WuL-iY-JMh"/>
                         <outlet property="viewFeedbackBtn" destination="Bgu-li-nxE" id="GVs-je-U8Z"/>
                     </connections>
                 </viewController>

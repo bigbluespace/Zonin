@@ -31,6 +31,11 @@
     self.moviePlayer.controlStyle = NO;
     [_playerView addSubview:self.moviePlayer.view];
     
+    
+    
+    
+    
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playBackFinished:) name:MPMoviePlayerPlaybackDidFinishNotification object:self.moviePlayer];
     
     [self.moviePlayer play];

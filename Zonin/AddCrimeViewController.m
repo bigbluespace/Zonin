@@ -11,6 +11,9 @@
 #import "AdViewObject.h"
 #import "MBProgressHUD.h"
 #import "Zonin.h"
+#import "UIImage+FixOrientation.h"
+#import "UIImage+Resize.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 #define IPAD     UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
 
 @interface AddCrimeViewController ()
@@ -31,7 +34,7 @@
     NSInteger currentIndex, tempIndex, currentRank;
     
     CGFloat PORTRAIT_KEYBOARD_HEIGHT, animatedDistance, KEYBOARD_ANIMATION_DURATION;
-    
+    UIButton * mediaButton;
     float origin;
     
     NSString *incidentDate, *incidentTime, *anonymous;
@@ -41,7 +44,8 @@
     UIToolbar *toolBar;
     UISwitch *anonymousSwitch;
     UIDatePicker *datePicker,  *timePicker;
-
+    NSString *imagePath;
+    NSString *fileName;
 }
 @property (weak, nonatomic) IBOutlet UIView *disclaimerView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -61,6 +65,7 @@
     AdViewObject *add = [AdViewObject sharedManager];
     [adView addSubview:add.adView];
     
+    fileName = @"%@myimage.jpg";
     
     self.navigationController.navigationBarHidden = YES;
     self.view.backgroundColor = [UIColor clearColor];
@@ -82,6 +87,8 @@
     stateArray = [[NSMutableArray alloc] init];
     parishArray = [[NSMutableArray alloc] init];
     
+    
+    //_tableView.backgroundColor = [UIColor clearColor];
     [pickerArrayList addObjectsFromArray:@[countryArray, stateArray,parishArray,@[],@[],@[], @[], @[]]];
     
     [pickerTitleList addObjectsFromArray:@[@"Country", @"State",@"Parish", @"Incident Title", @"Date", @"Time", @"Location", @"Detail"]];
@@ -162,11 +169,8 @@
 
     [[UIPickerView appearance] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"picker_bg"]]];
      [[UIDatePicker appearance] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"picker_bg"]]];
-}
-//-------------------------
--(void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
+    
+    
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [Country getAllCountry:^(NSArray *list, NSError *error) {
         [self setCountry:list];
@@ -174,8 +178,13 @@
         [_tableView reloadData];
     }];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleShowTintedKeyboard:) name:UIKeyboardWillShowNotification object:nil];
-
+  //  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleShowTintedKeyboard:) name:UIKeyboardWillShowNotification object:nil];
+}
+//-------------------------
+-(void)viewDidAppear:(BOOL)animated
+{
+    
+    [super viewDidAppear:animated];
     //reportCrime.CountryList=[Country getAllCountry];
 //    [self spinnerOff];
 }
@@ -189,7 +198,16 @@
 }
 - (IBAction)disagree:(id)sender {
     _disclaimerView.hidden = YES;
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    
+    
+    if ( self == [self.navigationController.viewControllers objectAtIndex:0] ){
+        [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"home"]]
+                                                     animated:YES];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
 
 }
 - (IBAction)menuBtn:(id)sender {
@@ -585,6 +603,8 @@
     
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor clearColor];
+    
     countryField = (UITextField*)[cell viewWithTag:1];
     countryField.delegate = self;
     countryField.inputAccessoryView = toolBar;
@@ -649,7 +669,7 @@
     anonymousSwitch = (UISwitch*)[cell viewWithTag:9];
     [anonymousSwitch addTarget:self action:@selector(changeSwitch:) forControlEvents:UIControlEventValueChanged];
     
-    UIButton * mediaButton = (UIButton*)[cell viewWithTag:10];
+    mediaButton = (UIButton*)[cell viewWithTag:10];
     [mediaButton addTarget:self action:@selector(openMedia:) forControlEvents:UIControlEventTouchUpInside];
     
     
@@ -686,12 +706,22 @@
 - (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex {
     
     if (buttonIndex == 0) {
-        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        picker.delegate = self;
-        picker.allowsEditing = YES;
-        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
         
-        [self presentViewController:picker animated:YES completion:NULL];
+        
+#if TARGET_IPHONE_SIMULATOR
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Simulator" message:@"Camera not available." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+#elif TARGET_OS_IPHONE
+        if (selectedImagePicker) {
+            [selectedImagePicker dismissViewControllerAnimated:NO completion:nil];
+        }
+        UIImagePickerController *cameraImagePicker = [[UIImagePickerController alloc] init];
+        cameraImagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        cameraImagePicker.delegate = self;
+        cameraImagePicker.allowsEditing = NO;
+        ;
+        [self presentViewController:cameraImagePicker animated:YES completion:nil];
+#endif
     }else if (buttonIndex==1){
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
@@ -706,11 +736,63 @@
 }
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
-    //UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-    //self.imageView.image = chosenImage;
+    NSLog(@"image info %@", info);
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
+    // Extract image from the picker
+    NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+    if ([mediaType isEqualToString:@"public.image"]){
+        
+        
+        NSURL *refURL = [info valueForKey:UIImagePickerControllerReferenceURL];
+        
+        // define the block to call when we get the asset based on the url (below)
+        ALAssetsLibraryAssetForURLResultBlock resultblock = ^(ALAsset *imageAsset)
+        {
+            ALAssetRepresentation *imageRep = [imageAsset defaultRepresentation];
+            NSLog(@"[imageRep filename] : %@", [imageRep filename]);
+            
+            
+            fileName = [imageRep filename];
+            [mediaButton setTitle:fileName forState:normal];
+            
+            UIImage *largeimage = [[info objectForKey:UIImagePickerControllerOriginalImage] fixOrientation];
+            
+            UIImage *image = [largeimage resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(750,520) interpolationQuality:kCGInterpolationHigh];
+            
+            NSData *imageData = UIImageJPEGRepresentation(image,1.0);
+            
+            NSError *error = nil;
+            NSString *dataPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+            
+            
+            if (![[NSFileManager defaultManager] fileExistsAtPath:dataPath])
+                [[NSFileManager defaultManager] createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:&error];
+            
+            
+            
+            
+            imagePath = [dataPath stringByAppendingPathComponent:fileName];
+            
+            
+            
+            
+            if (![imageData writeToFile:imagePath atomically:YES])
+            {
+                NSLog((@"Failed to cache image data to disk"));
+            }
+            
+            
+        };
+        
+        // get the asset library and fetch the asset based on the ref url (pass in block above)
+        ALAssetsLibrary* assetslibrary = [[ALAssetsLibrary alloc] init];
+        [assetslibrary assetForURL:refURL resultBlock:resultblock failureBlock:nil];
+        
+
+       
+    }
 }
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     
@@ -755,19 +837,43 @@
                             @"MACHINE_CODE" : @"emran4axiz"
                             };
 
-    [Zonin commonPost:@"add_crime" parameters:param block:^(NSDictionary *dataDic, NSError *error) {
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-        if ([[dataDic valueForKey:@"message"] isEqualToString:@"success"] && error==nil) {
-            
-            
-            
-            
-        }else{
-            
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert!" message:@"No data found" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-            
-        }
+//    [Zonin commonPost:@"add_crime" parameters:param block:^(NSDictionary *dataDic, NSError *error) {
+//        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+//        if ([[dataDic valueForKey:@"message"] isEqualToString:@"success"] && error==nil) {
+//            
+//            
+//            
+//            
+//        }else{
+//            
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert!" message:@"No data found" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//            [alert show];
+//            
+//        }
+//    }];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    [Zonin commonFileUpload:@"add_crime" data:param constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        
+        //NSString* keyName_large = [NSString stringWithFormat:@"data[Photo][imagex][%d][largeImage]", i];
+        
+        [formData appendPartWithFileURL:[NSURL fileURLWithPath:imagePath] name:@"crime_files" fileName:fileName mimeType:@"image/jpeg" error:nil];
+        
+    } block:^(NSDictionary *JSON, NSError *error) {
+               [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                if ([[JSON valueForKey:@"message"] isEqualToString:@"success"] && error==nil) {
+        
+        
+        
+        
+                }else{
+        
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert!" message:@"No data found" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [alert show];
+                    
+                }
+
     }];
 }
 

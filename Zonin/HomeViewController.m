@@ -15,6 +15,7 @@
 
 @interface HomeViewController (){
     MarqueeLabel *scrollyLabel;
+    AdViewObject *add;
 }
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *homeLowerviewConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *adViewHeightConstraint;
@@ -36,8 +37,7 @@
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"zonin_logo"] forBarMetrics:UIBarMetricsCompact];
     self.navigationController.navigationBarHidden = YES;
     
-     AdViewObject *add = [AdViewObject sharedManager];
-    [adView addSubview:add.adView];
+    
 
     if (IPAD) {
 
@@ -60,6 +60,16 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+//    if (add != nil) {
+//        [add.adView removeFromSuperview];
+//        add.adView = nil;
+//        
+//    }
+    
+    add = [AdViewObject sharedManager];
+    [adView addSubview:add.adView];
+    
     NSDictionary *params = @{
                              @"MACHINE_CODE" : @"emran4axiz"
                              };
@@ -74,6 +84,8 @@
             scrollyLabel.text = newsString;
         }
     }];
+    
+    
 }
 
 - (IBAction)menuBtn:(id)sender {

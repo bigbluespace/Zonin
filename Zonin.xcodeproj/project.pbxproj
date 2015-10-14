@@ -53,6 +53,13 @@
 		8439DB4D1BBB4D9D00E9151C /* KeyboardToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8439DB4C1BBB4D9D00E9151C /* KeyboardToolbar.m */; settings = {ASSET_TAGS = (); }; };
 		846060B71BB99BBA007CC2B8 /* IncidentSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 846060B61BB99BBA007CC2B8 /* IncidentSearch.m */; settings = {ASSET_TAGS = (); }; };
 		8489C3C61BA9EFAD005242DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8489C3C51BA9EFAD005242DB /* Foundation.framework */; };
+		84A9C8D71BC44E4600DED330 /* GKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A9C8C91BC44E4600DED330 /* GKImageCropper.m */; settings = {ASSET_TAGS = (); }; };
+		84A9C8D81BC44E4600DED330 /* GKImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A9C8CB1BC44E4600DED330 /* GKImagePicker.m */; settings = {ASSET_TAGS = (); }; };
+		84A9C8D91BC44E4600DED330 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A9C8CE1BC44E4600DED330 /* UIImage+Alpha.m */; settings = {ASSET_TAGS = (); }; };
+		84A9C8DA1BC44E4600DED330 /* UIImage+FixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A9C8D01BC44E4600DED330 /* UIImage+FixOrientation.m */; settings = {ASSET_TAGS = (); }; };
+		84A9C8DB1BC44E4600DED330 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A9C8D21BC44E4600DED330 /* UIImage+Resize.m */; settings = {ASSET_TAGS = (); }; };
+		84A9C8DC1BC44E4600DED330 /* UIImage+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A9C8D41BC44E4600DED330 /* UIImage+Rotate.m */; settings = {ASSET_TAGS = (); }; };
+		84A9C8DD1BC44E4600DED330 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A9C8D61BC44E4600DED330 /* UIImage+RoundedCorner.m */; settings = {ASSET_TAGS = (); }; };
 		930F3E161B88D7EE002090E7 /* SelectSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 930F3E151B88D7EE002090E7 /* SelectSettings.m */; };
 		930F930C1BB98A0C0070974E /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 930F93091BB98A0C0070974E /* GoogleOpenSource.framework */; settings = {ASSET_TAGS = (); }; };
 		930F930E1BB98A0C0070974E /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 930F930B1BB98A0C0070974E /* GooglePlus.framework */; settings = {ASSET_TAGS = (); }; };
@@ -254,6 +261,20 @@
 		846060B51BB99BBA007CC2B8 /* IncidentSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncidentSearch.h; sourceTree = "<group>"; };
 		846060B61BB99BBA007CC2B8 /* IncidentSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncidentSearch.m; sourceTree = "<group>"; };
 		8489C3C51BA9EFAD005242DB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		84A9C8C81BC44E4600DED330 /* GKImageCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKImageCropper.h; sourceTree = "<group>"; };
+		84A9C8C91BC44E4600DED330 /* GKImageCropper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKImageCropper.m; sourceTree = "<group>"; };
+		84A9C8CA1BC44E4600DED330 /* GKImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKImagePicker.h; sourceTree = "<group>"; };
+		84A9C8CB1BC44E4600DED330 /* GKImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKImagePicker.m; sourceTree = "<group>"; };
+		84A9C8CD1BC44E4600DED330 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
+		84A9C8CE1BC44E4600DED330 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
+		84A9C8CF1BC44E4600DED330 /* UIImage+FixOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FixOrientation.h"; sourceTree = "<group>"; };
+		84A9C8D01BC44E4600DED330 /* UIImage+FixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FixOrientation.m"; sourceTree = "<group>"; };
+		84A9C8D11BC44E4600DED330 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		84A9C8D21BC44E4600DED330 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		84A9C8D31BC44E4600DED330 /* UIImage+Rotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Rotate.h"; sourceTree = "<group>"; };
+		84A9C8D41BC44E4600DED330 /* UIImage+Rotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Rotate.m"; sourceTree = "<group>"; };
+		84A9C8D51BC44E4600DED330 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
+		84A9C8D61BC44E4600DED330 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		930F3E141B88D7EE002090E7 /* SelectSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectSettings.h; sourceTree = "<group>"; };
 		930F3E151B88D7EE002090E7 /* SelectSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectSettings.m; sourceTree = "<group>"; };
 		930F93091BB98A0C0070974E /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleOpenSource.framework; sourceTree = "<group>"; };
@@ -428,12 +449,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				931881011BA75D9900A904D9 /* AssetsLibrary.framework in Frameworks */,
 				8489C3C61BA9EFAD005242DB /* Foundation.framework in Frameworks */,
 				931881071BA75DCA00A904D9 /* UIKit.framework in Frameworks */,
 				930F930C1BB98A0C0070974E /* GoogleOpenSource.framework in Frameworks */,
 				80FB8FC31B3AA04400789914 /* SystemConfiguration.framework in Frameworks */,
 				931881001BA75D9900A904D9 /* AddressBook.framework in Frameworks */,
-				931881011BA75D9900A904D9 /* AssetsLibrary.framework in Frameworks */,
 				931881021BA75D9900A904D9 /* CoreGraphics.framework in Frameworks */,
 				931881031BA75D9900A904D9 /* CoreLocation.framework in Frameworks */,
 				931881041BA75D9900A904D9 /* CoreMotion.framework in Frameworks */,
@@ -622,6 +643,35 @@
 			path = MarqueeLabel;
 			sourceTree = "<group>";
 		};
+		84A9C8C71BC44E4600DED330 /* GKImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				84A9C8C81BC44E4600DED330 /* GKImageCropper.h */,
+				84A9C8C91BC44E4600DED330 /* GKImageCropper.m */,
+				84A9C8CA1BC44E4600DED330 /* GKImagePicker.h */,
+				84A9C8CB1BC44E4600DED330 /* GKImagePicker.m */,
+				84A9C8CC1BC44E4600DED330 /* UIImage+ */,
+			);
+			path = GKImagePicker;
+			sourceTree = "<group>";
+		};
+		84A9C8CC1BC44E4600DED330 /* UIImage+ */ = {
+			isa = PBXGroup;
+			children = (
+				84A9C8CD1BC44E4600DED330 /* UIImage+Alpha.h */,
+				84A9C8CE1BC44E4600DED330 /* UIImage+Alpha.m */,
+				84A9C8CF1BC44E4600DED330 /* UIImage+FixOrientation.h */,
+				84A9C8D01BC44E4600DED330 /* UIImage+FixOrientation.m */,
+				84A9C8D11BC44E4600DED330 /* UIImage+Resize.h */,
+				84A9C8D21BC44E4600DED330 /* UIImage+Resize.m */,
+				84A9C8D31BC44E4600DED330 /* UIImage+Rotate.h */,
+				84A9C8D41BC44E4600DED330 /* UIImage+Rotate.m */,
+				84A9C8D51BC44E4600DED330 /* UIImage+RoundedCorner.h */,
+				84A9C8D61BC44E4600DED330 /* UIImage+RoundedCorner.m */,
+			);
+			path = "UIImage+";
+			sourceTree = "<group>";
+		};
 		931A32871B807B5000939D90 /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -766,6 +816,7 @@
 		9E0BB3BE1B23A0AA002D4C9B /* Zonin */ = {
 			isa = PBXGroup;
 			children = (
+				84A9C8C71BC44E4600DED330 /* GKImagePicker */,
 				842AEC161BAD8638005328EC /* MarqueeLabel */,
 				938956AE1B89C8F500392711 /* Movie */,
 				931A32C51B807D9600939D90 /* ZoninAPI */,
@@ -1039,11 +1090,13 @@
 				8439DB4D1BBB4D9D00E9151C /* KeyboardToolbar.m in Sources */,
 				931A32BC1B807B5000939D90 /* AFURLSessionManager.m in Sources */,
 				931A32B81B807B5000939D90 /* AFSecurityPolicy.m in Sources */,
+				84A9C8DB1BC44E4600DED330 /* UIImage+Resize.m in Sources */,
 				80D3CB971B4E6FF3007DBA41 /* Crime.m in Sources */,
 				80C322DF1B52614A00798522 /* OfficerReviews.m in Sources */,
 				931A32D11B80A98200939D90 /* Settings.m in Sources */,
 				9E0BB3C51B23A0AA002D4C9B /* AppDelegate.m in Sources */,
 				938A6BA21B7F0E8200FE810B /* rootViewViewController.m in Sources */,
+				84A9C8D91BC44E4600DED330 /* UIImage+Alpha.m in Sources */,
 				80C860971B4523190054321E /* FeedBackView.m in Sources */,
 				802F0F771B3291000020B927 /* AddReviews.m in Sources */,
 				9E0BB3C81B23A0AA002D4C9B /* MasterViewController.m in Sources */,
@@ -1066,6 +1119,7 @@
 				93CA2CCE1B998E40009DE64B /* SendFeedbackController.m in Sources */,
 				80EF26671B3FECFB00D7F876 /* SearchVC.m in Sources */,
 				9E0BB3CB1B23A0AA002D4C9B /* DetailViewController.m in Sources */,
+				84A9C8DD1BC44E4600DED330 /* UIImage+RoundedCorner.m in Sources */,
 				931A32C21B807B5000939D90 /* UIProgressView+AFNetworking.m in Sources */,
 				80169BC01B2EC41700405A84 /* HotNewsViewController.m in Sources */,
 				93D574901B9ADB8400B2BFAC /* ForumDetailViewController.m in Sources */,
@@ -1081,10 +1135,12 @@
 				931A32C41B807B5000939D90 /* UIWebView+AFNetworking.m in Sources */,
 				93C100091B9C809400C5A5F5 /* AdViewObject.m in Sources */,
 				93D3B4D71B96410000398489 /* ContactSupportController.m in Sources */,
+				84A9C8D81BC44E4600DED330 /* GKImagePicker.m in Sources */,
 				802A91991B30263100025447 /* SearchView.m in Sources */,
 				9364018E1B94D3A100EF8CBF /* AboutSupportController.m in Sources */,
 				80F942E11B3C0DD900EF1AD1 /* ForgotPassVC.m in Sources */,
 				931A32BE1B807B5000939D90 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
+				84A9C8D71BC44E4600DED330 /* GKImageCropper.m in Sources */,
 				931A32B91B807B5000939D90 /* AFURLConnectionOperation.m in Sources */,
 				938A6BAB1B7F0EA000FE810B /* RESideMenu.m in Sources */,
 				80F942DE1B3BDB6A00EF1AD1 /* LoginViewController.m in Sources */,
@@ -1104,6 +1160,8 @@
 				931A32B51B807B5000939D90 /* AFHTTPRequestOperationManager.m in Sources */,
 				938A6BAC1B7F0EA000FE810B /* UIViewController+RESideMenu.m in Sources */,
 				93FDAA731BA33E3E00EE3CC3 /* ChangePassword.m in Sources */,
+				84A9C8DA1BC44E4600DED330 /* UIImage+FixOrientation.m in Sources */,
+				84A9C8DC1BC44E4600DED330 /* UIImage+Rotate.m in Sources */,
 				93F684691B9B51A2009DD9FB /* OfficerLoginView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
