@@ -154,6 +154,13 @@ static NSInteger kKeyboardTintViewTag = 1234;
 }
 
 
+- (IBAction)headerClicked:(id)sender {
+    
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"home"]]
+                                                 animated:YES];
+    
+}
+
 - (void)textResignFirstResponder{
 //    [[NSNotificationCenter defaultCenter] postNotificationName:UIKeyboardWillHideNotification object:nil];
     if (tintView != nil) {

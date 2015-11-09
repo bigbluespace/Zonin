@@ -40,6 +40,13 @@
     [self.navigationController pushViewController:reviewlist animated:YES];
     
 }
+
+- (IBAction)headerClicked:(id)sender {
+    
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"home"]]
+                                                 animated:YES];
+    
+}
 //------------------------------------
 - (IBAction)viewReviews:(id)sender {
     NSLog(@"view review ....");

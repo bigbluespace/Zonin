@@ -149,6 +149,13 @@
         [alert show];
     }
 }
+
+- (IBAction)headerClicked:(id)sender {
+    
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"home"]]
+                                                 animated:YES];
+    
+}
 #pragma mark - Save Data To Server
 -(void)saveDataToServer{
     NSDictionary *dict = @{

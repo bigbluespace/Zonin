@@ -258,7 +258,12 @@
     [myPickerView selectRow:index inComponent:0 animated:YES];
 }
 
-
+- (IBAction)headerClicked:(id)sender {
+    
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"home"]]
+                                                 animated:YES];
+    
+}
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;

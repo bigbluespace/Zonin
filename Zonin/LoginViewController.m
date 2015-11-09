@@ -559,6 +559,14 @@ static NSString * const kClientId = @"377172623921-pt41gensge64e34u6389os3na5p9u
 - (IBAction)forgotPssTouch:(id)sender {
 }
 
+
+- (IBAction)headerClicked:(id)sender {
+    
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"home"]]
+                                                 animated:YES];
+    
+}
+
 //------------------------------
 - (IBAction)loginwithGoogle:(id)sender
 {

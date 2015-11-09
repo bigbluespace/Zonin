@@ -17,4 +17,5 @@
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property id object;
 @property BOOL isCrime;
+
 @end

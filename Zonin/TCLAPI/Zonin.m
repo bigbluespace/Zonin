@@ -132,9 +132,10 @@
             GET:url
             parameters:nil
             success:^(NSURLSessionDataTask * __unused task, id JSON) {
-                NSLog(@"get data  %@", JSON);
+                 NSDictionary*dataDic=[self parseJESONObjectFromData:JSON];
+                NSLog(@"get data  %@", dataDic);
                 if (block) {
-                    block(JSON, nil);
+                    block(dataDic, nil);
                 }
             }
             failure:^(NSURLSessionDataTask *__unused task, NSError *error) {

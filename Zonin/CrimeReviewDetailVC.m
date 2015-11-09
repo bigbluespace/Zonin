@@ -10,15 +10,25 @@
 #import "AppDelegate.h"
 #import "RESideMenu.h"
 #import "AdViewObject.h"
+#import "IncidentSearch.h"
 #define IPAD     UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
 @interface CrimeReviewDetailVC ()
 {
     NSArray* crimeSubjectContent;
     NSArray* reviewSubjectContent;
+    NSArray* reviewFeedbackArray;
     AppDelegate* myAppdelegate;
     ASStarRatingView* rating;
+    BOOL isAttachment;
 
 }
+@property (weak, nonatomic) IBOutlet UIView *feedbackView;
+@property (weak, nonatomic) IBOutlet UIView *upperView;
+@property (weak, nonatomic) IBOutlet UIView *lowerView;
+@property (weak, nonatomic) IBOutlet UIView *allReviewView;
+@property (weak, nonatomic) IBOutlet UITableView *reviewTable;
+
+
 
 @end
 
@@ -38,10 +48,28 @@
     self.detailTable.allowsSelection=NO;
     self.detailTable.dataSource=self;
     self.detailTable.delegate=self;
+    
+    UIView *footerView = self.detailTable.tableFooterView;
+    CGRect newFrame = footerView.frame;
+    if (self.isCrime) {
+        newFrame.size.height = IPAD ? 100 : 60;
+        _upperView.hidden = YES;
+        _lowerView.hidden = YES;
+    }
+    else{
+        newFrame.size.height = IPAD ? 200 : 120;
+        _feedbackView.hidden = YES;
+        reviewFeedbackArray = [self.object valueForKeyPath:@"review_feedback"];
+    }
+    
+    footerView.frame = newFrame;
+    [self.detailTable setTableFooterView:footerView];
     // Do any additional setup after loading the view.
     //content arry
-    crimeSubjectContent=[[NSArray alloc]initWithObjects:@"1. Crime Title",@"2. Crime Date",@"3. Crime Time ",@"4. Country",@"5. State",@"6. location ",@"7. Details",@"8. User Email",@"9. Reported Date",nil];
+    crimeSubjectContent=[[NSArray alloc]initWithObjects:@"1. Incident Title:",@"2. Incident Date:",@"3. Incident Time:",@"4. Country:",@"5. State/Province:",@"6. Location:",@"7. Details of Incident:",@"8. User Name:",@"9. Reported Date:",nil];
     reviewSubjectContent=[[NSArray alloc]initWithObjects:@"1. Review for",@"2. Agency",@"3. Rating Graph ",@"4. Country",@"5. State",@"6. User name ",@"7. Date submited",nil];
+    
+    
     
     AdViewObject *add = [AdViewObject sharedManager];
     [adView addSubview:add.adView];
@@ -52,6 +80,64 @@
     // Dispose of any resources that can be recreated.
 }
 //----------------
+
+- (IBAction)searchReview:(id)sender {
+    IncidentSearch *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"incidentSearch"];
+    vc.isIncident = NO;
+    [self.navigationController pushViewController:vc animated:YES];
+
+}
+- (IBAction)addReview:(id)sender {
+    
+    
+    if (myAppdelegate.logedUser.userID<=0)
+    {
+        [self TostAlertMsg:@"Login to add feedback"];
+        return;
+    }
+    
+    FeedBackView *feedview=[[FeedBackView alloc]init];
+    feedview.ratingViewContainer.hidden=FALSE;
+    NSArray*nibs=[[NSBundle mainBundle] loadNibNamed:@"feedback"
+                                               owner:self options:nil];
+    feedview=[nibs objectAtIndex:0];
+    [feedview setFrame:CGRectMake(0, 20,self.containerView.bounds.size.width, 150)];
+    rating=[[ASStarRatingView alloc]initWithFrame:feedview.ratingViewContainer.bounds];
+    rating.canEdit=YES;
+    [feedview.ratingViewContainer addSubview:rating];
+    //feedview.backgroundColor=[UIColor clearColor];
+    feedview.delegate=self;
+    
+    // feedview.center=self.NewsImage.center;
+    [self.containerView addSubview:feedview];
+    //code here for review feedback
+
+}
+- (IBAction)readAllReviews:(id)sender {
+    isAttachment = NO;
+    
+        [_reviewTable reloadData];
+    _allReviewView.hidden = NO;
+    
+    
+}
+- (IBAction)closeAllReview:(id)sender {
+    _allReviewView.hidden = YES;
+    
+    
+}
+- (IBAction)viewAttachments:(id)sender {
+    
+    //NSString *url = [NSString stringWithFormat:@"get_all_review_attachment/%@/emran4axiz", ];
+    isAttachment = YES;
+    [_reviewTable reloadData];
+     _allReviewView.hidden = NO;
+   
+    
+    
+}
+
+
 - (IBAction)ViewFeedback:(id)sender
 {
      FeedbackVC*fvc=[self.storyboard instantiateViewControllerWithIdentifier:@"feedbackvc"];
@@ -96,22 +182,7 @@
     }
     else
     {
-        FeedBackView *feedview=[[FeedBackView alloc]init];
-        feedview.ratingViewContainer.hidden=FALSE;
-        NSArray*nibs=[[NSBundle mainBundle] loadNibNamed:@"feedback"
-                                                   owner:self options:nil];
-        feedview=[nibs objectAtIndex:0];
-        [feedview setFrame:CGRectMake(0, 20,self.containerView.bounds.size.width, 150)];
-       rating=[[ASStarRatingView alloc]initWithFrame:feedview.ratingViewContainer.bounds];
-        rating.canEdit=YES;
-        [feedview.ratingViewContainer addSubview:rating];
-        //feedview.backgroundColor=[UIColor clearColor];
-        feedview.delegate=self;
-        
-        // feedview.center=self.NewsImage.center;
-        [self.containerView addSubview:feedview];
-        //code here for review feedback
-    }
+           }
  
 }
 
@@ -157,6 +228,8 @@
     else
     {
         NSLog(@"rating %f",rating.rating);
+        
+        
         OfficerReviews*temp=(OfficerReviews*)self.object;
         [temp addFeedback:Feedback andRating:rating.rating andUserID:myAppdelegate.logedUser.userID];
         //code here for review feedback
@@ -173,11 +246,17 @@
 {
     if (self.isCrime)
     {
-        return  crimeSubjectContent.count+1;
+        return  crimeSubjectContent.count;
     }
     else
     {
-        return reviewSubjectContent.count+1;
+        if (tableView.tag == 1000) {
+             return reviewSubjectContent.count;
+        }else{
+           
+            return reviewFeedbackArray.count;
+        }
+       
     }
 }
 
@@ -185,18 +264,16 @@
 {
     UITableViewCell* cell;
     
-    if (indexPath.row == 8) {
-        cell =[tableView dequeueReusableCellWithIdentifier:@"buttoncell"];
-        return cell;
-    }
+    if (tableView.tag == 1000) {
+        
     
     cell =[tableView dequeueReusableCellWithIdentifier:@"detailcell"];
     UILabel*lblright=(UILabel*)[cell viewWithTag:102];
     UILabel*lblleft=(UILabel*)[cell viewWithTag:103];
-    [lblleft setFrame:CGRectMake(5,0,cell.frame.size.width/2-5, cell.frame.size.height)];
+    //[lblleft setFrame:CGRectMake(5,0,cell.frame.size.width/2-5, cell.frame.size.height)];
     [lblleft setNeedsLayout];
     [lblleft setNeedsDisplay];
-    cell.backgroundColor = [UIColor clearColor];
+   
     @try
     {
    
@@ -248,38 +325,44 @@
     else
     {
     
-            OfficerReviews* temp=(OfficerReviews*)self.object;
+         //   OfficerReviews* temp=(OfficerReviews*)self.object;
             lblleft.text=[reviewSubjectContent objectAtIndex:indexPath.row];
-            NSLog(@"table subject cell :%d,%@",indexPath.row,temp.review_date);
-        lblright.text = @"date";
+           // NSLog(@"table subject cell :%d,%@",indexPath.row,temp.review_date);
+       // lblright.text = @"date";
             if (indexPath.row==0)
             {
-                lblright.text = temp.review_for;
+                lblright.text = [self.object valueForKeyPath:@"review.review_for"];
             }
             if (indexPath.row==1)
             {
-                lblright.text = temp.agency;
+                lblright.text = [self.object valueForKeyPath:@"review.agency"];
             }
             if (indexPath.row==2)
             {
-                lblright.text = temp.review_details;
+                cell =[tableView dequeueReusableCellWithIdentifier:@"graphCell"];
+                
+                UILabel*lblleft=(UILabel*)[cell viewWithTag:104];
+                lblleft.text=[reviewSubjectContent objectAtIndex:indexPath.row];
+                
+                UIImageView *graphImage = (UIImageView*)[cell viewWithTag:105];
+                [graphImage setImageWithURL:[NSURL URLWithString:[self.object valueForKeyPath:@"review.rating_graph"]] placeholderImage:[UIImage imageNamed:@""]];
             }
             if (indexPath.row==3)
             {
-                lblright.text = [NSString stringWithFormat:@" %@",temp.country_name];
+                lblright.text = [NSString stringWithFormat:@" %@",[self.object valueForKeyPath:@"review.country_name"]];
             }
             if (indexPath.row==4)
             {
-                lblright.text = [NSString stringWithFormat:@" %@",temp.state_name];
+                lblright.text = [NSString stringWithFormat:@" %@",[self.object valueForKeyPath:@"review.state_name"]];
             }
             if (indexPath.row==5)
             {
-                lblright.text = [NSString stringWithFormat:@" %@ %@",temp.f_name,temp.l_name];
+                lblright.text = [NSString stringWithFormat:@" %@ %@",[self.object valueForKeyPath:@"review.f_name"],[self.object valueForKeyPath:@"review.l_name"]];
             }
             if (indexPath.row==6)
             {
                 
-                lblright.text = [NSString stringWithFormat:@" %@",temp.review_date];
+                lblright.text = [NSString stringWithFormat:@" %@",[self.object valueForKeyPath:@"review.review_date"]];
             }
        
     }
@@ -292,9 +375,48 @@
     {
         //
     }
+    }else{
+        
+        if (isAttachment) {
+            cell =[tableView dequeueReusableCellWithIdentifier:@"picCell"];
+            
+            UIImageView *picCell = (UIImageView*)[cell viewWithTag:2004];
+            
+            
+            NSString *filePath = [NSString stringWithFormat:@"http://zoninapp.com/admin/upload/review_files/%@", [reviewFeedbackArray[indexPath.row] valueForKeyPath:@"review_feedback_files"]];
+            
+            [picCell setImageWithURL:[NSURL URLWithString:filePath] placeholderImage:[UIImage imageNamed:@"loading.png"]];
+            
+            
+        }else{
+        
+        
+        
+        cell =[tableView dequeueReusableCellWithIdentifier:@"reviewCell"];
+        
+        UILabel *userNameLabel = (UILabel*)[cell viewWithTag:2001];
+        UILabel *reviewLabel = (UILabel*)[cell viewWithTag:2002];
+        UILabel *dateLabel = (UILabel*)[cell viewWithTag:2003];
+        
+        userNameLabel.text = [NSString stringWithFormat:@"User NAme: %@ %@",[reviewFeedbackArray[indexPath.row] valueForKeyPath:@"f_name"], [reviewFeedbackArray[indexPath.row] valueForKeyPath:@"l_name"]];
+        
+        reviewLabel.text = [NSString stringWithFormat:@"Review: %@ (%@)",[reviewFeedbackArray[indexPath.row] valueForKeyPath:@"review_feedback_desc"], [reviewFeedbackArray[indexPath.row] valueForKeyPath:@"review_rating"]];
+        
+        dateLabel.text = [NSString stringWithFormat:@"Date Submitted: %@",[reviewFeedbackArray[indexPath.row] valueForKeyPath:@"review_feedback_date"]];
+        }
+        
+    }
+     cell.backgroundColor = [UIColor clearColor];
     return cell ;
 }
 //
+- (IBAction)headerClicked:(id)sender {
+    
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"home"]]
+                                                 animated:YES];
+    
+}
+
 -(NSString*)MakeFromNullString:(NSString*)input
 {
     if (!input)
@@ -306,53 +428,66 @@
 //-----------------------
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    
-    if(indexPath.row == 8){
-        return 200;
-    }
     
     UILabel  * label = [[UILabel alloc] initWithFrame:CGRectMake(8, 0,300, 9999)];
     label.numberOfLines=0;
     label.font = [UIFont fontWithName:@"system" size:14];
+    label.text = @"one line for any others";
+
     if (!self.isCrime)
     {
+        if (tableView.tag == 2000) {
+            if (isAttachment) {
+                return IPAD? 600 : 400;
+            }
+            return IPAD? 150 : 100;
+        }
 
    // OfficerReviews*temp=[self.tableItems objectAtIndex:indexPath.row];
-        OfficerReviews*temp=(OfficerReviews*)self.object;
+        //OfficerReviews*temp=(OfficerReviews*)self.object;
         if (indexPath.row==0)
         {
-            label.text = temp.review_for;
-        }
+            if (![[self.object valueForKeyPath:@"review.review_for"] isEqualToString:@""]) {
+            label.text = [self.object valueForKeyPath:@"review.review_for"];
+            }}
         if (indexPath.row==2)
         {
-            label.text = temp.review_details;
+            return IPAD? 150 : 100;
+           // label.text = temp.review_details;
         }
-        else
-        {
-            label.text = @"one line for any others";
-        }
+        
     }
     if (self.isCrime)
     {
 
         Crime*temp=(Crime*)self.object;
+        
+        
         if (indexPath.row==0)
         {
-            label.text = temp.crime_title;
+            NSLog(@"expected title: %@", temp.crime_title);
+            if (![temp.crime_title isEqualToString:@""]) {
+                
+                label.text = temp.crime_title;
+
+            }
+
         }
         if (indexPath.row==6)
         {
-            label.text = temp.crime_desc;
-        }
-        else
-        {
-       label.text = @"one line for any others";
+            NSLog(@"expected location : %@", temp.crime_desc);
+            if (![temp.crime_desc isEqualToString:@""]) {
+                
+                label.text = temp.crime_desc;
+            }
+
+            
         }
     }
 
     CGSize maximumLabelSize = CGSizeMake(300, 9999);
     CGSize expectedSize = [label sizeThatFits:maximumLabelSize];
+    NSLog(@"expected height: %f", expectedSize.height);
     return expectedSize.height+20;
 
 }

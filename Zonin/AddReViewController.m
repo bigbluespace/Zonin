@@ -632,6 +632,13 @@
     [actionSheet showInView:self.view];
     
 }
+
+- (IBAction)headerClicked:(id)sender {
+    
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"home"]]
+                                                 animated:YES];
+    
+}
 - (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex {
     
     if (buttonIndex == 0) {
@@ -640,9 +647,9 @@
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Simulator" message:@"Camera not available." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
 #elif TARGET_OS_IPHONE
-        if (selectedImagePicker) {
-            [selectedImagePicker dismissViewControllerAnimated:NO completion:nil];
-        }
+//        if (selectedImagePicker) {
+//            [selectedImagePicker dismissViewControllerAnimated:NO completion:nil];
+//        }
         UIImagePickerController *cameraImagePicker = [[UIImagePickerController alloc] init];
         cameraImagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
         cameraImagePicker.delegate = self;

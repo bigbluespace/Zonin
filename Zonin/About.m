@@ -43,6 +43,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)headerClicked:(id)sender {
+    
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"home"]]
+                                                 animated:YES];
+    
+}
+
 - (IBAction)menuBtn:(id)sender {
     [self.sideMenuViewController presentLeftMenuViewController];
 }

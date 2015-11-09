@@ -12,6 +12,9 @@
 #import "IncidentSearch.h"
 #import "AddReViewController.h"
 #import "AddCrimeViewController.h"
+#import "MBProgressHUD.h"
+#import "Zonin.h"
+
 #define IPAD     UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
 @interface ReportReviewVC ()
 
@@ -156,6 +159,13 @@
     
     return cell;
 }
+- (IBAction)headerClicked:(id)sender {
+    
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"home"]]
+                                                 animated:YES];
+    
+}
+
 //----------------------------
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -163,19 +173,52 @@
     vc.isCrime=self.isCrimeReport;
     if (self.isCrimeReport)
     {
-   Crime*temp=[self.tableItems objectAtIndex:indexPath.row];
-    NSLog(@"crime id is %d",temp.crime_id);
-    vc.object=temp;
+        
+        //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        Crime*temp=[self.tableItems objectAtIndex:indexPath.row];
+       // NSString *url = [NSString stringWithFormat:@"get_all_in_crime/%d/emran4axiz", temp.crime_id];
+        //[Zonin commonGet:url block:^(NSDictionary *JSON, NSError *error) {
+        //    NSLog(@"JSON  %@", JSON);
+            
+            //URLs.detailcrime + "/" + crime_id + "/" + Utils.MACHINE_CODE
+            
+            NSLog(@"crime id is %@",temp);
+            vc.object=temp;
+         [self.navigationController pushViewController:vc animated:YES];
+       // }];
+        
+        
     }
     else
     {
-            OfficerReviews*temp=[self.tableItems objectAtIndex:indexPath.row];
+        //
+        
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+         OfficerReviews*temp=[self.tableItems objectAtIndex:indexPath.row];
+        
+         NSString *url = [NSString stringWithFormat:@"get_all_in_review/%d/emran4axiz", temp.review_id];
+        
+        [Zonin commonGet:url block:^(NSDictionary *JSON, NSError *error) {
+            NSLog(@"JSON  %@", JSON);
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        //URLs.detailcrime + "/" + crime_id + "/" + Utils.MACHINE_CODE
             NSLog(@"crime id is %d",temp.review_id);
-            vc.object=temp;
+            vc.object=[JSON valueForKey:@"status"];
+             [self.navigationController pushViewController:vc animated:YES];
+       
+         }];
+        
+        
+        
+        
+       
+        
     }
-   // [temp getFeedback];
+   
     
-    [self.navigationController pushViewController:vc animated:YES];
+   
 }
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

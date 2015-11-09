@@ -221,6 +221,13 @@
     
     [UIView commitAnimations];
 }
+
+- (IBAction)headerClicked:(id)sender {
+    
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"home"]]
+                                                 animated:YES];
+    
+}
 /*
 #pragma mark - Navigation
 

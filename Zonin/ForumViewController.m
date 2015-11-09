@@ -367,6 +367,11 @@
     // Pass the selected object to the new view controller.
     ((ForumDetailViewController*)segue.destinationViewController).forumData = selected_data;
 }
-
+- (IBAction)headerClicked:(id)sender {
+    
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"home"]]
+                                                 animated:YES];
+    
+}
 
 @end
