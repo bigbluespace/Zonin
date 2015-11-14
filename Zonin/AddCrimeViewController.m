@@ -810,9 +810,22 @@
 
 
 - (IBAction)recordButtonClick:(UIButton*)sender {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notice" message:@"This feature is coming soon." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    
+#if TARGET_IPHONE_SIMULATOR
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Simulator" message:@"Camera not available." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
     
+#elif TARGET_OS_IPHONE
+  
+    UIImagePickerController *cameraImagePicker = [[UIImagePickerController alloc] init];
+    cameraImagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    cameraImagePicker.delegate = self;
+    cameraImagePicker.allowsEditing = NO;
+    cameraImagePicker.mediaTypes = [[NSArray alloc] initWithObjects:(NSString *)kUTTypeMovie,nil];
+    
+    [self presentViewController:cameraImagePicker animated:YES completion:nil];
+    
+#endif
 }
 
 - (IBAction)submit:(UIButton*)sender {
