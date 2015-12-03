@@ -5563,7 +5563,7 @@ ZONIN does not allow individuals under 13 years of age to use its services.  ZON
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nQX-OF-cWu">
-                                                    <rect key="frame" x="100" y="10" width="470" height="30"/>
+                                                    <rect key="frame" x="100" y="10" width="435" height="30"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -5579,8 +5579,20 @@ ZONIN does not allow individuals under 13 years of age to use its services.  ZON
                                                         <constraint firstAttribute="width" secondItem="XaG-nm-rEz" secondAttribute="height" multiplier="1:1" id="hGA-kW-oea"/>
                                                     </constraints>
                                                 </imageView>
+                                                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="reV-Xw-ScW">
+                                                    <rect key="frame" x="545" y="24" width="35" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="2xZ-ei-ZDX">
+                                                            <variation key="widthClass=compact" constant="40"/>
+                                                        </constraint>
+                                                        <constraint firstAttribute="width" constant="35" id="oJY-Tn-A82">
+                                                            <variation key="widthClass=compact" constant="28"/>
+                                                        </constraint>
+                                                    </constraints>
+                                                    <state key="normal" image="White_flag_icon"/>
+                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ciV-U1-BOO">
-                                                    <rect key="frame" x="100" y="45" width="450" height="22"/>
+                                                    <rect key="frame" x="100" y="45" width="435" height="22"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -5593,15 +5605,17 @@ ZONIN does not allow individuals under 13 years of age to use its services.  ZON
                                             <animations/>
                                             <constraints>
                                                 <constraint firstItem="XaG-nm-rEz" firstAttribute="top" secondItem="zVB-ax-4Rf" secondAttribute="top" constant="7" id="3dG-90-MtR"/>
-                                                <constraint firstAttribute="trailing" secondItem="nQX-OF-cWu" secondAttribute="trailing" constant="30" id="9jc-E9-vwT"/>
+                                                <constraint firstAttribute="trailing" secondItem="reV-Xw-ScW" secondAttribute="trailing" constant="20" id="6Oq-EQ-0HC"/>
+                                                <constraint firstItem="reV-Xw-ScW" firstAttribute="leading" secondItem="ciV-U1-BOO" secondAttribute="trailing" constant="10" id="9F3-Mp-Zm9"/>
                                                 <constraint firstAttribute="centerY" secondItem="XaG-nm-rEz" secondAttribute="centerY" id="IlA-Sf-6xo"/>
                                                 <constraint firstItem="ciV-U1-BOO" firstAttribute="top" secondItem="nQX-OF-cWu" secondAttribute="bottom" constant="5" id="KPL-uK-2G7"/>
                                                 <constraint firstItem="XaG-nm-rEz" firstAttribute="leading" secondItem="zVB-ax-4Rf" secondAttribute="leading" constant="8" id="OmJ-qs-haz"/>
+                                                <constraint firstItem="reV-Xw-ScW" firstAttribute="leading" secondItem="nQX-OF-cWu" secondAttribute="trailing" constant="10" id="ReF-9w-hYl"/>
                                                 <constraint firstItem="ciV-U1-BOO" firstAttribute="leading" secondItem="XaG-nm-rEz" secondAttribute="trailing" constant="8" id="Rfd-2e-bs9"/>
                                                 <constraint firstAttribute="bottom" secondItem="XaG-nm-rEz" secondAttribute="bottom" constant="6" id="S3D-dw-LLR"/>
                                                 <constraint firstItem="XaG-nm-rEz" firstAttribute="leading" secondItem="zVB-ax-4Rf" secondAttribute="leading" constant="8" id="Xq7-r1-TNv"/>
+                                                <constraint firstItem="reV-Xw-ScW" firstAttribute="centerY" secondItem="zVB-ax-4Rf" secondAttribute="centerY" id="jRM-pp-Hm6"/>
                                                 <constraint firstItem="nQX-OF-cWu" firstAttribute="leading" secondItem="XaG-nm-rEz" secondAttribute="trailing" constant="8" id="nPB-3o-V1z"/>
-                                                <constraint firstAttribute="trailing" secondItem="ciV-U1-BOO" secondAttribute="trailing" constant="50" id="q4y-ic-WTx"/>
                                                 <constraint firstItem="nQX-OF-cWu" firstAttribute="top" secondItem="zVB-ax-4Rf" secondAttribute="top" constant="10" id="wtL-FD-M8F"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -5616,7 +5630,7 @@ ZONIN does not allow individuals under 13 years of age to use its services.  ZON
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rfu-2g-3Ix">
-                                                    <rect key="frame" x="10" y="6" width="570" height="30"/>
+                                                    <rect key="frame" x="10" y="6" width="525" height="30"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -5625,8 +5639,20 @@ ZONIN does not allow individuals under 13 years of age to use its services.  ZON
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     </variation>
                                                 </label>
+                                                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FLs-za-hfK">
+                                                    <rect key="frame" x="545" y="24" width="35" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="jWB-g8-G52">
+                                                            <variation key="widthClass=compact" constant="40"/>
+                                                        </constraint>
+                                                        <constraint firstAttribute="width" constant="35" id="yd4-Nc-r4n">
+                                                            <variation key="widthClass=compact" constant="28"/>
+                                                        </constraint>
+                                                    </constraints>
+                                                    <state key="normal" image="White_flag_icon"/>
+                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scZ-4u-aY4">
-                                                    <rect key="frame" x="10" y="42" width="580" height="22"/>
+                                                    <rect key="frame" x="10" y="42" width="525" height="22"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -5638,12 +5664,14 @@ ZONIN does not allow individuals under 13 years of age to use its services.  ZON
                                             </subviews>
                                             <animations/>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="Rfu-2g-3Ix" secondAttribute="trailing" constant="20" id="Ato-qk-V3B"/>
+                                                <constraint firstAttribute="trailing" secondItem="FLs-za-hfK" secondAttribute="trailing" constant="20" id="3lk-kG-JZv"/>
                                                 <constraint firstItem="Rfu-2g-3Ix" firstAttribute="top" secondItem="4lw-7x-eMA" secondAttribute="top" constant="6" id="Q8h-PG-0oJ"/>
+                                                <constraint firstItem="FLs-za-hfK" firstAttribute="leading" secondItem="Rfu-2g-3Ix" secondAttribute="trailing" constant="10" id="XuW-lH-5Xh"/>
+                                                <constraint firstItem="FLs-za-hfK" firstAttribute="centerY" secondItem="4lw-7x-eMA" secondAttribute="centerY" id="aVI-q7-Cqq"/>
                                                 <constraint firstItem="scZ-4u-aY4" firstAttribute="leading" secondItem="4lw-7x-eMA" secondAttribute="leading" constant="10" id="bgu-uc-19n"/>
                                                 <constraint firstItem="scZ-4u-aY4" firstAttribute="top" secondItem="Rfu-2g-3Ix" secondAttribute="bottom" constant="6" id="e7E-a9-Zj9"/>
                                                 <constraint firstItem="Rfu-2g-3Ix" firstAttribute="leading" secondItem="4lw-7x-eMA" secondAttribute="leading" constant="10" id="sUM-Uv-UKV"/>
-                                                <constraint firstAttribute="trailing" secondItem="scZ-4u-aY4" secondAttribute="trailing" constant="10" id="xtb-A5-o6y"/>
+                                                <constraint firstItem="FLs-za-hfK" firstAttribute="leading" secondItem="scZ-4u-aY4" secondAttribute="trailing" constant="10" id="wCS-ld-W5v"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
@@ -7727,6 +7755,7 @@ ZONIN does not allow individuals under 13 years of age to use its services.  ZON
         </scene>
     </scenes>
     <resources>
+        <image name="White_flag_icon" width="35" height="50"/>
         <image name="about" width="130" height="91"/>
         <image name="background" width="320" height="480"/>
         <image name="background.png" width="720" height="834"/>

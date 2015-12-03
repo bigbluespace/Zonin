@@ -16,7 +16,9 @@
 #import "Zonin.h"
 
 #define IPAD     UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
-@interface ReportReviewVC ()
+@interface ReportReviewVC (){
+    NSInteger rowIndex;
+}
 
 @property (weak, nonatomic) IBOutlet UIButton *leftLowerBtn;
 @property (weak, nonatomic) IBOutlet UIButton *rightLowerBtn;
@@ -127,7 +129,8 @@
     cell.backgroundColor = [UIColor clearColor];
     if (self.isCrimeReport)
     {
-        //for review
+         // for crime
+       
         cell =[tableView dequeueReusableCellWithIdentifier:@"incidentCell"];
         
         UILabel *cellLbl = (UILabel *)[cell viewWithTag:2];
@@ -139,10 +142,13 @@
         //cellLbl2nd.text=[NSString stringWithFormat:@"%@,%@",temp.country_name,temp.state_name];
         cellLbl.text = [[self.tableItems objectAtIndex:indexPath.row] valueForKeyPath:@"crime_title"];
         cellLbl2nd.text=[NSString stringWithFormat:@"%@ - %@",[[self.tableItems objectAtIndex:indexPath.row] valueForKeyPath:@"country_name"],[[self.tableItems objectAtIndex:indexPath.row] valueForKeyPath:@"state_name"]];
+        
+        UIButton *flagButton = (UIButton*)[cell viewWithTag:4];
+        [flagButton addTarget:self action:@selector(flagCrimeButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
     else
     {
-        // for crime
+        //for review
         cell =[tableView dequeueReusableCellWithIdentifier:@"reviewCell"];
         
         UILabel *cellLbl = (UILabel *)[cell viewWithTag:2];
@@ -153,6 +159,8 @@
 
         cellLbl.text = temp.officer_name;
         cellLbl2nd.text=[NSString stringWithFormat:@"%@ - %@",temp.country_name,temp.state_name];
+        UIButton *flagButton = (UIButton*)[cell viewWithTag:4];
+        [flagButton addTarget:self action:@selector(flagReviewButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 
     }
     cell.backgroundColor=[UIColor clearColor];
@@ -163,6 +171,38 @@
     
     [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"home"]]
                                                  animated:YES];
+    
+}
+
+- (IBAction)flagCrimeButtonClicked:(id)sender {
+    
+    
+    UITableViewCell *cell = (UITableViewCell*)[[sender superview] superview];
+    UIButton *flagButton = (UIButton*)[cell viewWithTag:4];
+    [flagButton setImage:[UIImage imageNamed:@"Red_flag_icon"] forState:normal];
+    
+    NSIndexPath *indexPath = [self.reportTable indexPathForCell:cell];
+    rowIndex = indexPath.row;
+    
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Flag Crime!" message:@"Do you really think this crime report is abusive? After saying YES you can not unflag this." delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil];
+    alert.tag = 100;
+    [alert show];
+    
+}
+- (IBAction)flagReviewButtonClicked:(id)sender {
+    
+    UITableViewCell *cell = (UITableViewCell*)[[sender superview] superview];
+    
+    UIButton *flagButton = (UIButton*)[cell viewWithTag:4];
+    [flagButton setImage:[UIImage imageNamed:@"Red_flag_icon"] forState:normal];
+    
+    NSIndexPath *indexPath = [self.reportTable indexPathForCell:cell];
+    rowIndex = indexPath.row;
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Flag Review!" message:@"Do you really think this Review is abusive? After saying YES you can not unflag this." delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil];
+    alert.tag = 100;
+    [alert show];
     
 }
 
