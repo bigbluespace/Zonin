@@ -57,6 +57,8 @@
     _searchnewsBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     _viewFeedbackBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     _addFeedbackBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+        _previousBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+        _nextBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     
     _addFeedbackView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.4];
     user_id = [[Zonin readData:@"user_id"] valueForKey:@"user_id"];
@@ -423,8 +425,12 @@
 }
 
 - (IBAction)feedAddBtn:(id)sender {
+    NSLog(@"%@",_feedDescription.text);
     
-    if ([_feedDescription.text isEqualToString:@""] || _feedDescription.text.length > 0 || [_feedDescription.text isEqualToString:@" "]) {
+    NSString *trimmedString = [_feedDescription.text stringByTrimmingCharactersInSet:
+                               [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    if ([trimmedString isEqualToString:@""] || [trimmedString isEqualToString:@"Enter Feedback*"]) {
         [self TostAlertMsg:@"Please enter feedback first"];
         return;
     }
@@ -436,13 +442,13 @@
 
 -(void)TouchOnAddfeedBack:(NSString *)Feedback
 {
-    NSLog(@"user id,%d and news id %d",myAppdelegate.logedUser.userID,self.currentHotNews.hot_news_id);
+    NSLog(@"user id,%@ and news id %d",user_id,self.currentHotNews.hot_news_id);
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     __block NSString* alertmgs;
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
-    NSDictionary *parameters = @{@"user_id":[NSString stringWithFormat:@"%d", myAppdelegate.logedUser.userID],
+    NSDictionary *parameters = @{@"user_id":user_id,
                                  @"news_id":[NSString stringWithFormat:@"%d", self.currentHotNews.hot_news_id],
                                  key_news_feedback: Feedback,
                                  @"MACHINE_CODE": MACHINE_CODE
@@ -585,7 +591,7 @@
                                           otherButtonTitles:nil, nil];
     [toast show];
     
-    int duration = 1; // duration in seconds
+    int duration = 2; // duration in seconds
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         [toast dismissWithClickedButtonIndex:0 animated:YES];

@@ -667,6 +667,10 @@
     detailTextView.keyboardAppearance = UIKeyboardAppearanceDark;
     
     anonymousSwitch = (UISwitch*)[cell viewWithTag:9];
+    
+    [anonymousSwitch setOnImage: [UIImage imageNamed:@"UISwitch-Yes"]];
+    [anonymousSwitch setOffImage:[UIImage imageNamed:@"UISwitch-No"]];
+
     [anonymousSwitch addTarget:self action:@selector(changeSwitch:) forControlEvents:UIControlEventValueChanged];
     
     mediaButton = (UIButton*)[cell viewWithTag:10];

@@ -144,7 +144,8 @@
         cellLbl2nd.text=[NSString stringWithFormat:@"%@ - %@",[[self.tableItems objectAtIndex:indexPath.row] valueForKeyPath:@"country_name"],[[self.tableItems objectAtIndex:indexPath.row] valueForKeyPath:@"state_name"]];
         
         UIButton *flagButton = (UIButton*)[cell viewWithTag:4];
-        [flagButton addTarget:self action:@selector(flagCrimeButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        flagButton.hidden = YES;
+        //[flagButton addTarget:self action:@selector(flagCrimeButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
     else
     {
@@ -160,7 +161,8 @@
         cellLbl.text = temp.officer_name;
         cellLbl2nd.text=[NSString stringWithFormat:@"%@ - %@",temp.country_name,temp.state_name];
         UIButton *flagButton = (UIButton*)[cell viewWithTag:4];
-        [flagButton addTarget:self action:@selector(flagReviewButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        flagButton.hidden = YES;
+        //[flagButton addTarget:self action:@selector(flagReviewButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 
     }
     cell.backgroundColor=[UIColor clearColor];
@@ -174,37 +176,37 @@
     
 }
 
-- (IBAction)flagCrimeButtonClicked:(id)sender {
-    
-    
-    UITableViewCell *cell = (UITableViewCell*)[[sender superview] superview];
-    UIButton *flagButton = (UIButton*)[cell viewWithTag:4];
-    [flagButton setImage:[UIImage imageNamed:@"Red_flag_icon"] forState:normal];
-    
-    NSIndexPath *indexPath = [self.reportTable indexPathForCell:cell];
-    rowIndex = indexPath.row;
-    
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Flag Crime!" message:@"Do you really think this crime report is abusive? After saying YES you can not unflag this." delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil];
-    alert.tag = 100;
-    [alert show];
-    
-}
-- (IBAction)flagReviewButtonClicked:(id)sender {
-    
-    UITableViewCell *cell = (UITableViewCell*)[[sender superview] superview];
-    
-    UIButton *flagButton = (UIButton*)[cell viewWithTag:4];
-    [flagButton setImage:[UIImage imageNamed:@"Red_flag_icon"] forState:normal];
-    
-    NSIndexPath *indexPath = [self.reportTable indexPathForCell:cell];
-    rowIndex = indexPath.row;
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Flag Review!" message:@"Do you really think this Review is abusive? After saying YES you can not unflag this." delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil];
-    alert.tag = 100;
-    [alert show];
-    
-}
+//- (IBAction)flagCrimeButtonClicked:(id)sender {
+//    
+//    
+//    UITableViewCell *cell = (UITableViewCell*)[[sender superview] superview];
+//    UIButton *flagButton = (UIButton*)[cell viewWithTag:4];
+//    [flagButton setImage:[UIImage imageNamed:@"Red_flag_icon"] forState:normal];
+//    
+//    NSIndexPath *indexPath = [self.reportTable indexPathForCell:cell];
+//    rowIndex = indexPath.row;
+//    
+//    
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Flag Crime!" message:@"Do you really think this crime report is abusive? After saying YES you can not unflag this." delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil];
+//    alert.tag = 100;
+//    [alert show];
+//    
+//}
+//- (IBAction)flagReviewButtonClicked:(id)sender {
+//    
+//    UITableViewCell *cell = (UITableViewCell*)[[sender superview] superview];
+//    
+//    UIButton *flagButton = (UIButton*)[cell viewWithTag:4];
+//    [flagButton setImage:[UIImage imageNamed:@"Red_flag_icon"] forState:normal];
+//    
+//    NSIndexPath *indexPath = [self.reportTable indexPathForCell:cell];
+//    rowIndex = indexPath.row;
+//    
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Flag Review!" message:@"Do you really think this Review is abusive? After saying YES you can not unflag this." delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil];
+//    alert.tag = 100;
+//    [alert show];
+//    
+//}
 
 //----------------------------
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

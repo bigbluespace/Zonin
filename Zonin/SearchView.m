@@ -468,34 +468,52 @@
 //-----------------------------------
 -(void)setCountry:(NSArray *)countrys
 {
+    
     countryArray = [[NSMutableArray alloc] initWithArray:countrys];
     [pickerArrayList replaceObjectAtIndex:0 withObject:countryArray];
     //countrys;
-    if (countrys)
-    {
-        self.currentCountry=[countrys objectAtIndex:0];
-       
-    }
+//    if (countrys)
+//    {
+//        self.currentCountry=[countrys objectAtIndex:0];
+//       
+//    }
 }
 //----------------------
 -(void)setCurrentCountry:(Country *)currentCountry
 {
-    _currentCountry=currentCountry;
+    _currentCountry = currentCountry;
     if (currentCountry)
     {
         self.txtCountryName.text=currentCountry.Name;
         
+        [MBProgressHUD showHUDAddedTo:self animated:YES];
+        
          [currentCountry getStates:^(NSArray *list, NSDictionary *error) {
+             [MBProgressHUD hideHUDForView:self animated:YES];
              if (list != nil) {
                  stateArray = [[NSMutableArray alloc] initWithArray:list];
                  [pickerArrayList replaceObjectAtIndex:1 withObject:stateArray];
-                 Country*temp=[stateArray objectAtIndex:0];
-                 self.txtStateName.text=temp.Name;
+                 //Country*temp=[stateArray objectAtIndex:0];
+                 self.txtStateName.text=@"";
+
+                 self.txtStateName.placeholder= @"Select State";
                  self.txtStateName.enabled = YES;
+                 
+                 _parishField.text=@"";
+                 _parishField.placeholder = @"Select County/Parish";
+                 _parishField.enabled = YES;
+
+                 
+                 
+                 
              }else{
                  self.txtStateName.text=@"";
                  self.txtStateName.placeholder = @"No data found";
                  self.txtStateName.enabled = NO;
+                 
+                 _parishField.text=@"";
+                 _parishField.placeholder = @"No data found";
+                 _parishField.enabled = NO;
              }
              
 
@@ -510,12 +528,17 @@
     _currentState = currentState;
     if (currentState) {
         self.txtStateName.text = currentState.Name;
+        [MBProgressHUD showHUDAddedTo:self animated:YES];
        [self.currentState getAllCountyForSate:^(NSArray *list, NSDictionary *error) {
+           [MBProgressHUD hideHUDForView:self animated:YES];
            if (list != nil) {
                parishArray = [[NSMutableArray alloc] initWithArray:list];
                [pickerArrayList replaceObjectAtIndex:2 withObject:parishArray];
-               Country*temp=[parishArray objectAtIndex:0];
-               _parishField.text=temp.Name;
+               
+               _parishField.text=@"";
+               _parishField.placeholder = @"Select County/Parish";
+//               Country*temp=[parishArray objectAtIndex:0];
+//               _parishField.text=temp.Name;
                _parishField.enabled = YES;
            }else{
                _parishField.text=@"";

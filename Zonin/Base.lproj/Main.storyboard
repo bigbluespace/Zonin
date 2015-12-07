@@ -2061,38 +2061,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n0g-yQ-vB1" userLabel="buttonView">
                                         <rect key="frame" x="0.0" y="513" width="600" height="60"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jk9-TX-rEu">
-                                                <rect key="frame" x="8" y="5" width="70" height="50"/>
-                                                <animations/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                                <state key="normal" title="Previous" backgroundImage="common.9">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="previousBtn:" destination="ZNL-IW-WT2" eventType="touchUpInside" id="poB-Ga-dWj"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="yPH-1g-Tfz">
-                                                <rect key="frame" x="172" y="5" width="70" height="50"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="JWT-Uh-RMV">
+                                                <rect key="frame" x="8" y="5" width="110" height="50"/>
                                                 <animations/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="70" id="rXA-Xw-ohL"/>
+                                                    <constraint firstAttribute="height" constant="50" id="01q-Nt-7as"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                                <state key="normal" title="Search News" backgroundImage="common.9">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="SearchNewsBtn:" destination="ZNL-IW-WT2" eventType="touchUpInside" id="2ua-zJ-zhL"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="JWT-Uh-RMV">
-                                                <rect key="frame" x="336" y="5" width="70" height="50"/>
-                                                <animations/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                                <state key="normal" title="Add Feedback" backgroundImage="common.9">
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                                <state key="normal" title="ADD FEEDBACK" backgroundImage="common.9">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -2100,23 +2076,11 @@
                                                     <action selector="addFeedbackBtn:" destination="ZNL-IW-WT2" eventType="touchUpInside" id="FOh-XI-82c"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Vk-IE-4eU">
-                                                <rect key="frame" x="90" y="5" width="70" height="50"/>
-                                                <animations/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                                <state key="normal" title="Next" backgroundImage="common.9">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="NextBtn:" destination="ZNL-IW-WT2" eventType="touchUpInside" id="Qdd-PN-cA2"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Bgu-li-nxE">
-                                                <rect key="frame" x="254" y="5" width="70" height="50"/>
+                                                <rect key="frame" x="126" y="5" width="111" height="50"/>
                                                 <animations/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                                <state key="normal" title="View Feedback" backgroundImage="common.9">
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                                <state key="normal" title="VIEW FEEDBACK" backgroundImage="common.9">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -2124,32 +2088,66 @@
                                                     <action selector="viewFeedbackBtn:" destination="ZNL-IW-WT2" eventType="touchUpInside" id="eQQ-jR-ujq"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="yPH-1g-Tfz">
+                                                <rect key="frame" x="245" y="5" width="110" height="50"/>
+                                                <animations/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                                <state key="normal" title="SEARCH" backgroundImage="common.9">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="SearchNewsBtn:" destination="ZNL-IW-WT2" eventType="touchUpInside" id="2ua-zJ-zhL"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Jk9-TX-rEu">
+                                                <rect key="frame" x="363" y="5" width="111" height="50"/>
+                                                <animations/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                                <state key="normal" title="PREVIOUS ARTICLE" backgroundImage="common.9">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="previousBtn:" destination="ZNL-IW-WT2" eventType="touchUpInside" id="poB-Ga-dWj"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="5Vk-IE-4eU">
+                                                <rect key="frame" x="482" y="5" width="110" height="50"/>
+                                                <animations/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                                <state key="normal" title="NEXT ARTICLE" backgroundImage="common.9">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="NextBtn:" destination="ZNL-IW-WT2" eventType="touchUpInside" id="Qdd-PN-cA2"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <animations/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="Jk9-TX-rEu" firstAttribute="width" secondItem="JWT-Uh-RMV" secondAttribute="width" id="0Y3-Sg-bvz"/>
-                                            <constraint firstItem="Jk9-TX-rEu" firstAttribute="height" secondItem="Bgu-li-nxE" secondAttribute="height" id="1od-hi-eAZ"/>
-                                            <constraint firstItem="Jk9-TX-rEu" firstAttribute="height" secondItem="JWT-Uh-RMV" secondAttribute="height" id="6qg-4c-whg"/>
+                                            <constraint firstItem="5Vk-IE-4eU" firstAttribute="width" secondItem="JWT-Uh-RMV" secondAttribute="width" id="4jJ-LD-Km7"/>
+                                            <constraint firstItem="5Vk-IE-4eU" firstAttribute="height" secondItem="JWT-Uh-RMV" secondAttribute="height" id="5sB-Sa-83p"/>
                                             <constraint firstAttribute="height" constant="60" id="7S2-tt-JPG"/>
-                                            <constraint firstItem="Jk9-TX-rEu" firstAttribute="centerY" secondItem="JWT-Uh-RMV" secondAttribute="centerY" id="8WJ-7w-t8b"/>
-                                            <constraint firstItem="JWT-Uh-RMV" firstAttribute="leading" secondItem="Bgu-li-nxE" secondAttribute="trailing" constant="12" id="8aM-F1-WBz"/>
-                                            <constraint firstItem="Bgu-li-nxE" firstAttribute="leading" secondItem="yPH-1g-Tfz" secondAttribute="trailing" constant="12" id="Dik-lZ-KIg"/>
-                                            <constraint firstItem="Jk9-TX-rEu" firstAttribute="centerY" secondItem="yPH-1g-Tfz" secondAttribute="centerY" id="GUH-3Q-JoJ"/>
-                                            <constraint firstItem="Jk9-TX-rEu" firstAttribute="height" secondItem="5Vk-IE-4eU" secondAttribute="height" id="Grp-TY-gVL"/>
-                                            <constraint firstItem="Jk9-TX-rEu" firstAttribute="width" secondItem="5Vk-IE-4eU" secondAttribute="width" id="J3V-Lx-AwB"/>
-                                            <constraint firstAttribute="centerX" secondItem="yPH-1g-Tfz" secondAttribute="centerX" id="J3v-DR-jla"/>
-                                            <constraint firstItem="yPH-1g-Tfz" firstAttribute="top" secondItem="n0g-yQ-vB1" secondAttribute="top" constant="5" id="Jnr-Zz-Rm1"/>
-                                            <constraint firstItem="Jk9-TX-rEu" firstAttribute="centerY" secondItem="5Vk-IE-4eU" secondAttribute="centerY" id="OLu-NX-cBG"/>
-                                            <constraint firstItem="Jk9-TX-rEu" firstAttribute="height" secondItem="yPH-1g-Tfz" secondAttribute="height" id="RaV-8B-xuE"/>
-                                            <constraint firstAttribute="trailing" secondItem="JWT-Uh-RMV" secondAttribute="trailing" constant="8" id="UFp-H1-LbS"/>
-                                            <constraint firstAttribute="bottom" secondItem="yPH-1g-Tfz" secondAttribute="bottom" constant="5" id="bjh-NV-wsa"/>
-                                            <constraint firstItem="Jk9-TX-rEu" firstAttribute="width" secondItem="Bgu-li-nxE" secondAttribute="width" id="cCs-6F-pfN"/>
-                                            <constraint firstItem="yPH-1g-Tfz" firstAttribute="leading" secondItem="5Vk-IE-4eU" secondAttribute="trailing" constant="12" id="dVQ-Qx-1Us"/>
-                                            <constraint firstItem="5Vk-IE-4eU" firstAttribute="leading" secondItem="Jk9-TX-rEu" secondAttribute="trailing" constant="12" id="f7C-CK-0Vi"/>
-                                            <constraint firstItem="Jk9-TX-rEu" firstAttribute="width" secondItem="yPH-1g-Tfz" secondAttribute="width" id="fkB-7p-u7r"/>
-                                            <constraint firstItem="Jk9-TX-rEu" firstAttribute="leading" secondItem="n0g-yQ-vB1" secondAttribute="leading" constant="8" id="zab-mP-FjK"/>
-                                            <constraint firstItem="Jk9-TX-rEu" firstAttribute="centerY" secondItem="Bgu-li-nxE" secondAttribute="centerY" id="znL-WJ-fTa"/>
+                                            <constraint firstItem="yPH-1g-Tfz" firstAttribute="centerY" secondItem="JWT-Uh-RMV" secondAttribute="centerY" id="BcO-P8-puj"/>
+                                            <constraint firstItem="Jk9-TX-rEu" firstAttribute="width" secondItem="JWT-Uh-RMV" secondAttribute="width" id="D7q-CX-NxH"/>
+                                            <constraint firstItem="Jk9-TX-rEu" firstAttribute="leading" secondItem="yPH-1g-Tfz" secondAttribute="trailing" constant="8" id="HXE-P1-vVQ"/>
+                                            <constraint firstItem="Bgu-li-nxE" firstAttribute="centerY" secondItem="JWT-Uh-RMV" secondAttribute="centerY" id="Kr9-3R-317"/>
+                                            <constraint firstItem="Bgu-li-nxE" firstAttribute="leading" secondItem="JWT-Uh-RMV" secondAttribute="trailing" constant="8" id="Ljr-vr-Rkc"/>
+                                            <constraint firstItem="Bgu-li-nxE" firstAttribute="width" secondItem="JWT-Uh-RMV" secondAttribute="width" id="R9Y-Dx-yG1"/>
+                                            <constraint firstItem="JWT-Uh-RMV" firstAttribute="centerY" secondItem="n0g-yQ-vB1" secondAttribute="centerY" id="Wzt-ZY-3q0"/>
+                                            <constraint firstItem="Bgu-li-nxE" firstAttribute="height" secondItem="JWT-Uh-RMV" secondAttribute="height" id="YZW-pB-Mmq"/>
+                                            <constraint firstItem="JWT-Uh-RMV" firstAttribute="leading" secondItem="n0g-yQ-vB1" secondAttribute="leading" constant="8" id="ZBX-bw-C0e"/>
+                                            <constraint firstItem="5Vk-IE-4eU" firstAttribute="leading" secondItem="Jk9-TX-rEu" secondAttribute="trailing" constant="8" id="bco-GH-umb"/>
+                                            <constraint firstAttribute="trailing" secondItem="5Vk-IE-4eU" secondAttribute="trailing" constant="8" id="dE3-Ba-jbb"/>
+                                            <constraint firstItem="yPH-1g-Tfz" firstAttribute="height" secondItem="JWT-Uh-RMV" secondAttribute="height" id="mUu-Ks-Cuq"/>
+                                            <constraint firstItem="Jk9-TX-rEu" firstAttribute="centerY" secondItem="JWT-Uh-RMV" secondAttribute="centerY" id="now-wb-Zlv"/>
+                                            <constraint firstItem="5Vk-IE-4eU" firstAttribute="centerY" secondItem="JWT-Uh-RMV" secondAttribute="centerY" id="psP-WE-m2E"/>
+                                            <constraint firstItem="yPH-1g-Tfz" firstAttribute="width" secondItem="JWT-Uh-RMV" secondAttribute="width" id="qLB-Uy-NLt"/>
+                                            <constraint firstItem="yPH-1g-Tfz" firstAttribute="leading" secondItem="Bgu-li-nxE" secondAttribute="trailing" constant="8" id="t1A-7p-EWf"/>
+                                            <constraint firstItem="Jk9-TX-rEu" firstAttribute="height" secondItem="JWT-Uh-RMV" secondAttribute="height" id="zZS-kT-o1W"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -2466,12 +2464,12 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kfe-r6-zr1">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="899"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1. Country of the incident:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ezY-Ka-uCr">
-                                                            <rect key="frame" x="15" y="26" width="300" height="24"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1. Country of the Incident*:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ezY-Ka-uCr">
+                                                            <rect key="frame" x="15" y="26" width="305" height="24"/>
                                                             <animations/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="300" id="rwn-Z4-nl6">
-                                                                    <variation key="widthClass=compact" constant="180"/>
+                                                                <constraint firstAttribute="width" constant="305" id="rwn-Z4-nl6">
+                                                                    <variation key="widthClass=compact" constant="185"/>
                                                                 </constraint>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -2482,7 +2480,7 @@
                                                             </variation>
                                                         </label>
                                                         <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" background="text_big" translatesAutoresizingMaskIntoConstraints="NO" id="Nwi-5d-Bna" userLabel="country">
-                                                            <rect key="frame" x="330" y="15" width="255" height="45"/>
+                                                            <rect key="frame" x="335" y="15" width="250" height="45"/>
                                                             <animations/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="45" id="f8l-Ey-t9L">
@@ -2492,8 +2490,8 @@
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                         </textField>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2. State/Province of the incident:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wvM-mW-jZZ">
-                                                            <rect key="frame" x="15" y="86" width="300" height="24"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2. State/Province of the Incident*:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wvM-mW-jZZ">
+                                                            <rect key="frame" x="15" y="86" width="305" height="24"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2503,13 +2501,13 @@
                                                             </variation>
                                                         </label>
                                                         <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" background="text_big" translatesAutoresizingMaskIntoConstraints="NO" id="fVc-It-1gp" userLabel="state">
-                                                            <rect key="frame" x="330" y="75" width="255" height="45"/>
+                                                            <rect key="frame" x="335" y="75" width="250" height="45"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                         </textField>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3. Country/Parish of the incident:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nIJ-wj-U0S">
-                                                            <rect key="frame" x="15" y="146" width="300" height="24"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3. County/Parish of the Incident*:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nIJ-wj-U0S">
+                                                            <rect key="frame" x="15" y="146" width="305" height="24"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2519,13 +2517,13 @@
                                                             </variation>
                                                         </label>
                                                         <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" background="text_big" translatesAutoresizingMaskIntoConstraints="NO" id="Nao-tW-UXK" userLabel="parish">
-                                                            <rect key="frame" x="330" y="135" width="255" height="45"/>
+                                                            <rect key="frame" x="335" y="135" width="250" height="45"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                         </textField>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4. Provide an incident title*" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i97-fw-4rs">
-                                                            <rect key="frame" x="15" y="206" width="300" height="24"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4. Provide an Incident Title*:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i97-fw-4rs">
+                                                            <rect key="frame" x="15" y="206" width="305" height="24"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2535,13 +2533,13 @@
                                                             </variation>
                                                         </label>
                                                         <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" background="text_big" translatesAutoresizingMaskIntoConstraints="NO" id="i4f-bA-8jh" userLabel="title">
-                                                            <rect key="frame" x="330" y="195" width="255" height="45"/>
+                                                            <rect key="frame" x="335" y="195" width="250" height="45"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                                         </textField>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5. Incident Date(If Known):" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7iy-Q0-cYi">
-                                                            <rect key="frame" x="15" y="266" width="300" height="24"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5. Incident Date (If Known):" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7iy-Q0-cYi">
+                                                            <rect key="frame" x="15" y="266" width="305" height="24"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2551,13 +2549,13 @@
                                                             </variation>
                                                         </label>
                                                         <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" background="text_big" translatesAutoresizingMaskIntoConstraints="NO" id="nW1-BR-ujD" userLabel="date">
-                                                            <rect key="frame" x="330" y="255" width="255" height="45"/>
+                                                            <rect key="frame" x="335" y="255" width="250" height="45"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                         </textField>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6. Incident Time (If Known):" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zFq-Xe-ae5">
-                                                            <rect key="frame" x="15" y="326" width="300" height="24"/>
+                                                            <rect key="frame" x="15" y="326" width="305" height="24"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2567,13 +2565,13 @@
                                                             </variation>
                                                         </label>
                                                         <textField opaque="NO" clipsSubviews="YES" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" background="text_big" translatesAutoresizingMaskIntoConstraints="NO" id="F3w-cy-R2W" userLabel="time">
-                                                            <rect key="frame" x="330" y="315" width="255" height="45"/>
+                                                            <rect key="frame" x="335" y="315" width="250" height="45"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                         </textField>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7. Incident Location*:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZrG-F1-r0A">
-                                                            <rect key="frame" x="15" y="386" width="300" height="24"/>
+                                                            <rect key="frame" x="15" y="386" width="305" height="24"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2583,13 +2581,13 @@
                                                             </variation>
                                                         </label>
                                                         <textField opaque="NO" clipsSubviews="YES" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" background="text_big" translatesAutoresizingMaskIntoConstraints="NO" id="n5a-N1-4t9" userLabel="location">
-                                                            <rect key="frame" x="330" y="375" width="255" height="45"/>
+                                                            <rect key="frame" x="335" y="375" width="250" height="45"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                                         </textField>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9. Anonymous:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b5l-UN-iGh">
-                                                            <rect key="frame" x="15" y="584" width="300" height="24"/>
+                                                            <rect key="frame" x="15" y="584" width="305" height="24"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2603,7 +2601,7 @@
                                                             <animations/>
                                                         </switch>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8. Enter Incident Details*:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sxT-5l-sYu">
-                                                            <rect key="frame" x="15" y="435" width="300" height="24"/>
+                                                            <rect key="frame" x="15" y="435" width="305" height="24"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2627,8 +2625,8 @@
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
                                                         </textView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="10. Attach any media file associated with the incident:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zSd-4P-sas">
-                                                            <rect key="frame" x="15" y="638" width="473" height="24"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10. Attach Media File Associated with Incident:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zSd-4P-sas">
+                                                            <rect key="frame" x="15" y="638" width="417" height="24"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2637,8 +2635,17 @@
                                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             </variation>
                                                         </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="* - Required Field" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w7D-ld-faB">
+                                                            <rect key="frame" x="15" y="692" width="158" height="24"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <variation key="widthClass=compact">
+                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            </variation>
+                                                        </label>
                                                         <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VUG-Xv-F7F">
-                                                            <rect key="frame" x="15" y="688" width="225" height="75"/>
+                                                            <rect key="frame" x="15" y="741" width="225" height="75"/>
                                                             <animations/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="VUG-Xv-F7F" secondAttribute="height" multiplier="3:1" id="44x-BS-QwI"/>
@@ -2656,7 +2663,7 @@
                                                             </variation>
                                                         </button>
                                                         <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nvm-CX-NBe">
-                                                            <rect key="frame" x="355" y="688" width="225" height="75"/>
+                                                            <rect key="frame" x="355" y="741" width="225" height="75"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                             <state key="normal" title="LIVE RECORDING" backgroundImage="common.9">
@@ -2668,7 +2675,7 @@
                                                             </variation>
                                                         </button>
                                                         <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ssl-Ux-yOI">
-                                                            <rect key="frame" x="188" y="783" width="225" height="75"/>
+                                                            <rect key="frame" x="188" y="836" width="225" height="75"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                             <state key="normal" title="SUBMIT" backgroundImage="common.9">
@@ -2721,7 +2728,9 @@
                                                         <constraint firstItem="Nwi-5d-Bna" firstAttribute="leading" secondItem="n5a-N1-4t9" secondAttribute="leading" id="PFG-3d-1uT"/>
                                                         <constraint firstItem="Nwi-5d-Bna" firstAttribute="leading" secondItem="fVc-It-1gp" secondAttribute="leading" id="S6Q-3R-A6n"/>
                                                         <constraint firstItem="7iy-Q0-cYi" firstAttribute="width" secondItem="ZrG-F1-r0A" secondAttribute="width" id="SzM-Nv-aoa"/>
+                                                        <constraint firstItem="VUG-Xv-F7F" firstAttribute="top" secondItem="w7D-ld-faB" secondAttribute="bottom" constant="25" id="Tys-L8-vNi"/>
                                                         <constraint firstItem="zSd-4P-sas" firstAttribute="leading" secondItem="VUG-Xv-F7F" secondAttribute="leading" id="Umm-b8-ZVH"/>
+                                                        <constraint firstItem="w7D-ld-faB" firstAttribute="top" secondItem="zSd-4P-sas" secondAttribute="bottom" constant="30" id="Uoa-lB-Mec"/>
                                                         <constraint firstItem="mos-UR-oD3" firstAttribute="width" secondItem="zhr-Xe-e6G" secondAttribute="width" id="VhG-Hr-asO"/>
                                                         <constraint firstItem="7iy-Q0-cYi" firstAttribute="leading" secondItem="zFq-Xe-ae5" secondAttribute="leading" id="WK5-pU-nbT"/>
                                                         <constraint firstItem="Nwi-5d-Bna" firstAttribute="leading" secondItem="F3w-cy-R2W" secondAttribute="leading" id="WWm-5S-P1h"/>
@@ -2730,12 +2739,12 @@
                                                         <constraint firstItem="zSd-4P-sas" firstAttribute="leading" secondItem="b5l-UN-iGh" secondAttribute="leading" id="YqP-Y8-pof"/>
                                                         <constraint firstItem="zhr-Xe-e6G" firstAttribute="top" secondItem="sxT-5l-sYu" secondAttribute="bottom" constant="10" id="bco-IR-keQ"/>
                                                         <constraint firstItem="i4f-bA-8jh" firstAttribute="height" secondItem="Nwi-5d-Bna" secondAttribute="height" id="c6j-tj-1Ss"/>
-                                                        <constraint firstItem="VUG-Xv-F7F" firstAttribute="top" secondItem="zSd-4P-sas" secondAttribute="bottom" constant="26" id="d3t-GG-8Ua"/>
                                                         <constraint firstItem="Nao-tW-UXK" firstAttribute="centerY" secondItem="nIJ-wj-U0S" secondAttribute="centerY" id="dOo-nq-hcN"/>
                                                         <constraint firstItem="Nwi-5d-Bna" firstAttribute="leading" secondItem="i4f-bA-8jh" secondAttribute="leading" id="ddJ-mv-GSC"/>
                                                         <constraint firstItem="VUG-Xv-F7F" firstAttribute="height" secondItem="nvm-CX-NBe" secondAttribute="height" id="e6l-ix-fLl"/>
                                                         <constraint firstItem="VUG-Xv-F7F" firstAttribute="width" secondItem="nvm-CX-NBe" secondAttribute="width" id="eZz-Ic-VcA"/>
                                                         <constraint firstItem="b5l-UN-iGh" firstAttribute="top" secondItem="zhr-Xe-e6G" secondAttribute="bottom" constant="15" id="g7u-iF-EP2"/>
+                                                        <constraint firstItem="w7D-ld-faB" firstAttribute="leading" secondItem="zSd-4P-sas" secondAttribute="leading" id="gOf-kG-4G4"/>
                                                         <constraint firstItem="i4f-bA-8jh" firstAttribute="top" secondItem="Nao-tW-UXK" secondAttribute="bottom" constant="15" id="hiF-1U-wZN"/>
                                                         <constraint firstItem="7iy-Q0-cYi" firstAttribute="leading" secondItem="wvM-mW-jZZ" secondAttribute="leading" id="hwW-fT-csX"/>
                                                         <constraint firstItem="Nwi-5d-Bna" firstAttribute="trailing" secondItem="i4f-bA-8jh" secondAttribute="trailing" id="iDs-AD-U36"/>
@@ -2791,7 +2800,7 @@
                                     </constraint>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bCg-oR-ocY">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bCg-oR-ocY">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="1300"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ErA-m8-SU5">
@@ -2812,7 +2821,7 @@
                                                 <rect key="frame" x="10" y="53" width="540" height="1127"/>
                                                 <animations/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <string key="text">IF THERE IS AN EMERGENCY PLEASE CALL 911 or YOUR LOCAL LAW ENFORCEMENT AGENCY. 
+                                                <mutableString key="text">IF THERE IS AN EMERGENCY PLEASE CALL 911 or YOUR LOCAL LAW ENFORCEMENT AGENCY. 
 
 ZONIN is not a reporting Agency nor does it make any guarantees of communication with law enforcement or any emergency services.  Please know that as user of ZONIN products your input of any data will not be directed to any law enforcement or any emergency services.
 
@@ -2826,7 +2835,9 @@ ZONIN is not responsible if law enforcement uses any of its content to pursue an
 
 ZONIN is not responsible for data collection by third parties or other mobile applications or sites on your computer, electronic or mobile device.
 
-ZONIN does not allow individuals under 13 years of age to use its services.  ZONIN does not knowingly collect data on children under 13 years of age.</string>
+ZONIN does not allow individuals under 13 years of age to use its services.  ZONIN does not knowingly collect data on children under 13 years of age.
+
+User agrees that he/she is 13 years of age or older.</mutableString>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
