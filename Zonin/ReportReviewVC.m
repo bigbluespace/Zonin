@@ -43,8 +43,8 @@
             self.tableItems = [Crime getAllCrime];
         }
       
-        _leftBtnLabel.text = @"SEARCH AN INCIDENT REPORT";
-        _rightBtnLabel.text = @"REPORT AN INCIDENT";
+        _leftBtnLabel.text = @"SEARCH INCIDENTS";
+        _rightBtnLabel.text = @"ADD INCIDENT";
         
     }
     else
@@ -54,8 +54,8 @@
             self.tableItems=[OfficerReviews GetAllReview];
         }
        
-        _leftBtnLabel.text = @"SEARCH A REVIEW";
-        _rightBtnLabel.text = @"ADD A NEW REVIEW";
+        _leftBtnLabel.text = @"SEARCH REVIEWS";
+        _rightBtnLabel.text = @"ADD REVIEW";
 
     }
    // NSLog(@"number of table items %d",self.tableItems.count);
