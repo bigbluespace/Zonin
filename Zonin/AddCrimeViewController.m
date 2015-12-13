@@ -594,9 +594,9 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (IPAD) {
-        return 900;
+        return 950;
     }
-    return 700;
+    return 750;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -668,8 +668,11 @@
     
     anonymousSwitch = (UISwitch*)[cell viewWithTag:9];
     
-    [anonymousSwitch setOnImage: [UIImage imageNamed:@"UISwitch-Yes"]];
-    [anonymousSwitch setOffImage:[UIImage imageNamed:@"UISwitch-No"]];
+    //[anonymousSwitch setOnImage: [UIImage imageNamed:@"pinterest"]];
+    //[anonymousSwitch setOffImage:[UIImage imageNamed:@"UISwitch-No"]];
+    
+   // [(UIImage *)([[[[[[anonymousSwitch subviews] lastObject] subviews] objectAtIndex:2] subviews] objectAtIndex:0]) setim];
+   // [(UIImage *)[[[[[[anonymousSwitch subviews] lastObject] subviews] objectAtIndex:2] subviews] objectAtIndex:1] setText:@"Hello"];
 
     [anonymousSwitch addTarget:self action:@selector(changeSwitch:) forControlEvents:UIControlEventValueChanged];
     
